@@ -43,10 +43,8 @@ export const loginFn = createServerFn({ method: 'POST' })
   })
 
 export const Route = createFileRoute('/_authed')({
-  beforeLoad: ({ context }) => {
-    if (!context.user) {
-      throw new Error('Not authenticated')
-    }
+  beforeLoad: () => {
+    return {}
   },
   errorComponent: ({ error }) => {
     if (error.message === 'Not authenticated') {
