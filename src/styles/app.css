@@ -156,23 +156,23 @@
 }
 
 .home-nav {
-  --nav-padding: 0.35rem;
+  --nav-padding: 0.28rem;
   position: fixed;
-  top: 3.4rem;
+  top: 1.35rem;
   left: 50%;
-  z-index: 20;
+  z-index: 1000;
   display: grid;
-  width: min(110rem, calc(100vw - 7rem));
-  min-height: 5.75rem;
+  width: min(98rem, calc(100vw - 8rem));
+  min-height: 4.8rem;
   grid-template-columns:
-    minmax(11.8rem, 1.1fr)
-    minmax(8.8rem, 0.85fr)
-    minmax(13.6rem, 1.28fr)
-    minmax(12.2rem, 1.16fr)
-    minmax(12rem, 1.14fr)
-    minmax(15.6rem, 1.48fr)
-    minmax(11.4rem, 1.1fr)
-    minmax(7.6rem, 0.76fr);
+    minmax(8.8rem, 1.1fr)
+    minmax(6.8rem, 0.85fr)
+    minmax(10.8rem, 1.28fr)
+    minmax(9.8rem, 1.16fr)
+    minmax(9.6rem, 1.14fr)
+    minmax(12.4rem, 1.48fr)
+    minmax(9rem, 1.1fr)
+    minmax(6.2rem, 0.76fr);
   align-items: center;
   gap: 0;
   border-radius: 999px;
@@ -188,7 +188,7 @@
   top: var(--nav-padding);
   left: var(--nav-padding);
   z-index: 0;
-  width: var(--active-width, 11.8rem);
+  width: var(--active-width, 9.8rem);
   height: calc(100% - (var(--nav-padding) * 2));
   border-radius: 999px;
   background: #f486bb;
@@ -205,14 +205,14 @@
   z-index: 1;
   display: inline-flex;
   flex-direction: column;
-  min-height: 5.05rem;
+  min-height: 4.24rem;
   min-width: 0;
   align-items: center;
   justify-content: center;
   border-radius: 999px;
   color: #fff;
-  padding: 0 0.65rem;
-  font-size: clamp(1.18rem, 1.35vw, 1.75rem);
+  padding: 0 0.48rem;
+  font-size: clamp(1rem, 1.1vw, 1.42rem);
   font-weight: 600;
   line-height: 1.18;
   text-align: center;
@@ -231,33 +231,33 @@
 }
 
 .home-nav-link:nth-child(1) {
-  font-size: clamp(1.45rem, 1.85vw, 2.15rem);
+  font-size: clamp(1.12rem, 1.26vw, 1.5rem);
   font-weight: 600;
 }
 
 .home-nav-link:nth-child(2) {
-  font-size: clamp(1.25rem, 1.45vw, 1.9rem);
+  font-size: clamp(1.02rem, 1.16vw, 1.5rem);
 }
 
 .home-nav-link:nth-child(3) {
-  font-size: clamp(1rem, 1.12vw, 1.38rem);
+  font-size: clamp(0.86rem, 0.95vw, 1.14rem);
 }
 
 .home-nav-link:nth-child(4),
 .home-nav-link:nth-child(5) {
-  font-size: clamp(1.02rem, 1.16vw, 1.42rem);
+  font-size: clamp(0.88rem, 0.98vw, 1.18rem);
 }
 
 .home-nav-link:nth-child(6) {
-  font-size: clamp(1.2rem, 1.42vw, 1.85rem);
+  font-size: clamp(1rem, 1.15vw, 1.48rem);
 }
 
 .home-nav-link:nth-child(7) {
-  font-size: clamp(1.18rem, 1.38vw, 1.75rem);
+  font-size: clamp(1rem, 1.12vw, 1.42rem);
 }
 
 .home-nav-link:nth-child(8) {
-  font-size: clamp(1.18rem, 1.38vw, 1.72rem);
+  font-size: clamp(1rem, 1.1vw, 1.38rem);
 }
 
 .home-nav-link:hover,
@@ -269,6 +269,31 @@
 .home-nav-link.active {
   font-weight: 800;
   transform: translateY(-0.06rem) scale(1.045);
+}
+
+.home-nav.section-nav {
+  border: 0.24rem solid #f486bb;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: none;
+  backdrop-filter: blur(8px);
+}
+
+.home-nav.section-nav::before {
+  background: #f486bb;
+  box-shadow: none;
+}
+
+.home-nav.section-nav .home-nav-link {
+  color: #f486bb;
+}
+
+.home-nav.section-nav .home-nav-link.active {
+  color: #fff;
+}
+
+.home-nav.section-nav .home-nav-link:hover,
+.home-nav.section-nav .home-nav-link:focus-visible {
+  background: rgba(244, 134, 187, 0.12);
 }
 
 .mobile-menu-button,
@@ -399,6 +424,103 @@
   text-align: center;
 }
 
+.toss-section {
+  min-height: 100vh;
+  scroll-margin-top: 7rem;
+  background: #fff;
+  color: #f486bb;
+  padding: 10.4rem min(5.8vw, 6.9rem) 2.5rem;
+}
+
+.toss-content {
+  display: flex;
+  min-height: calc(100vh - 9.05rem);
+  flex-direction: column;
+  align-items: center;
+}
+
+.toss-content h2 {
+  margin: 0;
+  color: #f486bb;
+  font-size: clamp(2.85rem, 4.5vw, 3.95rem);
+  font-weight: 900;
+  line-height: 1.05;
+  text-align: center;
+}
+
+.toss-logo-shell {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  display: grid;
+  width: clamp(14rem, 27vw, 33.5rem);
+  aspect-ratio: 1;
+  margin-top: clamp(1.8rem, 2.9vw, 2.8rem);
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(244, 134, 187, 0.25);
+}
+
+.toss-logo-shell::before {
+  position: absolute;
+  z-index: -1;
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+}
+
+.toss-logo {
+  position: relative;
+  z-index: 1;
+  width: 66%;
+  height: 66%;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.toss-card-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1.38fr 1.02fr;
+  gap: clamp(1.1rem, 1.65vw, 1.9rem);
+  margin-top: clamp(1.0rem, 2.1vw, 2.4rem);
+  padding-top: clamp(1.5rem, 2.3vw, 2.3rem);
+}
+
+.toss-card {
+  display: grid;
+  min-height: 11.2rem;
+  place-items: center;
+  border: 0.2rem solid #f486bb;
+  background: #fff;
+  color: #f486bb;
+  padding: 1rem 1.05rem;
+  text-align: center;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.toss-card p {
+  max-width: 34rem;
+  margin: 0;
+  font-size: clamp(1.05rem, 1.32vw, 1.34rem);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.toss-card:hover,
+.toss-card:focus-within {
+  background: #f486bb;
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(244, 134, 187, 0.2);
+  transform: translateY(-0.22rem);
+}
+
 @keyframes navDropIn {
   from {
     opacity: 0;
@@ -468,11 +590,47 @@
     display: none;
   }
 
+  .toss-section {
+    min-height: 100svh;
+    scroll-margin-top: 0;
+    padding: 4.25rem 1.05rem 1.45rem;
+  }
+
+  .toss-content {
+    min-height: auto;
+  }
+
+  .toss-content h2 {
+    font-size: clamp(2.35rem, 9.2vw, 3.45rem);
+  }
+
+  .toss-logo-shell {
+    width: min(68vw, 20rem);
+    margin-top: 2rem;
+  }
+
+  .toss-card-grid {
+    grid-template-columns: 1fr;
+    gap: 0.95rem;
+    margin-top: 1.55rem;
+    padding-top: 0;
+  }
+
+  .toss-card {
+    min-height: 5.6rem;
+    padding: 0.62rem 0.7rem;
+  }
+
+  .toss-card p {
+    font-size: clamp(0.72rem, 3.05vw, 0.9rem);
+    line-height: 1.35;
+  }
+
   .mobile-menu-button {
     position: fixed;
     top: 1.5rem;
     right: 1.4rem;
-    z-index: 30;
+    z-index: 1003;
     display: inline-flex;
     width: 2.9rem;
     height: 2.9rem;
@@ -496,10 +654,15 @@
     transform: translateY(-0.08rem);
   }
 
+  body.mobile-menu-open .mobile-menu-button {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .mobile-menu-backdrop {
     position: fixed;
     inset: 0;
-    z-index: 31;
+    z-index: 1001;
     display: block;
     background: rgba(0, 0, 0, 0.16);
     opacity: 0;
@@ -516,7 +679,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 32;
+    z-index: 1002;
     display: block;
     width: min(58vw, 21rem);
     min-width: 14.75rem;
@@ -697,6 +860,36 @@
 }
 
 @media (max-width: 480px) {
+  .toss-section {
+    min-height: 100svh;
+    scroll-margin-top: 0;
+    padding: 3.95rem 0.9rem 1.2rem;
+  }
+
+  .toss-content h2 {
+    font-size: clamp(2.05rem, 8.5vw, 2.75rem);
+  }
+
+  .toss-logo-shell {
+    width: min(62vw, 17.5rem);
+    margin-top: 1.75rem;
+  }
+
+  .toss-card-grid {
+    gap: 1.15rem;
+    margin-top: 2.15rem;
+  }
+
+  .toss-card {
+    min-height: 5.35rem;
+    padding: 0.5rem 0.58rem;
+  }
+
+  .toss-card p {
+    font-size: clamp(0.75rem, 2.85vw, 0.86rem);
+    line-height: 1.3;
+  }
+
   .mobile-menu-button {
     top: 1.55rem;
     right: 1.45rem;

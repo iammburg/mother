@@ -20,6 +20,12 @@ const navigationItems = [
 
 const heroTitle = "Ibu hamil bebas TBC";
 
+const tossCards = [
+  "Merupakan Kampanye untuk Temukan Tuberkolosis, Obati Sampai Sembuh TBC di Indonesia.",
+  "Kampanye untuk menemukan, mendiagnosis, mengobati, dan menyembuhkan pasien TBC serta menghentikan penularan TBC di masyarakat.",
+  "TOSS TBC menargetkan 90% penurunan insiden TBC dan 95% penurunan kematian TBC pada tahun 2030.",
+];
+
 function Home() {
   const [activeHref, setActiveHref] = useState("#home");
   const [activePill, setActivePill] = useState({ left: 0, width: 0 });
@@ -30,6 +36,8 @@ function Home() {
   const navLinkRefs = useRef<Array<HTMLAnchorElement | null>>([]);
   const mobileLinkRefs = useRef<Array<HTMLAnchorElement | null>>([]);
   const activeHrefRef = useRef("#home");
+  const activeScrollTargetRef = useRef<string | null>(null);
+  const scrollAnimationFrameRef = useRef<number | null>(null);
 
   const updateActivePill = useCallback((href: string) => {
     const activeIndex = navigationItems.findIndex((item) => item.href === href);
@@ -63,6 +71,8 @@ function Home() {
     (href: string) => {
       activeHrefRef.current = href;
       setActiveHref((currentHref) => (currentHref === href ? currentHref : href));
+      updateActivePill(href);
+      updateMobileActivePill(href);
 
       window.requestAnimationFrame(() => {
         updateActivePill(href);
@@ -72,7 +82,12 @@ function Home() {
     [updateActivePill, updateMobileActivePill],
   );
 
-  const smoothScrollTo = (targetTop: number) => {
+  const smoothScrollTo = (targetTop: number, targetHref: string) => {
+    if (scrollAnimationFrameRef.current) {
+      window.cancelAnimationFrame(scrollAnimationFrameRef.current);
+    }
+
+    activeScrollTargetRef.current = targetHref;
     const startTop = window.scrollY;
     const distance = targetTop - startTop;
     const duration = 850;
@@ -92,11 +107,18 @@ function Home() {
       window.scrollTo(0, startTop + distance * easeInOutCubic(progress));
 
       if (progress < 1) {
-        window.requestAnimationFrame(animateScroll);
+        scrollAnimationFrameRef.current =
+          window.requestAnimationFrame(animateScroll);
+        return;
       }
+
+      window.scrollTo(0, targetTop);
+      activeScrollTargetRef.current = null;
+      scrollAnimationFrameRef.current = null;
+      setActiveSection(getCurrentSectionHref());
     };
 
-    window.requestAnimationFrame(animateScroll);
+    scrollAnimationFrameRef.current = window.requestAnimationFrame(animateScroll);
   };
 
   const getCurrentSectionHref = useCallback(() => {
@@ -198,6 +220,13 @@ function Home() {
 
       scrollFrame = window.requestAnimationFrame(() => {
         scrollFrame = undefined;
+        const lockedTarget = activeScrollTargetRef.current;
+
+        if (lockedTarget) {
+          setActiveSection(lockedTarget);
+          return;
+        }
+
         setActiveSection(getCurrentSectionHref());
       });
     };
@@ -260,33 +289,100 @@ function Home() {
     }
 
     event.preventDefault();
+    const sectionTop = target instanceof HTMLElement
+      ? target.offsetTop
+      : target.getBoundingClientRect().top + window.scrollY;
+    const isMobileViewport = window.matchMedia("(max-width: 900px)").matches;
+    const mobileSectionCorrection =
+      isMobileViewport && href !== "#home"
+        ? Math.min(118, Math.max(82, window.innerHeight * 0.13))
+        : 0;
+    const maxScrollTop =
+      document.documentElement.scrollHeight - window.innerHeight;
+    const targetTop = Math.min(
+      sectionTop + mobileSectionCorrection,
+      maxScrollTop,
+    );
+
     setActiveSection(href);
     setIsMobileMenuOpen(false);
+    document.body.classList.remove("mobile-menu-open");
     window.history.pushState(null, "", href);
-    smoothScrollTo(target.getBoundingClientRect().top + window.scrollY);
+    smoothScrollTo(targetTop, href);
   };
 
   return (
     <main className={isHeroVisible ? "home-page home-page-ready" : "home-page"}>
-      <section id="home" className="home-hero" aria-label="Beranda TOSS TB">
+      <button
+        type="button"
+        className="mobile-menu-button"
+        aria-label="Buka menu navigasi"
+        aria-expanded={isMobileMenuOpen}
+        aria-controls="mobile-menu"
+        onClick={() => setIsMobileMenuOpen(true)}
+      >
+        <Menu aria-hidden="true" size={28} strokeWidth={3} />
+      </button>
+
+      <nav
+        className={activeHref === "#home" ? "home-nav" : "home-nav section-nav"}
+        aria-label="Navigasi utama"
+        style={
+          {
+            "--active-left": `${activePill.left}px`,
+            "--active-width": `${activePill.width}px`,
+          } as CSSProperties
+        }
+      >
+        {navigationItems.map((item, index) => (
+          <a
+            key={item.href}
+            ref={(element) => {
+              navLinkRefs.current[index] = element;
+            }}
+            href={item.href}
+            className={
+              item.href === activeHref ? "home-nav-link active" : "home-nav-link"
+            }
+            onClick={(event) => handleNavigation(event, item.href)}
+          >
+            {item.label.split("\n").map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </a>
+        ))}
+      </nav>
+
+      <div
+        className={
+          isMobileMenuOpen ? "mobile-menu-backdrop visible" : "mobile-menu-backdrop"
+        }
+        onClick={() => setIsMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
+
+      <aside
+        id="mobile-menu"
+        className={isMobileMenuOpen ? "mobile-menu open" : "mobile-menu"}
+        aria-label="Menu navigasi mobile"
+        aria-hidden={!isMobileMenuOpen}
+      >
         <button
           type="button"
-          className="mobile-menu-button"
-          aria-label="Buka menu navigasi"
-          aria-expanded={isMobileMenuOpen}
-          aria-controls="mobile-menu"
-          onClick={() => setIsMobileMenuOpen(true)}
+          className="mobile-menu-close"
+          aria-label="Tutup menu navigasi"
+          onClick={() => setIsMobileMenuOpen(false)}
         >
-          <Menu aria-hidden="true" size={28} strokeWidth={3} />
+          <ArrowRight aria-hidden="true" size={28} strokeWidth={3} />
         </button>
 
         <nav
-          className="home-nav"
-          aria-label="Navigasi utama"
+          className="mobile-menu-nav"
+          aria-label="Navigasi mobile"
           style={
             {
-              "--active-left": `${activePill.left}px`,
-              "--active-width": `${activePill.width}px`,
+              "--mobile-active-top": `${mobileActivePill.top}px`,
+              "--mobile-active-height": `${mobileActivePill.height}px`,
             } as CSSProperties
           }
         >
@@ -294,11 +390,13 @@ function Home() {
             <a
               key={item.href}
               ref={(element) => {
-                navLinkRefs.current[index] = element;
+                mobileLinkRefs.current[index] = element;
               }}
               href={item.href}
               className={
-                item.href === activeHref ? "home-nav-link active" : "home-nav-link"
+                item.href === activeHref
+                  ? "mobile-menu-link active"
+                  : "mobile-menu-link"
               }
               onClick={(event) => handleNavigation(event, item.href)}
             >
@@ -308,64 +406,9 @@ function Home() {
             </a>
           ))}
         </nav>
+      </aside>
 
-        <div
-          className={
-            isMobileMenuOpen
-              ? "mobile-menu-backdrop visible"
-              : "mobile-menu-backdrop"
-          }
-          onClick={() => setIsMobileMenuOpen(false)}
-          aria-hidden="true"
-        />
-
-        <aside
-          id="mobile-menu"
-          className={isMobileMenuOpen ? "mobile-menu open" : "mobile-menu"}
-          aria-label="Menu navigasi mobile"
-          aria-hidden={!isMobileMenuOpen}
-        >
-          <button
-            type="button"
-            className="mobile-menu-close"
-            aria-label="Tutup menu navigasi"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <ArrowRight aria-hidden="true" size={28} strokeWidth={3} />
-          </button>
-
-          <nav
-            className="mobile-menu-nav"
-            aria-label="Navigasi mobile"
-            style={
-              {
-                "--mobile-active-top": `${mobileActivePill.top}px`,
-                "--mobile-active-height": `${mobileActivePill.height}px`,
-              } as CSSProperties
-            }
-          >
-            {navigationItems.map((item, index) => (
-              <a
-                key={item.href}
-                ref={(element) => {
-                  mobileLinkRefs.current[index] = element;
-                }}
-                href={item.href}
-                className={
-                  item.href === activeHref
-                    ? "mobile-menu-link active"
-                    : "mobile-menu-link"
-                }
-                onClick={(event) => handleNavigation(event, item.href)}
-              >
-                {item.label.split("\n").map((line) => (
-                  <span key={line}>{line}</span>
-                ))}
-              </a>
-            ))}
-          </nav>
-        </aside>
-
+      <section id="home" className="home-hero" aria-label="Beranda TOSS TB">
         <div className="home-copy">
           <h1 className="home-title" aria-label={heroTitle}>
             <span className="home-title-text" aria-hidden="true">
@@ -380,8 +423,26 @@ function Home() {
         </div>
       </section>
 
-      <section id="toss" className="single-page-section">
-        <h2>TOSS</h2>
+      <section id="toss" className="toss-section" aria-labelledby="toss-title">
+        <div className="toss-content">
+          <h2 id="toss-title">Apa itu TOSS TBC ?</h2>
+
+          <div className="toss-logo-shell" aria-hidden="true">
+            <img
+              src="/assets/images/toss_tbc_icon.avif"
+              alt=""
+              className="toss-logo"
+            />
+          </div>
+
+          <div className="toss-card-grid">
+            {tossCards.map((card) => (
+              <article className="toss-card" key={card}>
+                <p>{card}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
       <section id="cek-risiko" className="single-page-section">
         <h2>Cek Kehamilan Resiko Tinggi</h2>
