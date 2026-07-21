@@ -1,0 +1,1 @@
+export const heroTitle = "Ibu hamil bebas TBC";
