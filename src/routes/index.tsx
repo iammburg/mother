@@ -26,6 +26,17 @@ const tossCards = [
   "TOSS TBC menargetkan 90% penurunan insiden TBC dan 95% penurunan kematian TBC pada tahun 2030.",
 ];
 
+const riskCheckCards = [
+  {
+    title: "Pemeriksaan Mandiri",
+    image: "/assets/images/pemeriksaan_mandiri.avif",
+  },
+  {
+    title: "Pemeriksaan Resiko",
+    image: "/assets/images/pemeriksaan_resiko.avif",
+  },
+];
+
 type TossAutoGlowState = {
   x: number;
   y: number;
@@ -66,6 +77,7 @@ function Home() {
   const tossAutoGlowAnimationFrameRef = useRef<number | null>(null);
   const activeHrefRef = useRef("#home");
   const scrollAnimationFrameRef = useRef<number | null>(null);
+  const isProgrammaticScrollRef = useRef(false);
 
   const updateActivePill = useCallback((href: string) => {
     const activeIndex = navigationItems.findIndex((item) => item.href === href);
@@ -110,14 +122,17 @@ function Home() {
     [updateActivePill, updateMobileActivePill],
   );
 
-  const smoothScrollTo = (targetTop: number) => {
+  const smoothScrollTo = (targetTop: number, targetHref?: string) => {
     if (scrollAnimationFrameRef.current) {
       window.cancelAnimationFrame(scrollAnimationFrameRef.current);
     }
 
+    isProgrammaticScrollRef.current = true;
     const startTop = window.scrollY;
     const distance = targetTop - startTop;
-    const duration = 850;
+    const isMobileViewport = window.matchMedia("(max-width: 900px)").matches;
+    const maxDuration = isMobileViewport ? 560 : 760;
+    const duration = Math.min(maxDuration, Math.max(320, Math.abs(distance) * 0.42));
     let startTime: number | null = null;
 
     const easeInOutCubic = (progress: number) =>
@@ -141,7 +156,8 @@ function Home() {
 
       window.scrollTo(0, targetTop);
       scrollAnimationFrameRef.current = null;
-      setActiveSection(getCurrentSectionHref());
+      isProgrammaticScrollRef.current = false;
+      setActiveSection(targetHref ?? getCurrentSectionHref());
     };
 
     scrollAnimationFrameRef.current = window.requestAnimationFrame(animateScroll);
@@ -240,6 +256,10 @@ function Home() {
     let scrollFrame: number | undefined;
 
     const updateActiveHrefFromScroll = () => {
+      if (isProgrammaticScrollRef.current) {
+        return;
+      }
+
       if (scrollFrame) {
         return;
       }
@@ -377,7 +397,8 @@ function Home() {
     setIsMobileMenuOpen(false);
     document.body.classList.remove("mobile-menu-open");
     window.history.pushState(null, "", href);
-    smoothScrollTo(targetTop);
+    setActiveSection(href);
+    smoothScrollTo(targetTop, href);
   };
 
   const handleTossPointerMove = (event: PointerEvent<HTMLElement>) => {
@@ -411,6 +432,13 @@ function Home() {
     setIsTossPointerActive(false);
   };
 
+  const navClassName =
+    activeHref === "#home"
+      ? "home-nav"
+      : activeHref === "#cek-risiko"
+        ? "home-nav risk-nav"
+        : "home-nav section-nav";
+
   return (
     <main className={isHeroVisible ? "home-page home-page-ready" : "home-page"}>
       <button
@@ -429,7 +457,7 @@ function Home() {
       </button>
 
       <nav
-        className={activeHref === "#home" ? "home-nav" : "home-nav section-nav"}
+        className={navClassName}
         aria-label="Navigasi utama"
         style={
           {
@@ -572,8 +600,24 @@ function Home() {
           </div>
         </div>
       </section>
-      <section id="cek-risiko" className="single-page-section">
-        <h2>Cek Kehamilan Resiko Tinggi</h2>
+      <section
+        id="cek-risiko"
+        className="risk-check-section"
+        aria-labelledby="risk-check-title"
+      >
+        <h2 id="risk-check-title" className="sr-only">
+          Cek Kehamilan Resiko Tinggi
+        </h2>
+        <div className="risk-check-grid">
+          {riskCheckCards.map((card) => (
+            <article className="risk-check-card" key={card.title}>
+              <div className="risk-check-image-frame">
+                <img src={card.image} alt="" className="risk-check-image" />
+              </div>
+              <h3>{card.title}</h3>
+            </article>
+          ))}
+        </div>
       </section>
       <section id="informasi-kehamilan" className="single-page-section">
         <h2>Informasi Kehamilan</h2>
