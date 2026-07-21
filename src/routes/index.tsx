@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Menu } from "lucide-react";
-import type { CSSProperties, MouseEvent } from "react";
+import type { CSSProperties, MouseEvent, PointerEvent } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export const Route = createFileRoute("/")({
@@ -26,17 +26,45 @@ const tossCards = [
   "TOSS TBC menargetkan 90% penurunan insiden TBC dan 95% penurunan kematian TBC pada tahun 2030.",
 ];
 
+type TossAutoGlowState = {
+  x: number;
+  y: number;
+  scale: number;
+  opacity: number;
+  targetX: number;
+  targetY: number;
+  targetScale: number;
+  targetOpacity: number;
+  nextTargetAt: number;
+  speed: number;
+};
+
+const initialTossGlowStates: TossAutoGlowState[] = [
+  { x: 12, y: 16, scale: 1, opacity: 0.64, targetX: 72, targetY: 34, targetScale: 1.12, targetOpacity: 0.8, nextTargetAt: 0, speed: 0.011 },
+  { x: 82, y: 12, scale: 0.92, opacity: 0.6, targetX: 24, targetY: 62, targetScale: 1.18, targetOpacity: 0.76, nextTargetAt: 0, speed: 0.009 },
+  { x: 48, y: 72, scale: 1.12, opacity: 0.58, targetX: 88, targetY: 84, targetScale: 0.96, targetOpacity: 0.72, nextTargetAt: 0, speed: 0.01 },
+  { x: 8, y: 84, scale: 0.9, opacity: 0.62, targetX: 64, targetY: 22, targetScale: 1.08, targetOpacity: 0.78, nextTargetAt: 0, speed: 0.012 },
+  { x: 88, y: 68, scale: 1.04, opacity: 0.56, targetX: 34, targetY: 8, targetScale: 1.16, targetOpacity: 0.74, nextTargetAt: 0, speed: 0.0095 },
+];
+
 function Home() {
   const [activeHref, setActiveHref] = useState("#home");
   const [activePill, setActivePill] = useState({ left: 0, width: 0 });
   const [isHeroVisible, setIsHeroVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isTossPointerActive, setIsTossPointerActive] = useState(false);
   const [mobileActivePill, setMobileActivePill] = useState({ top: 0, height: 0 });
   const [typedTitle, setTypedTitle] = useState(heroTitle);
   const navLinkRefs = useRef<Array<HTMLAnchorElement | null>>([]);
   const mobileLinkRefs = useRef<Array<HTMLAnchorElement | null>>([]);
+  const tossAutoGlowRefs = useRef<Array<HTMLSpanElement | null>>([]);
+  const tossSectionRef = useRef<HTMLElement | null>(null);
+  const isTossPointerActiveRef = useRef(false);
+  const tossAutoGlowStatesRef = useRef<TossAutoGlowState[]>(
+    initialTossGlowStates.map((state) => ({ ...state })),
+  );
+  const tossAutoGlowAnimationFrameRef = useRef<number | null>(null);
   const activeHrefRef = useRef("#home");
-  const activeScrollTargetRef = useRef<string | null>(null);
   const scrollAnimationFrameRef = useRef<number | null>(null);
 
   const updateActivePill = useCallback((href: string) => {
@@ -82,12 +110,11 @@ function Home() {
     [updateActivePill, updateMobileActivePill],
   );
 
-  const smoothScrollTo = (targetTop: number, targetHref: string) => {
+  const smoothScrollTo = (targetTop: number) => {
     if (scrollAnimationFrameRef.current) {
       window.cancelAnimationFrame(scrollAnimationFrameRef.current);
     }
 
-    activeScrollTargetRef.current = targetHref;
     const startTop = window.scrollY;
     const distance = targetTop - startTop;
     const duration = 850;
@@ -113,7 +140,6 @@ function Home() {
       }
 
       window.scrollTo(0, targetTop);
-      activeScrollTargetRef.current = null;
       scrollAnimationFrameRef.current = null;
       setActiveSection(getCurrentSectionHref());
     };
@@ -122,7 +148,7 @@ function Home() {
   };
 
   const getCurrentSectionHref = useCallback(() => {
-    const scrollAnchor = window.scrollY + window.innerHeight * 0.48;
+    const scrollAnchor = window.scrollY + window.innerHeight * 0.1;
     let currentHref = "#home";
 
     navigationItems.forEach((item) => {
@@ -220,13 +246,6 @@ function Home() {
 
       scrollFrame = window.requestAnimationFrame(() => {
         scrollFrame = undefined;
-        const lockedTarget = activeScrollTargetRef.current;
-
-        if (lockedTarget) {
-          setActiveSection(lockedTarget);
-          return;
-        }
-
         setActiveSection(getCurrentSectionHref());
       });
     };
@@ -278,6 +297,57 @@ function Home() {
     return () => window.cancelAnimationFrame(animationFrame);
   }, [activeHref, isMobileMenuOpen, updateMobileActivePill]);
 
+  useEffect(() => {
+    const randomBetween = (min: number, max: number) =>
+      min + Math.random() * (max - min);
+    const chooseNewGlowTarget = (glow: TossAutoGlowState, now: number) => {
+      glow.targetX = randomBetween(-12, 112);
+      glow.targetY = randomBetween(-8, 108);
+      glow.targetScale = randomBetween(0.92, 1.28);
+      glow.targetOpacity = randomBetween(0.68, 0.88);
+      glow.nextTargetAt = now + randomBetween(3200, 6200);
+    };
+
+    const animateAutoGlows = (now: number) => {
+      tossAutoGlowStatesRef.current.forEach((glow, index) => {
+        if (now >= glow.nextTargetAt) {
+          chooseNewGlowTarget(glow, now);
+        }
+
+        glow.x += (glow.targetX - glow.x) * glow.speed;
+        glow.y += (glow.targetY - glow.y) * glow.speed;
+        glow.scale += (glow.targetScale - glow.scale) * glow.speed;
+        glow.opacity += (glow.targetOpacity - glow.opacity) * glow.speed;
+
+        const glowElement = tossAutoGlowRefs.current[index];
+
+        if (!glowElement) {
+          return;
+        }
+
+        glowElement.style.left = `${glow.x.toFixed(2)}%`;
+        glowElement.style.top = `${glow.y.toFixed(2)}%`;
+        glowElement.style.opacity = glow.opacity.toFixed(3);
+        glowElement.style.transform = `translate3d(-50%, -50%, 0) scale(${glow.scale.toFixed(3)})`;
+      });
+
+      tossAutoGlowAnimationFrameRef.current =
+        window.requestAnimationFrame(animateAutoGlows);
+    };
+
+    tossAutoGlowStatesRef.current.forEach((glow, index) => {
+      chooseNewGlowTarget(glow, performance.now() + index * 240);
+    });
+    tossAutoGlowAnimationFrameRef.current =
+      window.requestAnimationFrame(animateAutoGlows);
+
+    return () => {
+      if (tossAutoGlowAnimationFrameRef.current) {
+        window.cancelAnimationFrame(tossAutoGlowAnimationFrameRef.current);
+      }
+    };
+  }, []);
+
   const handleNavigation = (
     event: MouseEvent<HTMLAnchorElement>,
     href: string,
@@ -295,7 +365,7 @@ function Home() {
     const isMobileViewport = window.matchMedia("(max-width: 900px)").matches;
     const mobileSectionCorrection =
       isMobileViewport && href !== "#home"
-        ? Math.min(118, Math.max(82, window.innerHeight * 0.13))
+        ? Math.min(18, Math.max(0, window.innerHeight * 0.025))
         : 0;
     const maxScrollTop =
       document.documentElement.scrollHeight - window.innerHeight;
@@ -304,18 +374,52 @@ function Home() {
       maxScrollTop,
     );
 
-    setActiveSection(href);
     setIsMobileMenuOpen(false);
     document.body.classList.remove("mobile-menu-open");
     window.history.pushState(null, "", href);
-    smoothScrollTo(targetTop, href);
+    smoothScrollTo(targetTop);
+  };
+
+  const handleTossPointerMove = (event: PointerEvent<HTMLElement>) => {
+    const section = tossSectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    if (event.pointerType !== "touch" && !isTossPointerActiveRef.current) {
+      isTossPointerActiveRef.current = true;
+      setIsTossPointerActive(true);
+    }
+
+    const bounds = section.getBoundingClientRect();
+    const pointerX = ((event.clientX - bounds.left) / bounds.width) * 100;
+    const pointerY = ((event.clientY - bounds.top) / bounds.height) * 100;
+
+    section.style.setProperty("--toss-pointer-x", `${pointerX.toFixed(2)}%`);
+    section.style.setProperty("--toss-pointer-y", `${pointerY.toFixed(2)}%`);
+  };
+
+  const handleTossPointerLeave = () => {
+    const section = tossSectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    isTossPointerActiveRef.current = false;
+    setIsTossPointerActive(false);
   };
 
   return (
     <main className={isHeroVisible ? "home-page home-page-ready" : "home-page"}>
       <button
         type="button"
-        className="mobile-menu-button"
+        className={
+          activeHref === "#toss"
+            ? "mobile-menu-button toss-active"
+            : "mobile-menu-button"
+        }
         aria-label="Buka menu navigasi"
         aria-expanded={isMobileMenuOpen}
         aria-controls="mobile-menu"
@@ -423,7 +527,31 @@ function Home() {
         </div>
       </section>
 
-      <section id="toss" className="toss-section" aria-labelledby="toss-title">
+      <section
+        id="toss"
+        ref={tossSectionRef}
+        className={
+          isTossPointerActive
+            ? "toss-section toss-pointer-active"
+            : "toss-section"
+        }
+        aria-labelledby="toss-title"
+        onPointerMove={handleTossPointerMove}
+        onPointerLeave={handleTossPointerLeave}
+      >
+        <div className="toss-glow-layer" aria-hidden="true">
+          {[1, 2, 3, 4, 5].map((glowNumber, index) => (
+            <span
+              key={glowNumber}
+              ref={(element) => {
+                tossAutoGlowRefs.current[index] = element;
+              }}
+              className={`toss-auto-glow toss-auto-glow-${glowNumber}`}
+            />
+          ))}
+          <span className="toss-cursor-glow" />
+        </div>
+
         <div className="toss-content">
           <h2 id="toss-title">Apa itu TOSS TBC ?</h2>
 
