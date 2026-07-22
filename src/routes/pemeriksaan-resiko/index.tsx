@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { ChevronLeft, Eye } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
+import EyeIcon from "@iconify-react/mdi/eye";
 
 import {
   riskQuestions,
@@ -83,8 +84,8 @@ function PemeriksaanResikoPage() {
       {/* Title */}
       <div className="shrink-0 px-4 pb-6 pt-12">
         <div className="mx-auto max-w-4xl">
-          <h1 className="text-2xl font-extrabold tracking-tight text-primary-foreground sm:text-3xl">
-            Formulir Pemeriksaan Risiko
+          <h1 className="text-xl font-extrabold tracking-tight text-primary-foreground sm:text-3xl">
+            Pemeriksaan Risiko
           </h1>
         </div>
       </div>
@@ -92,10 +93,13 @@ function PemeriksaanResikoPage() {
       {/* White scrollable container */}
       <div className="min-h-0 flex-1 overflow-hidden px-4 pb-4">
         <div className="mx-auto h-full max-w-4xl overflow-y-auto rounded-2xl bg-white p-5 shadow-lg sm:p-8">
-          <section className="space-y-5" aria-label="Daftar pertanyaan">
+          <section className="space-y-3" aria-label="Daftar pertanyaan">
+            <span className="text-2xl font-bold tracking-tight text-primary">
+              Formulir Pemeriksaan Risiko
+            </span>
             {riskQuestions.map((item, index) => (
               <fieldset
-                className="rounded-xl border border-primary/40 p-4 shadow-sm"
+                className="rounded-xl border mt-5 border-primary/40 p-4 shadow-sm"
                 key={item.id}>
                 <legend className=" flex items-start gap-3 text-sm font-bold text-primary sm:text-base">
                   <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground sm:size-7 sm:text-sm">
@@ -197,9 +201,9 @@ function PemeriksaanResikoPage() {
 
           <Button
             variant="outline"
-            className="bg-primary text-primary-foreground shadow-md hover:bg-white/90">
+            className="bg-primary border-2 text-primary-foreground shadow-md hover:bg-white/90">
             Lihat Hasil
-            <Eye className="size-4" />
+            <EyeIcon height="1em" />
           </Button>
         </div>
       </div>
