@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { ChevronLeft } from "lucide-react";
 import EyeIcon from "@iconify-react/mdi/eye";
@@ -17,6 +17,8 @@ export const Route = createFileRoute("/pemeriksaan-resiko/")({
 });
 
 function PemeriksaanResikoPage() {
+  const [name, setName] = useState("");
+  const navigate = useNavigate();
   const [booleanAnswers, setBooleanAnswers] = useState<Record<string, boolean>>(
     {},
   );
@@ -91,12 +93,35 @@ function PemeriksaanResikoPage() {
       </div>
 
       {/* White scrollable container */}
-      <div className="min-h-0 flex-1 overflow-hidden px-4 pb-4">
-        <div className="mx-auto h-full max-w-4xl overflow-y-auto rounded-2xl bg-white p-5 shadow-lg sm:p-8">
+      <div className="min-h-0 flex-1 relative px-4 pb-4">
+        <div className="absolute left-1/2 top-0 bottom-4 w-[calc(100%-2rem)] max-w-4xl -translate-x-1/2 overflow-y-auto border-t-8 border-white rounded-2xl bg-white p-5 shadow-lg sm:p-8 scrollbar-thumb-white scrollbar-track-transparent">
           <section className="space-y-3" aria-label="Daftar pertanyaan">
             <span className="text-2xl font-bold tracking-tight text-primary">
               Formulir Pemeriksaan Risiko
             </span>
+
+            {/* Nama Ibu Hamil */}
+            <div className="flex items-center gap-3 mt-6 rounded-xl border border-primary/40 p-4 shadow-sm">
+              <svg
+                className="size-5 shrink-0 text-primary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
+              <input
+                type="text"
+                placeholder="Nama Ibu Hamil"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full bg-transparent text-base font-medium text-foreground placeholder:text-muted-foreground focus:outline-none"
+              />
+            </div>
             {riskQuestions.map((item, index) => (
               <fieldset
                 className="rounded-xl border mt-5 border-primary/40 p-4 shadow-sm"
@@ -193,7 +218,7 @@ function PemeriksaanResikoPage() {
       <div className="shrink-0 px-4 pb-6 pt-3">
         <div className="mx-auto flex max-w-4xl items-center justify-between">
           <Link to="/" hash="cek-risiko">
-            <Button className="border-primary-foreground/40 bg-white text-primary hover:bg-white/90">
+            <Button className="border-primary-foreground/40 bg-white p-4 text-primary hover:bg-white/90">
               <ChevronLeft className="size-4" />
               Kembali
             </Button>
@@ -201,7 +226,13 @@ function PemeriksaanResikoPage() {
 
           <Button
             variant="outline"
-            className="bg-primary border-2 text-primary-foreground shadow-md hover:bg-white/90">
+            className="bg-primary border-2 text-primary-foreground p-4 shadow-md hover:bg-white/90"
+            onClick={() =>
+              navigate({
+                to: "/pemeriksaan-resiko/hasil",
+                search: { name: name || "Tidak diketahui", score: totalScore },
+              })
+            }>
             Lihat Hasil
             <EyeIcon height="1em" />
           </Button>
