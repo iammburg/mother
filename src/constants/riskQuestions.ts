@@ -154,6 +154,48 @@ export const riskQuestions: RiskQuestion[] = [
   },
 ];
 
+export interface RiskAssessment {
+  category: "KRR" | "KRT" | "KRST";
+  categoryLabel: string;
+  perawatan: string;
+  rujukan: string;
+  tempat: string;
+  penolong: string;
+}
+
+export const getRiskAssessment = (score: number): RiskAssessment => {
+  if (score >= 12) {
+    return {
+      category: "KRST",
+      categoryLabel: "Risiko Sangat Tinggi (KRST)",
+      perawatan: "Dokter",
+      rujukan: "Rumah Sakit",
+      tempat: "Rumah Sakit",
+      penolong: "Dokter Spesialis",
+    };
+  }
+
+  if (score >= 6) {
+    return {
+      category: "KRT",
+      categoryLabel: "Risiko Tinggi (KRT)",
+      perawatan: "Bidan dan Dokter",
+      rujukan: "Puskesmas/RS",
+      tempat: "Polindes atau Puskesmas/RS",
+      penolong: "Bidan dan Dokter",
+    };
+  }
+
+  return {
+    category: "KRR",
+    categoryLabel: "Risiko Rendah (KRR)",
+    perawatan: "Bidan",
+    rujukan: "Tidak perlu dirujuk",
+    tempat: "Polindes",
+    penolong: "Bidan",
+  };
+};
+
 export const getRiskCategory = (score: number) => {
   if (score >= 12) {
     return "Sangat Tinggi";
