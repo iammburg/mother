@@ -771,6 +771,667 @@
   transform: scale(1.04);
 }
 
+html.self-check-scroll-lock,
+body.self-check-scroll-lock {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.self-check-page {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: linear-gradient(to top, #e46b9c 0%, #f891bb 100%);
+  color: #ff8abe;
+  font-family: 'Nunito', sans-serif;
+}
+
+.self-check-section {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+  width: min(100%, 112rem);
+  margin: 0 auto;
+  padding: clamp(2.4rem, 4vw, 4.2rem) clamp(1.15rem, 5.8vw, 6.6rem) clamp(1.1rem, 1.9vw, 2rem);
+  box-sizing: border-box;
+}
+
+.self-check-title {
+  flex: 0 0 auto;
+  margin: 0 0 clamp(1.8rem, 3.4vw, 3.1rem);
+  color: #fff;
+  font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.self-check-panel {
+  display: flex;
+  position: relative;
+  flex: 1 1 auto;
+  width: min(100%, 95.8rem);
+  min-height: 0;
+  margin: 0 auto;
+  border: clamp(0.46rem, 0.82vw, 0.7rem) solid #ff94c7;
+  border-radius: clamp(1.7rem, 2.6vw, 3.25rem);
+  background: #fff;
+  padding: 0;
+  overflow: hidden;
+  box-shadow:
+    0 1.2rem 2.2rem rgba(95, 33, 66, 0.18),
+    0 0 0 0.08rem rgba(126, 34, 78, 0.1);
+}
+
+.self-check-panel::before,
+.self-check-panel::after {
+  position: absolute;
+  left: 0;
+  right: 0.85rem;
+  z-index: 2;
+  background: #fff;
+  content: "";
+  pointer-events: none;
+}
+
+.self-check-panel::before {
+  top: 0;
+  height: clamp(1.1rem, 1.85vw, 2.05rem);
+  border-radius: clamp(1.15rem, 2vw, 2.5rem) clamp(1.15rem, 2vw, 2.5rem) 0 0;
+}
+
+.self-check-panel::after {
+  bottom: 0;
+  height: clamp(1.45rem, 2.45vw, 2.9rem);
+  border-radius: 0 0 clamp(1.15rem, 2vw, 2.5rem) clamp(1.15rem, 2vw, 2.5rem);
+}
+
+.self-check-scroll-content {
+  width: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(1.65rem, 2.65vw, 3rem) clamp(1.65rem, 4.7vw, 5rem) clamp(3rem, 4.8vw, 5.6rem);
+  scroll-padding-block: clamp(1.65rem, 2.65vw, 3rem) clamp(3rem, 4.8vw, 5.6rem);
+  scrollbar-color: #ff8abe rgba(255, 138, 190, 0.14);
+  scrollbar-width: thin;
+}
+
+.self-check-scroll-content::-webkit-scrollbar {
+  width: 0.68rem;
+}
+
+.self-check-scroll-content::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(255, 138, 190, 0.12);
+}
+
+.self-check-scroll-content::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #ff8abe;
+}
+
+.self-check-form-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 17rem);
+  align-items: center;
+  gap: clamp(1.4rem, 3.2vw, 3rem);
+}
+
+.self-check-form-section + .self-check-form-section {
+  margin-top: clamp(2.5rem, 4vw, 3.65rem);
+}
+
+.self-check-form-section-mandiri {
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 18rem);
+  align-items: end;
+}
+
+.self-check-form-section-additional {
+  display: block;
+}
+
+.self-check-copy {
+  min-width: 0;
+}
+
+.self-check-copy h2,
+.self-check-lab-section h2 {
+  margin: 0;
+  color: #ff85bd;
+  font-size: clamp(1.85rem, 3vw, 3.1rem);
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+
+.self-check-fields {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.82rem, 1.3vw, 1.25rem);
+  margin-top: clamp(1.6rem, 2.4vw, 2.45rem);
+}
+
+.self-check-field,
+.self-check-blood-pressure-row {
+  display: grid;
+  grid-template-columns: minmax(11.2rem, 16.6rem) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(0.8rem, 2.2vw, 2.1rem);
+}
+
+.self-check-two-column-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(0.95rem, 2.35vw, 2.05rem);
+}
+
+.self-check-two-column-row .self-check-field {
+  grid-template-columns: minmax(12.2rem, 16.4rem) minmax(7rem, 1fr);
+}
+
+.self-check-two-column-row .self-check-field:first-child {
+  grid-template-columns: minmax(12.2rem, 16.6rem) minmax(7rem, 1fr);
+}
+
+.self-check-identity-short-row {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(0.95rem, 2.35vw, 2.05rem);
+}
+
+.self-check-identity-short-row .self-check-field,
+.self-check-identity-short-row .self-check-field:first-child {
+  grid-template-columns: minmax(12.2rem, 16.6rem) minmax(7rem, 1fr);
+  gap: clamp(0.8rem, 2.2vw, 2.1rem);
+}
+
+.self-check-identity-short-row .self-check-field:nth-child(2) {
+  grid-template-columns: minmax(12.2rem, 16.4rem) clamp(7.3rem, 8.5vw, 9.1rem);
+  gap: clamp(0.8rem, 2.2vw, 2.1rem);
+}
+
+@media (min-width: 901px) {
+  .self-check-panel {
+    width: min(100%, 95.8rem);
+  }
+
+  .self-check-scroll-content {
+    padding: clamp(2.7rem, 4vw, 4.8rem) clamp(3.4rem, 4.8vw, 5rem) clamp(3rem, 4.8vw, 5.6rem);
+  }
+
+  .self-check-form-section,
+  .self-check-form-section-identity,
+  .self-check-form-section-mandiri {
+    grid-template-columns: minmax(0, 64.8rem) minmax(11rem, 16rem);
+    align-items: center;
+    gap: clamp(1.8rem, 3vw, 3rem);
+  }
+
+  .self-check-copy h2,
+  .self-check-form-section-identity .self-check-copy h2,
+  .self-check-lab-section h2 {
+    font-size: clamp(2rem, 2.65vw, 3.1rem);
+  }
+
+  .self-check-fields,
+  .self-check-form-section-identity .self-check-fields {
+    gap: clamp(0.82rem, 1.1vw, 1.15rem);
+    margin-top: clamp(1.65rem, 2.35vw, 2.35rem);
+  }
+
+  .self-check-field,
+  .self-check-form-section-identity .self-check-field,
+  .self-check-additional-fields .self-check-field,
+  .self-check-field.compact {
+    grid-template-columns:
+      var(--field-label-width, clamp(13.5rem, 14.8vw, 16.4rem))
+      var(--field-input-width, clamp(33.5rem, 42vw, 43.6rem));
+    align-items: center;
+    gap: var(--field-gap, clamp(1.35rem, 2.05vw, 2rem));
+  }
+
+  .self-check-field label,
+  .self-check-form-section-identity .self-check-field label,
+  .self-check-pressure-field label {
+    font-size: clamp(1.04rem, 1.52vw, 1.42rem);
+  }
+
+  .self-check-field input,
+  .self-check-field select,
+  .self-check-pressure-field input,
+  .self-check-form-section-identity .self-check-field input,
+  .self-check-form-section-identity .self-check-field select {
+    height: clamp(2.1rem, 3.1vw, 2.95rem);
+  }
+
+  .self-check-two-column-row,
+  .self-check-identity-short-row,
+  .self-check-form-section-identity .self-check-identity-short-row {
+    grid-template-columns: var(--left-pair-width, clamp(31rem, 35vw, 34.6rem)) var(--right-pair-width, clamp(28rem, 31vw, 30.2rem));
+    justify-content: start;
+    gap: var(--pair-gap, clamp(1.55rem, 2.5vw, 2.45rem));
+  }
+
+  .self-check-field-name,
+  .self-check-field-phone,
+  .self-check-field-education,
+  .self-check-field-address,
+  .self-check-field-puskesmas,
+  .self-check-field-hpht,
+  .self-check-field-height {
+    --field-label-width: clamp(13.5rem, 14.8vw, 16.4rem);
+    --field-input-width: clamp(33.5rem, 42vw, 43.6rem);
+    --field-gap: clamp(1.35rem, 2.05vw, 2rem);
+  }
+
+  .self-check-field-birth-date,
+  .self-check-field-last-child-age {
+    --field-label-width: clamp(13.5rem, 14.8vw, 16.4rem);
+    --field-input-width: clamp(13.8rem, 17vw, 19.2rem);
+    --field-gap: clamp(1.35rem, 2.05vw, 2rem);
+  }
+
+  .self-check-field-pregnancy-order,
+  .self-check-field-blood-type {
+    --field-label-width: clamp(11.2rem, 12.2vw, 13rem);
+    --field-input-width: clamp(8.6rem, 10vw, 11.2rem);
+    --field-gap: clamp(0.85rem, 1.35vw, 1.25rem);
+  }
+
+  .self-check-field-weight-before,
+  .self-check-field-blood-pressure,
+  .self-check-field-lila,
+  .self-check-field-fetal-movement,
+  .self-check-field-hemoglobin,
+  .self-check-field-blood-tablet {
+    --field-label-width: clamp(13.5rem, 14.8vw, 16.4rem);
+    --field-input-width: clamp(10.8rem, 12.8vw, 14.3rem);
+    --field-gap: clamp(1.35rem, 2.05vw, 2rem);
+  }
+
+  .self-check-field-weight-after,
+  .self-check-field-fundal-height {
+    --field-label-width: clamp(13.4rem, 15vw, 16.4rem);
+    --field-input-width: clamp(9.4rem, 11vw, 12.4rem);
+    --field-gap: clamp(0.95rem, 1.55vw, 1.45rem);
+  }
+
+  .self-check-field-contraction {
+    --field-label-width: clamp(15rem, 17vw, 18.8rem);
+    --field-input-width: clamp(8.4rem, 9.8vw, 10.9rem);
+    --field-gap: clamp(0.9rem, 1.45vw, 1.35rem);
+  }
+
+  .self-check-pressure-field {
+    grid-template-columns:
+      clamp(7.2rem, 8.1vw, 8.8rem)
+      clamp(13.8rem, 17vw, 19.2rem);
+    gap: clamp(0.95rem, 1.55vw, 1.45rem);
+  }
+
+  .self-check-field-lila,
+  .self-check-field-fundal-height {
+    align-items: start;
+  }
+
+  .self-check-form-section-additional {
+    display: block;
+  }
+
+  .self-check-additional-layout {
+    grid-template-columns: minmax(0, 35.2rem) minmax(22rem, 1fr);
+    gap: clamp(3.6rem, 7.4vw, 8.6rem);
+  }
+
+  .self-check-lab-grid {
+    grid-template-columns: max-content max-content max-content;
+    gap: clamp(2.6rem, 5.5vw, 6rem);
+  }
+
+  .self-check-field-urine,
+  .self-check-field-feces {
+    --field-label-width: max-content;
+    --field-input-width: clamp(13rem, 16vw, 17.6rem);
+    --field-gap: clamp(1rem, 1.9vw, 1.7rem);
+  }
+
+  .self-check-field-vaginal-swab {
+    --field-label-width: max-content;
+    --field-input-width: clamp(15rem, 17.5vw, 20rem);
+    --field-gap: clamp(1rem, 1.9vw, 1.7rem);
+  }
+
+  .self-check-section-image {
+    max-width: clamp(12rem, 15.4vw, 16.8rem);
+  }
+
+  .self-check-mandiri-image {
+    max-width: clamp(12.4rem, 16vw, 17.6rem);
+  }
+}
+
+.self-check-field label,
+.self-check-blood-pressure-row label,
+.self-check-pressure-field label,
+.self-check-radio-field legend {
+  color: #ff8abe;
+  font-size: clamp(1.04rem, 1.52vw, 1.42rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.self-check-field label span,
+.self-check-field label small {
+  display: block;
+}
+
+.self-check-field label small {
+  font-size: 0.65em;
+  font-weight: 700;
+}
+
+.self-check-field:has(.self-check-hint) {
+  align-items: start;
+}
+
+.self-check-field input,
+.self-check-field select,
+.self-check-blood-pressure-row input,
+.self-check-pressure-field input {
+  width: 100%;
+  height: clamp(2.1rem, 3.1vw, 2.95rem);
+  min-width: 0;
+  border: 0.12rem solid #ff8abe;
+  border-radius: 0.48rem;
+  background: #fff;
+  color: #ff5fa8;
+  padding: 0 0.75rem;
+  font: inherit;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  font-weight: 900;
+  outline: none;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.self-check-field input[type="number"],
+.self-check-pressure-field input[type="number"],
+.self-check-blood-pressure-row input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.self-check-field input[type="number"]::-webkit-outer-spin-button,
+.self-check-field input[type="number"]::-webkit-inner-spin-button,
+.self-check-pressure-field input[type="number"]::-webkit-outer-spin-button,
+.self-check-pressure-field input[type="number"]::-webkit-inner-spin-button,
+.self-check-blood-pressure-row input[type="number"]::-webkit-outer-spin-button,
+.self-check-blood-pressure-row input[type="number"]::-webkit-inner-spin-button {
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.self-check-field select {
+  appearance: auto;
+  cursor: pointer;
+}
+
+.self-check-field input:focus,
+.self-check-field select:focus,
+.self-check-blood-pressure-row input:focus,
+.self-check-pressure-field input:focus,
+.self-check-radio-field input:focus-visible + span {
+  border-color: #e46b9c;
+  box-shadow: 0 0 0 0.22rem rgba(255, 138, 190, 0.18);
+}
+
+.self-check-input-unit {
+  position: relative;
+  display: block;
+}
+
+.self-check-input-unit input {
+  padding-right: 3.7rem;
+}
+
+.self-check-input-unit > span {
+  position: absolute;
+  top: 50%;
+  right: 0.85rem;
+  color: #ff8abe;
+  font-size: clamp(0.86rem, 1.1vw, 1rem);
+  font-weight: 800;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.self-check-blood-pressure-row {
+  grid-template-columns: minmax(11.2rem, 16.6rem) minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+}
+
+.self-check-blood-pressure-row span {
+  color: #ff8abe;
+  font-size: clamp(1rem, 1.45vw, 1.35rem);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.self-check-pressure-field {
+  display: grid;
+  grid-template-columns: minmax(12.2rem, 16.4rem) minmax(7rem, 1fr);
+  align-items: center;
+  gap: clamp(0.8rem, 2.2vw, 2.1rem);
+}
+
+.self-check-help-row {
+  align-items: start;
+}
+
+.self-check-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.38rem;
+  margin: 0.45rem 0 0;
+  color: #78a7df;
+  font-size: clamp(0.58rem, 0.78vw, 0.72rem);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.self-check-hint span {
+  display: inline-flex;
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #78a7df;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.self-check-section-image {
+  justify-self: center;
+  width: 100%;
+  max-width: 17.4rem;
+  height: auto;
+  object-fit: contain;
+}
+
+.self-check-identity-image {
+  align-self: center;
+  max-width: 16.2rem;
+  transform: translateY(0.6rem);
+}
+
+.self-check-mandiri-image {
+  align-self: center;
+  max-width: 17.6rem;
+}
+
+.self-check-additional-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 26.5rem) minmax(22rem, 1fr);
+  align-items: end;
+  gap: clamp(1.6rem, 4.5vw, 5.7rem);
+  margin-top: clamp(1.75rem, 2.5vw, 2.6rem);
+}
+
+.self-check-additional-fields {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.05rem, 1.65vw, 1.6rem);
+}
+
+.self-check-additional-fields .self-check-field {
+  grid-template-columns: minmax(11rem, 15.5rem) minmax(0, 1fr);
+}
+
+.self-check-additional-image {
+  width: min(100%, 40.5rem);
+  justify-self: center;
+  align-self: end;
+}
+
+.self-check-radio-field {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem clamp(1.4rem, 2.3vw, 2.3rem);
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.self-check-radio-field legend {
+  width: 100%;
+  margin-bottom: 0.7rem;
+  padding: 0;
+}
+
+.self-check-radio-field label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.62rem;
+  color: #ff8abe;
+  font-size: clamp(0.92rem, 1.22vw, 1.16rem);
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.self-check-radio-field input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.self-check-radio-field label span {
+  width: clamp(1rem, 1.3vw, 1.25rem);
+  aspect-ratio: 1;
+  border: 0.18rem solid #ff8abe;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: inset 0 0 0 0.24rem #fff;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.self-check-radio-field input:checked + span {
+  background: #ff8abe;
+}
+
+.self-check-radio-field label:hover span {
+  transform: scale(1.06);
+}
+
+.self-check-lab-section {
+  margin-top: clamp(2.1rem, 3.5vw, 3.4rem);
+}
+
+.self-check-lab-section h2 span {
+  font-size: 0.72em;
+  font-weight: 800;
+}
+
+.self-check-lab-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.32fr);
+  gap: clamp(1.2rem, 3.2vw, 2.35rem);
+  margin-top: clamp(1.7rem, 2.4vw, 2.55rem);
+}
+
+.self-check-field.compact {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+}
+
+.self-check-field.compact label {
+  white-space: nowrap;
+}
+
+.self-check-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  width: min(100%, 100.8rem);
+  margin: clamp(2.05rem, 3vw, 3.1rem) auto 0;
+}
+
+.self-check-button {
+  display: inline-flex;
+  min-height: clamp(3rem, 4vw, 3.9rem);
+  align-items: center;
+  justify-content: center;
+  gap: 0.78rem;
+  border-radius: 0.75rem;
+  padding: 0.58rem 1.1rem;
+  font-size: clamp(1.12rem, 1.7vw, 1.62rem);
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.self-check-button img {
+  width: clamp(1.35rem, 2.2vw, 2rem);
+  height: clamp(1.35rem, 2.2vw, 2rem);
+  object-fit: contain;
+}
+
+.self-check-button.back {
+  border: 0;
+  background: #fff;
+  color: #ff8abe;
+}
+
+.self-check-button.result {
+  border: 0.22rem solid #fff;
+  background: transparent;
+  color: #fff;
+}
+
+.self-check-button:hover,
+.self-check-button:focus-visible {
+  outline: none;
+  transform: translateY(-0.08rem);
+}
+
 .toss-section {
   --toss-pointer-x: 50%;
   --toss-pointer-y: 45%;
@@ -1206,6 +1867,91 @@
     margin-top: 2.6rem;
   }
 
+  .self-check-section {
+    padding: 2.1rem 1rem 2.8rem;
+  }
+
+  .self-check-title {
+    margin-left: 0.3rem;
+  }
+
+  .self-check-panel {
+    border-width: 0.42rem;
+    border-radius: 1.65rem;
+    padding: 0;
+  }
+
+  .self-check-scroll-content {
+    padding: 1.35rem 0.95rem 2.45rem;
+    scroll-padding-block: 1.35rem 2.45rem;
+  }
+
+  .self-check-form-section,
+  .self-check-form-section-mandiri {
+    grid-template-columns: 1fr;
+  }
+
+  .self-check-form-section-mandiri .self-check-section-image {
+    order: -1;
+  }
+
+  .self-check-section-image,
+  .self-check-identity-image,
+  .self-check-mandiri-image {
+    max-width: min(62vw, 16rem);
+    transform: none;
+  }
+
+  .self-check-field,
+  .self-check-two-column-row .self-check-field,
+  .self-check-two-column-row .self-check-field:first-child,
+  .self-check-blood-pressure-row,
+  .self-check-pressure-field,
+  .self-check-additional-fields .self-check-field {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  .self-check-two-column-row {
+    grid-template-columns: 1fr;
+    gap: 0.82rem;
+  }
+
+  .self-check-blood-pressure-row {
+    grid-template-columns: 1fr 1fr auto 1fr;
+  }
+
+  .self-check-blood-pressure-row label {
+    grid-column: 1 / -1;
+  }
+
+  .self-check-pressure-field label {
+    align-self: end;
+  }
+
+  .self-check-additional-layout {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+
+  .self-check-additional-image {
+    width: min(100%, 31rem);
+  }
+
+  .self-check-lab-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .self-check-field.compact {
+    grid-template-columns: minmax(5.7rem, auto) minmax(0, 1fr);
+  }
+
+  .self-check-actions {
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
   .risk-form-score-banner {
     position: static;
     align-items: flex-start;
@@ -1599,6 +2345,41 @@
   .risk-check-card h3 {
     margin-top: 0.62rem;
     font-size: clamp(1.22rem, 6.5vw, 1.72rem);
+  }
+
+  .self-check-copy h2,
+  .self-check-lab-section h2 {
+    font-size: clamp(1.6rem, 8vw, 2.25rem);
+  }
+
+  .self-check-blood-pressure-row {
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  .self-check-pressure-field {
+    grid-template-columns: 1fr;
+  }
+
+  .self-check-blood-pressure-row input:first-of-type {
+    grid-column: 1;
+  }
+
+  .self-check-blood-pressure-row span {
+    grid-column: 2;
+    font-size: 0.95rem;
+  }
+
+  .self-check-blood-pressure-row input:last-of-type {
+    grid-column: 3;
+  }
+
+  .self-check-actions {
+    justify-content: center;
+  }
+
+  .self-check-button {
+    flex: 1 1 12rem;
+    max-width: 16rem;
   }
 
   .toss-section {
