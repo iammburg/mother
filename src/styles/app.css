@@ -802,10 +802,11 @@ body.self-check-scroll-lock {
   flex: 0 0 auto;
   margin: 0 0 clamp(1.8rem, 3.4vw, 3.1rem);
   color: #fff;
-  font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+  font-size: clamp(1.58rem, 2.18vw, 2.45rem);
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: 0;
+  text-align: center;
 }
 
 .self-check-panel {
@@ -901,7 +902,7 @@ body.self-check-scroll-lock {
 .self-check-lab-section h2 {
   margin: 0;
   color: #ff85bd;
-  font-size: clamp(1.85rem, 3vw, 3.1rem);
+  font-size: clamp(1.62rem, 2.55vw, 2.65rem);
   font-weight: 900;
   line-height: 1.06;
   letter-spacing: 0;
@@ -972,7 +973,7 @@ body.self-check-scroll-lock {
   .self-check-copy h2,
   .self-check-form-section-identity .self-check-copy h2,
   .self-check-lab-section h2 {
-    font-size: clamp(2rem, 2.65vw, 3.1rem);
+    font-size: clamp(1.68rem, 2.28vw, 2.65rem);
   }
 
   .self-check-fields,
@@ -995,7 +996,7 @@ body.self-check-scroll-lock {
   .self-check-field label,
   .self-check-form-section-identity .self-check-field label,
   .self-check-pressure-field label {
-    font-size: clamp(1.04rem, 1.52vw, 1.42rem);
+    font-size: clamp(0.92rem, 1.32vw, 1.2rem);
   }
 
   .self-check-field input,
@@ -1003,7 +1004,7 @@ body.self-check-scroll-lock {
   .self-check-pressure-field input,
   .self-check-form-section-identity .self-check-field input,
   .self-check-form-section-identity .self-check-field select {
-    height: clamp(2.1rem, 3.1vw, 2.95rem);
+    height: clamp(1.92rem, 2.72vw, 2.55rem);
   }
 
   .self-check-two-column-row,
@@ -1012,6 +1013,31 @@ body.self-check-scroll-lock {
     grid-template-columns: var(--left-pair-width, clamp(31rem, 35vw, 34.6rem)) var(--right-pair-width, clamp(28rem, 31vw, 30.2rem));
     justify-content: start;
     gap: var(--pair-gap, clamp(1.55rem, 2.5vw, 2.45rem));
+  }
+
+  .self-check-form-section-mandiri {
+    --left-pair-width: clamp(31rem, 35vw, 34.6rem);
+    --right-pair-width: clamp(28rem, 31vw, 30.2rem);
+    --pair-gap: clamp(1.55rem, 2.5vw, 2.45rem);
+    --mandiri-full-input-right: calc(
+      clamp(13.5rem, 14.8vw, 16.4rem) + clamp(1.35rem, 2.05vw, 2rem) +
+        clamp(33.5rem, 42vw, 43.6rem)
+    );
+    --mandiri-right-field-start: calc(
+      var(--left-pair-width) + var(--pair-gap)
+    );
+    --mandiri-right-field-width: calc(
+      clamp(13.3rem, 14.4vw, 14.7rem) + clamp(0.95rem, 1.4vw, 1.35rem) +
+        clamp(10rem, 11vw, 10.9rem)
+    );
+    --mandiri-right-field-shift: clamp(
+      -6.5rem,
+      calc(
+        var(--mandiri-full-input-right) - var(--mandiri-right-field-start) -
+          var(--mandiri-right-field-width)
+      ),
+      -2rem
+    );
   }
 
   .self-check-field-name,
@@ -1029,8 +1055,20 @@ body.self-check-scroll-lock {
   .self-check-field-birth-date,
   .self-check-field-last-child-age {
     --field-label-width: clamp(13.5rem, 14.8vw, 16.4rem);
-    --field-input-width: clamp(13.8rem, 17vw, 19.2rem);
+    --field-input-width: clamp(12.2rem, 14vw, 15.9rem);
     --field-gap: clamp(1.35rem, 2.05vw, 2rem);
+  }
+
+  .self-check-form-section-identity
+    .self-check-identity-short-row
+    .self-check-field-birth-date,
+  .self-check-form-section-identity
+    .self-check-identity-short-row
+    .self-check-field-last-child-age {
+    grid-template-columns:
+      clamp(13.5rem, 14.8vw, 16.4rem)
+      clamp(12.2rem, 14vw, 15.9rem);
+    gap: clamp(1.35rem, 2.05vw, 2rem);
   }
 
   .self-check-field-pregnancy-order,
@@ -1040,10 +1078,51 @@ body.self-check-scroll-lock {
     --field-gap: clamp(0.85rem, 1.35vw, 1.25rem);
   }
 
+  .self-check-form-section-identity
+    .self-check-identity-short-row
+    .self-check-field-pregnancy-order {
+    grid-template-columns:
+      clamp(10.2rem, 11.3vw, 11.85rem)
+      clamp(9.5rem, 11vw, 12rem);
+    gap: clamp(0.85rem, 1.35vw, 1.25rem);
+  }
+
+  .self-check-form-section-identity
+    .self-check-identity-short-row
+    .self-check-field-blood-type {
+    grid-template-columns:
+      clamp(11.1rem, 12.1vw, 12.75rem)
+      clamp(8.6rem, 10.2vw, 11.1rem);
+    gap: clamp(0.85rem, 1.35vw, 1.25rem);
+  }
+
   .self-check-field-weight-before,
   .self-check-field-blood-pressure,
   .self-check-field-lila,
-  .self-check-field-fetal-movement,
+  .self-check-field-fetal-movement {
+    --field-label-width: clamp(13.5rem, 14.8vw, 16.4rem);
+    --field-input-width: clamp(10rem, 11.6vw, 12.9rem);
+    --field-gap: clamp(1.35rem, 2.05vw, 2rem);
+  }
+
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-weight-before,
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-blood-pressure,
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-lila,
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-fetal-movement {
+    grid-template-columns:
+      clamp(13.5rem, 14.8vw, 16.4rem)
+      clamp(10rem, 11.6vw, 12.9rem);
+    gap: clamp(1.35rem, 2.05vw, 2rem);
+  }
+
   .self-check-field-hemoglobin,
   .self-check-field-blood-tablet {
     --field-label-width: clamp(13.5rem, 14.8vw, 16.4rem);
@@ -1071,9 +1150,54 @@ body.self-check-scroll-lock {
     gap: clamp(0.95rem, 1.55vw, 1.45rem);
   }
 
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-fundal-height {
+    grid-template-columns:
+      clamp(12.55rem, 13.65vw, 13.95rem)
+      clamp(10.75rem, 11.75vw, 11.65rem);
+    gap: clamp(0.95rem, 1.4vw, 1.35rem);
+    transform: translateX(var(--mandiri-right-field-shift));
+  }
+
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-weight-after {
+    grid-template-columns:
+      clamp(13.75rem, 14.85vw, 15.15rem)
+      clamp(9.55rem, 10.55vw, 10.45rem);
+    gap: clamp(0.95rem, 1.4vw, 1.35rem);
+    transform: translateX(var(--mandiri-right-field-shift));
+  }
+
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-pressure-field {
+    grid-template-columns:
+      clamp(7.5rem, 8vw, 8.2rem)
+      clamp(15.8rem, 17.9vw, 17.4rem);
+    gap: clamp(0.95rem, 1.4vw, 1.35rem);
+    transform: translateX(var(--mandiri-right-field-shift));
+  }
+
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-contraction {
+    grid-template-columns:
+      clamp(14.55rem, 16.05vw, 15.95rem)
+      clamp(8.75rem, 9.55vw, 9.65rem);
+    gap: clamp(0.95rem, 1.4vw, 1.35rem);
+    transform: translateX(var(--mandiri-right-field-shift));
+  }
+
   .self-check-field-lila,
   .self-check-field-fundal-height {
     align-items: start;
+  }
+
+  .self-check-field-fundal-height > label {
+    align-self: start;
+    padding-top: clamp(0.42rem, 0.68vw, 0.58rem);
   }
 
   .self-check-form-section-additional {
@@ -1104,11 +1228,168 @@ body.self-check-scroll-lock {
   }
 
   .self-check-section-image {
-    max-width: clamp(12rem, 15.4vw, 16.8rem);
+    max-width: clamp(13.5rem, 17.8vw, 19.6rem);
   }
 
   .self-check-mandiri-image {
-    max-width: clamp(12.4rem, 16vw, 17.6rem);
+    max-width: clamp(14rem, 18.6vw, 20.4rem);
+  }
+}
+
+@media (min-width: 1501px) {
+  .self-check-page {
+    --self-check-desktop-scale: 0.84;
+  }
+
+  .self-check-section,
+  .self-check-result-shell {
+    width: calc(100% / var(--self-check-desktop-scale));
+    height: calc(100% / var(--self-check-desktop-scale));
+    margin-left: calc(
+      (100% - (100% / var(--self-check-desktop-scale))) / 2
+    );
+    margin-right: 0;
+    transform: scale(var(--self-check-desktop-scale));
+    transform-origin: top center;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1500px) {
+  .self-check-section,
+  .self-check-result-shell {
+    padding:
+      clamp(1.55rem, 2.6vw, 2.35rem)
+      clamp(1.05rem, 3vw, 2.5rem)
+      clamp(0.45rem, 0.85vw, 0.8rem);
+  }
+
+  .self-check-title,
+  .self-check-result-shell > h1 {
+    margin-bottom: clamp(1.05rem, 1.8vw, 1.65rem);
+    font-size: clamp(1.55rem, 1.88vw, 2.05rem);
+  }
+
+  .self-check-scroll-content {
+    padding:
+      clamp(1.95rem, 2.8vw, 2.7rem)
+      clamp(1.85rem, 3vw, 3rem)
+      clamp(2.4rem, 3.2vw, 3.4rem);
+  }
+
+  .self-check-form-section,
+  .self-check-form-section-identity,
+  .self-check-form-section-mandiri {
+    grid-template-columns: minmax(0, 1fr) minmax(8.5rem, 12.2rem);
+    gap: clamp(1.05rem, 1.8vw, 1.75rem);
+  }
+
+  .self-check-two-column-row,
+  .self-check-identity-short-row,
+  .self-check-form-section-identity .self-check-identity-short-row {
+    --left-pair-width: clamp(25.4rem, 33vw, 28rem);
+    --right-pair-width: clamp(22.2rem, 29vw, 24.5rem);
+    --pair-gap: clamp(1rem, 1.8vw, 1.45rem);
+  }
+
+  .self-check-form-section-mandiri {
+    --left-pair-width: clamp(25.4rem, 33vw, 28rem);
+    --right-pair-width: clamp(22.2rem, 29vw, 24.5rem);
+    --pair-gap: clamp(1rem, 1.8vw, 1.45rem);
+  }
+
+  .self-check-field-name,
+  .self-check-field-phone,
+  .self-check-field-education,
+  .self-check-field-address,
+  .self-check-field-puskesmas,
+  .self-check-field-hpht,
+  .self-check-field-height {
+    --field-label-width: 12.2rem;
+    --field-input-width: 29.4rem;
+    --field-gap: 1rem;
+  }
+
+  .self-check-form-section-identity
+    .self-check-identity-short-row
+    .self-check-field-birth-date,
+  .self-check-form-section-identity
+    .self-check-identity-short-row
+    .self-check-field-last-child-age {
+    grid-template-columns: 12.2rem 11.4rem;
+    gap: 1rem;
+  }
+
+  .self-check-form-section-identity
+    .self-check-identity-short-row
+    .self-check-field-pregnancy-order {
+    grid-template-columns: 9.4rem 9rem;
+    gap: 0.8rem;
+  }
+
+  .self-check-form-section-identity
+    .self-check-identity-short-row
+    .self-check-field-blood-type {
+    grid-template-columns: 10.2rem 8.4rem;
+    gap: 0.8rem;
+  }
+
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-weight-before,
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-blood-pressure,
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-lila,
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-fetal-movement {
+    grid-template-columns: 12.2rem 10.2rem;
+    gap: 1rem;
+  }
+
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-weight-after {
+    grid-template-columns: 13.1rem 8.2rem;
+    gap: 0.85rem;
+  }
+
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-pressure-field {
+    grid-template-columns: 6.6rem 14.6rem;
+    gap: 0.85rem;
+  }
+
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-fundal-height {
+    grid-template-columns: 12rem 9rem;
+    gap: 0.85rem;
+  }
+
+  .self-check-form-section-mandiri
+    .self-check-two-column-row
+    .self-check-field-contraction {
+    grid-template-columns: 13rem 8.1rem;
+    gap: 0.85rem;
+  }
+
+  .self-check-section-image,
+  .self-check-identity-image,
+  .self-check-mandiri-image {
+    max-width: clamp(11.8rem, 13.2vw, 15.2rem);
+  }
+
+  .self-check-additional-layout {
+    grid-template-columns: minmax(0, 30rem) minmax(16rem, 1fr);
+    gap: clamp(2rem, 4vw, 4.6rem);
+  }
+
+  .self-check-additional-image {
+    width: min(100%, 34rem);
   }
 }
 
@@ -1117,7 +1398,7 @@ body.self-check-scroll-lock {
 .self-check-pressure-field label,
 .self-check-radio-field legend {
   color: #ff8abe;
-  font-size: clamp(1.04rem, 1.52vw, 1.42rem);
+  font-size: clamp(0.92rem, 1.32vw, 1.2rem);
   font-weight: 700;
   line-height: 1.1;
 }
@@ -1141,7 +1422,7 @@ body.self-check-scroll-lock {
 .self-check-blood-pressure-row input,
 .self-check-pressure-field input {
   width: 100%;
-  height: clamp(2.1rem, 3.1vw, 2.95rem);
+  height: clamp(1.92rem, 2.72vw, 2.55rem);
   min-width: 0;
   border: 0.12rem solid #ff8abe;
   border-radius: 0.48rem;
@@ -1149,7 +1430,7 @@ body.self-check-scroll-lock {
   color: #ff5fa8;
   padding: 0 0.75rem;
   font: inherit;
-  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  font-size: clamp(0.84rem, 1.02vw, 0.96rem);
   font-weight: 900;
   outline: none;
   transition:
@@ -1236,11 +1517,26 @@ body.self-check-scroll-lock {
   display: flex;
   align-items: flex-start;
   gap: 0.38rem;
-  margin: 0.45rem 0 0;
+  margin: 0.8rem 0 0;
   color: #78a7df;
   font-size: clamp(0.58rem, 0.78vw, 0.72rem);
   font-weight: 700;
   line-height: 1.05;
+}
+
+.self-check-hint:is(button) {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  text-align: left;
+}
+
+.self-check-hint:is(button):focus-visible {
+  border-radius: 0.35rem;
+  outline: 0.14rem solid #78a7df;
+  outline-offset: 0.18rem;
 }
 
 .self-check-hint span {
@@ -1258,23 +1554,111 @@ body.self-check-scroll-lock {
   line-height: 1;
 }
 
+.self-check-pregnancy-age-card {
+  display: grid;
+  grid-template-columns: clamp(2.45rem, 4.2vw, 3.45rem) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0.68rem 0 0;
+  border: 0.12rem solid rgba(120, 167, 223, 0.52);
+  border-radius: 0.48rem;
+  background: rgba(120, 167, 223, 0.08);
+  padding: 0.48rem 0.62rem;
+}
+
+.self-check-pregnancy-age-card img {
+  width: 100%;
+  max-height: 3.25rem;
+  object-fit: contain;
+}
+
+.self-check-pregnancy-age-card p {
+  margin: 0;
+  min-width: 0;
+  color: #78a7df;
+  line-height: 1.12;
+}
+
+.self-check-pregnancy-age-card span,
+.self-check-pregnancy-age-card strong {
+  display: block;
+}
+
+.self-check-pregnancy-age-card span {
+  font-size: clamp(0.62rem, 0.86vw, 0.76rem);
+  font-weight: 800;
+}
+
+.self-check-pregnancy-age-card strong {
+  margin-top: 0.16rem;
+  font-size: clamp(0.82rem, 1.08vw, 0.98rem);
+  font-weight: 900;
+}
+
+.self-check-info-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(79, 38, 61, 0.36);
+  padding: clamp(1.1rem, 3vw, 2.4rem);
+}
+
+.self-check-info-popup {
+  width: min(100%, 30.5rem);
+  max-height: min(88svh, 43rem);
+  overflow: auto;
+  border: 0.14rem solid rgba(255, 138, 190, 0.34);
+  border-radius: 1.1rem;
+  background: #fff;
+  box-shadow: 0 1.25rem 3.4rem rgba(95, 33, 66, 0.28);
+  padding: clamp(1.35rem, 3vw, 2.15rem);
+  text-align: center;
+}
+
+.self-check-info-popup h2 {
+  margin: 0 0 clamp(1rem, 2vw, 1.45rem);
+  color: #5f5f65;
+  font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.self-check-info-popup img {
+  display: block;
+  width: 100%;
+  max-height: min(48svh, 22rem);
+  object-fit: contain;
+  border-radius: 0.35rem;
+}
+
+.self-check-info-popup p {
+  margin: clamp(1.25rem, 2.6vw, 1.8rem) 0 0;
+  color: #6a6a70;
+  font-size: clamp(1.05rem, 2.6vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
 .self-check-section-image {
   justify-self: center;
   width: 100%;
-  max-width: 17.4rem;
+  max-width: 19.6rem;
   height: auto;
   object-fit: contain;
 }
 
 .self-check-identity-image {
   align-self: center;
-  max-width: 16.2rem;
+  max-width: 18.8rem;
   transform: translateY(0.6rem);
 }
 
 .self-check-mandiri-image {
   align-self: center;
-  max-width: 17.6rem;
+  max-width: 20.4rem;
 }
 
 .self-check-additional-layout {
@@ -1282,7 +1666,7 @@ body.self-check-scroll-lock {
   grid-template-columns: minmax(0, 26.5rem) minmax(22rem, 1fr);
   align-items: end;
   gap: clamp(1.6rem, 4.5vw, 5.7rem);
-  margin-top: clamp(1.75rem, 2.5vw, 2.6rem);
+  margin-top: clamp(0.75rem, 1.45vw, 1.45rem);
 }
 
 .self-check-additional-fields {
@@ -1296,7 +1680,7 @@ body.self-check-scroll-lock {
 }
 
 .self-check-additional-image {
-  width: min(100%, 40.5rem);
+  width: min(100%, 40rem);
   justify-self: center;
   align-self: end;
 }
@@ -1312,11 +1696,12 @@ body.self-check-scroll-lock {
 
 .self-check-radio-field legend {
   width: 100%;
-  margin-bottom: 0.7rem;
+  margin-bottom: 1.55rem;
   padding: 0;
 }
 
 .self-check-radio-field label {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.62rem;
@@ -1329,12 +1714,13 @@ body.self-check-scroll-lock {
 
 .self-check-radio-field input {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
+  top: 50%;
+  left: 0;
+  width: clamp(1rem, 1.3vw, 1.25rem);
+  height: clamp(1rem, 1.3vw, 1.25rem);
+  margin: 0;
+  opacity: 0;
+  transform: translateY(-50%);
 }
 
 .self-check-radio-field label span {
@@ -1395,13 +1781,13 @@ body.self-check-scroll-lock {
 
 .self-check-button {
   display: inline-flex;
-  min-height: clamp(3rem, 4vw, 3.9rem);
+  min-height: clamp(2.55rem, 3.4vw, 3.35rem);
   align-items: center;
   justify-content: center;
   gap: 0.78rem;
   border-radius: 0.75rem;
   padding: 0.58rem 1.1rem;
-  font-size: clamp(1.12rem, 1.7vw, 1.62rem);
+  font-size: clamp(0.96rem, 1.42vw, 1.34rem);
   font-weight: 900;
   line-height: 1;
   text-decoration: none;
@@ -1409,8 +1795,8 @@ body.self-check-scroll-lock {
 }
 
 .self-check-button img {
-  width: clamp(1.35rem, 2.2vw, 2rem);
-  height: clamp(1.35rem, 2.2vw, 2rem);
+  width: clamp(1.15rem, 1.85vw, 1.68rem);
+  height: clamp(1.15rem, 1.85vw, 1.68rem);
   object-fit: contain;
 }
 
@@ -1430,6 +1816,345 @@ body.self-check-scroll-lock {
 .self-check-button:focus-visible {
   outline: none;
   transform: translateY(-0.08rem);
+}
+
+.self-check-result-page {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: linear-gradient(to top, #e46b9c 0%, #f891bb 100%);
+  color: #ff8abe;
+  font-family: 'Nunito', sans-serif;
+}
+
+.self-check-result-shell {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+  width: min(100%, 112rem);
+  margin: 0 auto;
+  padding: clamp(2.4rem, 4vw, 4.2rem) clamp(1.15rem, 5.8vw, 6.6rem) clamp(0.55rem, 1vw, 1rem);
+  box-sizing: border-box;
+}
+
+.self-check-result-shell > h1 {
+  flex: 0 0 auto;
+  margin: 0 0 clamp(1rem, 2.4vw, 1.8rem);
+  color: #fff;
+  font-size: clamp(1.18rem, 1.96vw, 1.9rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.self-check-result-panel {
+  flex: 1 1 0;
+  width: min(100%, 95.8rem);
+  min-height: 0;
+  margin: 0 auto;
+  border: clamp(0.46rem, 0.82vw, 0.7rem) solid #ff94c7;
+  border-radius: clamp(1.7rem, 2.6vw, 3.25rem);
+  background: #fff;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(1.35rem, 2.8vw, 2.65rem) clamp(1rem, 4.2vw, 3rem) clamp(1.45rem, 3.1vw, 3rem);
+  scrollbar-color: #ff8abe rgba(255, 138, 190, 0.14);
+  scrollbar-width: thin;
+  box-shadow:
+    0 1.05rem 2rem rgba(95, 33, 66, 0.2),
+    0 0 0 0.08rem rgba(126, 34, 78, 0.12);
+}
+
+.self-check-result-panel::-webkit-scrollbar {
+  width: 0.68rem;
+}
+
+.self-check-result-panel::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(255, 138, 190, 0.12);
+}
+
+.self-check-result-panel::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #ff8abe;
+}
+
+.self-check-result-section + .self-check-result-section {
+  margin-top: clamp(2.8rem, 5vw, 4.8rem);
+}
+
+.self-check-result-section h2 {
+  margin: 0 0 clamp(1.3rem, 2.6vw, 2rem);
+  border-bottom: 0.12rem solid #ff8abe;
+  color: #ff85bd;
+  font-size: clamp(1.12rem, 2.08vw, 1.72rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+  padding-bottom: clamp(0.45rem, 1vw, 0.78rem);
+  text-align: center;
+}
+
+.self-check-result-identity-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(9rem, 13.5rem);
+  align-items: center;
+  gap: clamp(1.2rem, 4vw, 3rem);
+}
+
+.self-check-result-data-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.95rem, 1.8vw, 1.35rem) clamp(1.1rem, 3.4vw, 2.8rem);
+}
+
+.self-check-result-datum {
+  min-width: 0;
+}
+
+.self-check-result-datum span,
+.self-check-result-conclusion span {
+  display: block;
+  color: #ff9dcb;
+  font-size: clamp(0.68rem, 1.05vw, 0.82rem);
+  font-weight: 800;
+  line-height: 1.18;
+}
+
+.self-check-result-datum strong {
+  display: block;
+  margin-top: 0.22rem;
+  color: #ff85bd;
+  font-size: clamp(0.72rem, 1.08vw, 0.88rem);
+  font-weight: 900;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.self-check-result-identity-image {
+  width: 100%;
+  max-width: 13.5rem;
+  justify-self: center;
+  object-fit: contain;
+}
+
+.self-check-result-two-feature {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(1.3rem, 3.8vw, 3.4rem);
+}
+
+.self-check-result-metric {
+  display: grid;
+  width: min(100%, 31rem);
+  grid-template-columns: minmax(6.2rem, 9.8rem) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.2rem);
+  margin: clamp(1.7rem, 4vw, 3.2rem) auto 0;
+}
+
+.self-check-result-two-feature .self-check-result-metric {
+  margin-top: 0;
+}
+
+.self-check-result-metric img {
+  width: 100%;
+  max-height: 10.4rem;
+  object-fit: contain;
+}
+
+.self-check-result-metric .self-check-result-datum + .self-check-result-datum {
+  margin-top: 0.75rem;
+}
+
+.self-check-result-conclusion {
+  width: min(100%, 40rem);
+  margin: clamp(1.5rem, 3.5vw, 2.6rem) auto 0;
+  border: 0.14rem solid #ff8abe;
+  border-radius: 0.62rem;
+  padding: clamp(0.8rem, 1.9vw, 1.2rem) clamp(0.9rem, 2.6vw, 1.8rem);
+  text-align: center;
+}
+
+.self-check-result-conclusion strong {
+  display: block;
+  margin-top: 0.32rem;
+  color: #ff85bd;
+  font-size: clamp(0.86rem, 1.55vw, 1.08rem);
+  font-weight: 900;
+  line-height: 1.18;
+}
+
+.self-check-result-conclusion p {
+  margin: 0.62rem 0 0;
+  border-top: 0.08rem solid rgba(255, 138, 190, 0.65);
+  color: #ff9dcb;
+  font-size: clamp(0.58rem, 0.9vw, 0.7rem);
+  font-weight: 800;
+  line-height: 1.24;
+  padding-top: 0.62rem;
+}
+
+.self-check-result-immunization {
+  display: grid;
+  width: min(100%, 27rem);
+  grid-template-columns: 1fr;
+  gap: 1.35rem;
+  margin: clamp(1.8rem, 4vw, 3rem) auto 0;
+  text-align: center;
+}
+
+.self-check-result-lab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 2.4rem);
+  text-align: center;
+}
+
+.self-check-result-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: clamp(0.65rem, 1.25vw, 1.05rem);
+}
+
+.self-check-result-actions .self-check-button {
+  min-height: clamp(2.35rem, 3.2vw, 3rem);
+  border-radius: 0.55rem;
+  padding: 0.5rem 1rem;
+  font-size: clamp(0.9rem, 1.45vw, 1.12rem);
+}
+
+.self-check-result-actions .self-check-button img {
+  width: clamp(1.05rem, 1.6vw, 1.35rem);
+  height: clamp(1.05rem, 1.6vw, 1.35rem);
+}
+
+.self-check-result-download {
+  display: inline-flex;
+  min-height: clamp(2.35rem, 3.2vw, 3rem);
+  align-items: center;
+  justify-content: center;
+  gap: 0.48rem;
+  border: 0.16rem solid #fff;
+  border-radius: 0.55rem;
+  background: transparent;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  font-size: clamp(0.9rem, 1.45vw, 1.12rem);
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.self-check-result-download svg {
+  width: clamp(1.05rem, 1.6vw, 1.35rem);
+  height: clamp(1.05rem, 1.6vw, 1.35rem);
+  stroke-width: 3;
+}
+
+.self-check-result-download:hover,
+.self-check-result-download:focus-visible {
+  outline: none;
+  transform: translateY(-0.08rem);
+}
+
+@media (min-width: 901px) {
+  .self-check-result-shell > h1 {
+    font-size: clamp(2rem, 2.8vw, 3rem);
+  }
+
+  .self-check-result-section h2 {
+    font-size: clamp(1.75rem, 2.35vw, 2.45rem);
+  }
+
+  .self-check-result-datum span,
+  .self-check-result-conclusion span {
+    font-size: clamp(0.98rem, 1.24vw, 1.15rem);
+  }
+
+  .self-check-result-datum strong {
+    font-size: clamp(1.08rem, 1.34vw, 1.28rem);
+  }
+
+  .self-check-result-conclusion strong {
+    font-size: clamp(1.25rem, 1.78vw, 1.55rem);
+  }
+
+  .self-check-result-conclusion p {
+    font-size: clamp(0.86rem, 1.08vw, 1rem);
+  }
+
+  .self-check-result-actions .self-check-button,
+  .self-check-result-download {
+    font-size: clamp(1.08rem, 1.45vw, 1.28rem);
+  }
+}
+
+@media (max-width: 760px) {
+  .self-check-result-panel {
+    padding: 1.45rem 1rem 1.7rem;
+  }
+
+  .self-check-result-two-feature,
+  .self-check-result-lab-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .self-check-result-identity-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(5.4rem, 7.2rem);
+    align-items: start;
+    gap: 0.7rem;
+  }
+
+  .self-check-result-data-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .self-check-result-identity-image {
+    max-width: 7.2rem;
+    justify-self: end;
+  }
+
+  .self-check-result-metric {
+    grid-template-columns: minmax(4.8rem, 6.6rem) minmax(0, 1fr);
+  }
+
+  .self-check-result-actions {
+    flex-wrap: wrap;
+  }
+}
+
+@media print {
+  .self-check-result-page {
+    min-height: auto;
+    background: #fff;
+    padding: 0;
+  }
+
+  .self-check-result-shell {
+    width: 100%;
+  }
+
+  .self-check-result-shell > h1 {
+    color: #ff85bd;
+  }
+
+  .self-check-result-panel {
+    width: 100%;
+    border-width: 0.12rem;
+    box-shadow: none;
+  }
+
+  .self-check-result-actions {
+    display: none;
+  }
 }
 
 .toss-section {
@@ -1868,22 +2593,23 @@ body.self-check-scroll-lock {
   }
 
   .self-check-section {
-    padding: 2.1rem 1rem 2.8rem;
+    padding: 1.55rem clamp(1.35rem, 5.8vw, 2.15rem) 2.25rem;
   }
 
   .self-check-title {
-    margin-left: 0.3rem;
+    margin-left: 0;
   }
 
   .self-check-panel {
+    width: min(100%, 26.5rem);
     border-width: 0.42rem;
     border-radius: 1.65rem;
     padding: 0;
   }
 
   .self-check-scroll-content {
-    padding: 1.35rem 0.95rem 2.45rem;
-    scroll-padding-block: 1.35rem 2.45rem;
+    padding: 1.1rem 0.82rem 2.15rem;
+    scroll-padding-block: 1.1rem 2.15rem;
   }
 
   .self-check-form-section,
@@ -1891,18 +2617,53 @@ body.self-check-scroll-lock {
     grid-template-columns: 1fr;
   }
 
-  .self-check-form-section-mandiri .self-check-section-image {
-    order: -1;
+  .self-check-form-section:not(.self-check-form-section-additional)
+    .self-check-copy {
+    display: contents;
+  }
+
+  .self-check-form-section:not(.self-check-form-section-additional)
+    .self-check-copy
+    h2 {
+    order: 1;
+    text-align: center;
+  }
+
+  .self-check-form-section:not(.self-check-form-section-additional)
+    .self-check-section-image {
+    order: 2;
+    margin: 0 auto clamp(0.18rem, 1.15vw, 0.42rem);
+  }
+
+  .self-check-form-section:not(.self-check-form-section-additional)
+    .self-check-fields {
+    order: 3;
+    width: 100%;
   }
 
   .self-check-section-image,
   .self-check-identity-image,
   .self-check-mandiri-image {
-    max-width: min(62vw, 16rem);
+    max-width: min(74vw, 18.5rem);
     transform: none;
   }
 
   .self-check-field,
+  .self-check-identity-short-row .self-check-field,
+  .self-check-identity-short-row .self-check-field:first-child,
+  .self-check-identity-short-row .self-check-field:nth-child(2),
+  .self-check-form-section-identity
+    .self-check-identity-short-row
+    .self-check-field-birth-date,
+  .self-check-form-section-identity
+    .self-check-identity-short-row
+    .self-check-field-last-child-age,
+  .self-check-form-section-identity
+    .self-check-identity-short-row
+    .self-check-field-pregnancy-order,
+  .self-check-form-section-identity
+    .self-check-identity-short-row
+    .self-check-field-blood-type,
   .self-check-two-column-row .self-check-field,
   .self-check-two-column-row .self-check-field:first-child,
   .self-check-blood-pressure-row,
@@ -1912,7 +2673,9 @@ body.self-check-scroll-lock {
     gap: 0.45rem;
   }
 
-  .self-check-two-column-row {
+  .self-check-two-column-row,
+  .self-check-identity-short-row,
+  .self-check-form-section-identity .self-check-identity-short-row {
     grid-template-columns: 1fr;
     gap: 0.82rem;
   }
@@ -1934,8 +2697,17 @@ body.self-check-scroll-lock {
     gap: 1.6rem;
   }
 
+  .self-check-form-section-additional .self-check-copy h2 {
+    text-align: center;
+  }
+
+  .self-check-additional-fields {
+    order: 2;
+  }
+
   .self-check-additional-image {
-    width: min(100%, 31rem);
+    order: 1;
+    width: min(100%, 34rem);
   }
 
   .self-check-lab-grid {
@@ -2349,7 +3121,7 @@ body.self-check-scroll-lock {
 
   .self-check-copy h2,
   .self-check-lab-section h2 {
-    font-size: clamp(1.6rem, 8vw, 2.25rem);
+    font-size: clamp(1.3rem, 6.5vw, 1.85rem);
   }
 
   .self-check-blood-pressure-row {
@@ -2378,8 +3150,8 @@ body.self-check-scroll-lock {
   }
 
   .self-check-button {
-    flex: 1 1 12rem;
-    max-width: 16rem;
+    flex: 1 1 10.5rem;
+    max-width: 14rem;
   }
 
   .toss-section {

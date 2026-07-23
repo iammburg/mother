@@ -1,6 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import type React from "react";
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { SELF_CHECK_RESULT_STORAGE_KEY } from "../../constants/selfCheck";
 
 export const Route = createFileRoute("/pemeriksaan-mandiri/")({
   component: PemeriksaanMandiriPage,
@@ -8,7 +9,42 @@ export const Route = createFileRoute("/pemeriksaan-mandiri/")({
 
 const bloodTypes = ["A", "B", "AB", "O"];
 
+type SelfCheckInfoPopupContent = {
+  id: string;
+  title: string;
+  imageSrc: string;
+  imageAlt: string;
+  description: string;
+};
+
+const lilaInfoPopup: SelfCheckInfoPopupContent = {
+  id: "lila-info",
+  title: "Cara Mengukur Lingkar Lengan Atas",
+  imageSrc: "/assets/images/pengukuran_lingkar_lengan_atas.avif",
+  imageAlt: "Ilustrasi mengukur lingkar lengan atas dengan pita ukur",
+  description:
+    "Cara mengukur lingkar lengan atas yaitu dengan melingkarkan pita ukur pada lengan atas.",
+};
+
+const fundalHeightInfoPopup: SelfCheckInfoPopupContent = {
+  id: "fundal-height-info",
+  title: "Cara Mengukur Tinggi Rahim",
+  imageSrc: "/assets/images/pengukuran_tinggi_rahim.avif",
+  imageAlt: "Ilustrasi mengukur tinggi rahim dengan pita ukur",
+  description:
+    "Cara mengukur tinggi rahim yaitu dengan cara mengukur dari tulang kemaluan sampai ke bagian atas rahim.",
+};
+
 function PemeriksaanMandiriPage() {
+  const navigate = useNavigate();
+  const [activeInfoPopup, setActiveInfoPopup] =
+    useState<SelfCheckInfoPopupContent | null>(null);
+  const [hphtDate, setHphtDate] = useState("");
+  const pregnancyAgeText = useMemo(
+    () => calculatePregnancyAgeText(hphtDate),
+    [hphtDate],
+  );
+
   useEffect(() => {
     document.documentElement.classList.add("self-check-scroll-lock");
     document.body.classList.add("self-check-scroll-lock");
@@ -18,6 +54,38 @@ function PemeriksaanMandiriPage() {
       document.body.classList.remove("self-check-scroll-lock");
     };
   }, []);
+
+  useEffect(() => {
+    if (!activeInfoPopup) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveInfoPopup(null);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeInfoPopup]);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const formValues = Object.fromEntries(formData.entries());
+
+    window.sessionStorage.setItem(
+      SELF_CHECK_RESULT_STORAGE_KEY,
+      JSON.stringify(formValues),
+    );
+
+    void navigate({ to: "/pemeriksaan-mandiri/hasil" });
+  };
 
   return (
     <main className="self-check-page">
@@ -32,7 +100,7 @@ function PemeriksaanMandiriPage() {
         <form
           id="self-check-form"
           className="self-check-panel"
-          onSubmit={(event) => event.preventDefault()}
+          onSubmit={handleSubmit}
         >
           <div className="self-check-scroll-content">
             <section
@@ -191,7 +259,25 @@ function PemeriksaanMandiriPage() {
                     htmlFor="tanggal-hpht"
                     className="self-check-field-hpht"
                   >
-                    <input id="tanggal-hpht" name="tanggalHpht" type="date" />
+                    <input
+                      id="tanggal-hpht"
+                      name="tanggalHpht"
+                      type="date"
+                      value={hphtDate}
+                      onChange={(event) => setHphtDate(event.target.value)}
+                    />
+                    {pregnancyAgeText ? (
+                      <div
+                        className="self-check-pregnancy-age-card"
+                        aria-live="polite"
+                      >
+                        <img src="/assets/images/HPHT_persalinan.avif" alt="" />
+                        <p>
+                          <span>Usia kehamilan anda saat ini</span>
+                          <strong>{pregnancyAgeText}</strong>
+                        </p>
+                      </div>
+                    ) : null}
                   </FormField>
 
                   <FormField
@@ -278,12 +364,13 @@ function PemeriksaanMandiriPage() {
                     <FormField
                       label={
                         <>
-                          Ukuran LILA
+                          Ukuran LiLA
                           <small>(Lingkar Lengan Atas) (cm)</small>
                         </>
                       }
                       htmlFor="ukuran-lila"
                       hint="Klik disini untuk mengetahui cara mengukur lingkar lengan atas"
+                      onHintClick={() => setActiveInfoPopup(lilaInfoPopup)}
                       className="self-check-field-lila"
                     >
                       <InputWithUnit unit="cm">
@@ -301,6 +388,9 @@ function PemeriksaanMandiriPage() {
                       label="Tinggi Rahim (cm)"
                       htmlFor="tinggi-rahim"
                       hint="Klik disini untuk mengetahui cara mengukur tinggi rahim"
+                      onHintClick={() =>
+                        setActiveInfoPopup(fundalHeightInfoPopup)
+                      }
                       className="self-check-field-fundal-height"
                     >
                       <InputWithUnit unit="cm">
@@ -345,13 +435,16 @@ function PemeriksaanMandiriPage() {
                       htmlFor="intensitas-kontraksi"
                       className="self-check-field-contraction"
                     >
-                      <input
+                      <select
                         id="intensitas-kontraksi"
                         name="intensitasKontraksi"
-                        type="number"
-                        min="0"
-                        inputMode="numeric"
-                      />
+                      >
+                        <option value="">Pilih</option>
+                        <option value="tidak-pernah">Tidak pernah</option>
+                        <option value="jarang">Jarang</option>
+                        <option value="sering">Sering</option>
+                        <option value="sangat-sering">Sangat sering</option>
+                      </select>
                     </FormField>
                   </div>
                 </div>
@@ -477,6 +570,13 @@ function PemeriksaanMandiriPage() {
           </div>
         </form>
 
+        {activeInfoPopup ? (
+          <SelfCheckInfoPopup
+            content={activeInfoPopup}
+            onClose={() => setActiveInfoPopup(null)}
+          />
+        ) : null}
+
         <div className="self-check-actions">
           <Link to="/" hash="cek-risiko" className="self-check-button back">
             <img src="/assets/images/button/back.png" alt="" />
@@ -502,6 +602,7 @@ function FormField({
   htmlFor,
   children,
   hint,
+  onHintClick,
   compact = false,
   className,
 }: {
@@ -509,9 +610,17 @@ function FormField({
   htmlFor: string;
   children: React.ReactNode;
   hint?: string;
+  onHintClick?: () => void;
   compact?: boolean;
   className?: string;
 }) {
+  const hintContent = hint ? (
+    <>
+      <span aria-hidden="true">i</span>
+      {hint}
+    </>
+  ) : null;
+
   return (
     <div
       className={[
@@ -525,13 +634,51 @@ function FormField({
       <label htmlFor={htmlFor}>{label}</label>
       <div>
         {children}
-        {hint ? (
-          <p className="self-check-hint">
-            <span aria-hidden="true">i</span>
-            {hint}
-          </p>
+        {hintContent ? (
+          onHintClick ? (
+            <button
+              type="button"
+              className="self-check-hint"
+              onClick={onHintClick}
+            >
+              {hintContent}
+            </button>
+          ) : (
+            <p className="self-check-hint">{hintContent}</p>
+          )
         ) : null}
       </div>
+    </div>
+  );
+}
+
+function SelfCheckInfoPopup({
+  content,
+  onClose,
+}: {
+  content: SelfCheckInfoPopupContent;
+  onClose: () => void;
+}) {
+  return (
+    <div
+      className="self-check-info-overlay"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) {
+          onClose();
+        }
+      }}
+    >
+      <article
+        className="self-check-info-popup"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`${content.id}-title`}
+      >
+        <h2 id={`${content.id}-title`}>{content.title}</h2>
+        <img src={content.imageSrc} alt={content.imageAlt} />
+        <p>{content.description}</p>
+      </article>
     </div>
   );
 }
@@ -567,4 +714,45 @@ function RadioField({ legend, name }: { legend: string; name: string }) {
       </label>
     </fieldset>
   );
+}
+
+function calculatePregnancyAgeText(value: string) {
+  const hpht = parseDateInput(value);
+
+  if (!hpht) {
+    return "";
+  }
+
+  const today = stripTime(new Date());
+  const hphtDate = stripTime(hpht);
+  const dayDifference = Math.floor(
+    (today.getTime() - hphtDate.getTime()) / (1000 * 60 * 60 * 24),
+  );
+
+  if (dayDifference < 0) {
+    return "tanggal HPHT belum valid";
+  }
+
+  const weeks = Math.floor(dayDifference / 7);
+  const days = dayDifference % 7;
+
+  if (days === 0) {
+    return `${weeks} minggu`;
+  }
+
+  return `${weeks} minggu ${days} hari`;
+}
+
+function parseDateInput(value: string) {
+  const [year, month, day] = value.split("-").map(Number);
+
+  if (!year || !month || !day) {
+    return null;
+  }
+
+  return new Date(year, month - 1, day);
+}
+
+function stripTime(date: Date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }

@@ -16,6 +16,7 @@ import { Route as AuthedRouteImport } from './routes/_authed'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PemeriksaanResikoIndexRouteImport } from './routes/pemeriksaan-resiko/index'
 import { Route as PemeriksaanMandiriIndexRouteImport } from './routes/pemeriksaan-mandiri/index'
+import { Route as PemeriksaanMandiriHasilRouteImport } from './routes/pemeriksaan-mandiri/hasil'
 import { Route as AuthedPostsRouteRouteImport } from './routes/_authed/posts.route'
 import { Route as AuthedPostsIndexRouteImport } from './routes/_authed/posts.index'
 import { Route as AuthedPostsPostIdRouteImport } from './routes/_authed/posts.$postId'
@@ -54,6 +55,11 @@ const PemeriksaanMandiriIndexRoute = PemeriksaanMandiriIndexRouteImport.update({
   path: '/pemeriksaan-mandiri/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PemeriksaanMandiriHasilRoute = PemeriksaanMandiriHasilRouteImport.update({
+  id: '/pemeriksaan-mandiri/hasil',
+  path: '/pemeriksaan-mandiri/hasil',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthedPostsRouteRoute = AuthedPostsRouteRouteImport.update({
   id: '/posts',
   path: '/posts',
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/logout': typeof LogoutRoute
   '/signup': typeof SignupRoute
   '/posts': typeof AuthedPostsRouteRouteWithChildren
+  '/pemeriksaan-mandiri/hasil': typeof PemeriksaanMandiriHasilRoute
   '/pemeriksaan-mandiri/': typeof PemeriksaanMandiriIndexRoute
   '/pemeriksaan-resiko/': typeof PemeriksaanResikoIndexRoute
   '/posts/$postId': typeof AuthedPostsPostIdRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
   '/signup': typeof SignupRoute
+  '/pemeriksaan-mandiri/hasil': typeof PemeriksaanMandiriHasilRoute
   '/pemeriksaan-mandiri': typeof PemeriksaanMandiriIndexRoute
   '/pemeriksaan-resiko': typeof PemeriksaanResikoIndexRoute
   '/posts/$postId': typeof AuthedPostsPostIdRoute
@@ -99,6 +107,7 @@ export interface FileRoutesById {
   '/logout': typeof LogoutRoute
   '/signup': typeof SignupRoute
   '/_authed/posts': typeof AuthedPostsRouteRouteWithChildren
+  '/pemeriksaan-mandiri/hasil': typeof PemeriksaanMandiriHasilRoute
   '/pemeriksaan-mandiri/': typeof PemeriksaanMandiriIndexRoute
   '/pemeriksaan-resiko/': typeof PemeriksaanResikoIndexRoute
   '/_authed/posts/$postId': typeof AuthedPostsPostIdRoute
@@ -112,6 +121,7 @@ export interface FileRouteTypes {
     | '/logout'
     | '/signup'
     | '/posts'
+    | '/pemeriksaan-mandiri/hasil'
     | '/pemeriksaan-mandiri/'
     | '/pemeriksaan-resiko/'
     | '/posts/$postId'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/logout'
     | '/signup'
+    | '/pemeriksaan-mandiri/hasil'
     | '/pemeriksaan-mandiri'
     | '/pemeriksaan-resiko'
     | '/posts/$postId'
@@ -134,6 +145,7 @@ export interface FileRouteTypes {
     | '/logout'
     | '/signup'
     | '/_authed/posts'
+    | '/pemeriksaan-mandiri/hasil'
     | '/pemeriksaan-mandiri/'
     | '/pemeriksaan-resiko/'
     | '/_authed/posts/$postId'
@@ -146,6 +158,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   LogoutRoute: typeof LogoutRoute
   SignupRoute: typeof SignupRoute
+  PemeriksaanMandiriHasilRoute: typeof PemeriksaanMandiriHasilRoute
   PemeriksaanMandiriIndexRoute: typeof PemeriksaanMandiriIndexRoute
   PemeriksaanResikoIndexRoute: typeof PemeriksaanResikoIndexRoute
 }
@@ -199,6 +212,13 @@ declare module '@tanstack/react-router' {
       path: '/pemeriksaan-mandiri'
       fullPath: '/pemeriksaan-mandiri/'
       preLoaderRoute: typeof PemeriksaanMandiriIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pemeriksaan-mandiri/hasil': {
+      id: '/pemeriksaan-mandiri/hasil'
+      path: '/pemeriksaan-mandiri/hasil'
+      fullPath: '/pemeriksaan-mandiri/hasil'
+      preLoaderRoute: typeof PemeriksaanMandiriHasilRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authed/posts': {
@@ -255,6 +275,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   LogoutRoute: LogoutRoute,
   SignupRoute: SignupRoute,
+  PemeriksaanMandiriHasilRoute: PemeriksaanMandiriHasilRoute,
   PemeriksaanMandiriIndexRoute: PemeriksaanMandiriIndexRoute,
   PemeriksaanResikoIndexRoute: PemeriksaanResikoIndexRoute,
 }
