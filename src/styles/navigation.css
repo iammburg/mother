@@ -1,0 +1,200 @@
+.home-nav {
+  --nav-padding: 0.28rem;
+  position: fixed;
+  top: 1.35rem;
+  left: 50%;
+  z-index: 1000;
+  display: grid;
+  width: min(98rem, calc(100vw - 8rem));
+  min-height: 4.8rem;
+  grid-template-columns:
+    minmax(8.8rem, 1.1fr)
+    minmax(6.8rem, 0.85fr)
+    minmax(10.8rem, 1.28fr)
+    minmax(9.8rem, 1.16fr)
+    minmax(9.6rem, 1.14fr)
+    minmax(12.4rem, 1.48fr)
+    minmax(9rem, 1.1fr)
+    minmax(6.2rem, 0.76fr);
+  align-items: center;
+  gap: 0;
+  border: 0.24rem solid transparent;
+  border-radius: 999px;
+  background: rgba(34, 34, 31, 0.72);
+  padding: var(--nav-padding);
+  transform: translateX(-50%);
+  animation: navDropIn 760ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  backdrop-filter: blur(2px);
+  box-sizing: border-box;
+}
+
+.home-nav::before {
+  position: absolute;
+  top: var(--nav-padding);
+  left: var(--nav-padding);
+  z-index: 0;
+  width: var(--active-width, 9.8rem);
+  height: calc(100% - (var(--nav-padding) * 2));
+  border-radius: 999px;
+  background: #f486bb;
+  box-shadow: 0 0.9rem 2rem rgba(78, 39, 58, 0.16);
+  content: "";
+  transform: translateX(var(--active-left, 0));
+  transition:
+    width 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.home-nav-link {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  flex-direction: column;
+  min-height: 4.24rem;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: #fff;
+  padding: 0 0.48rem;
+  font-size: clamp(1rem, 1.1vw, 1.42rem);
+  font-weight: 600;
+  line-height: 1.18;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  transition:
+    background-color 160ms ease,
+    color 180ms ease,
+    transform 220ms ease;
+}
+
+.home-nav-link span {
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.home-nav-link:nth-child(1) {
+  font-size: clamp(1.12rem, 1.26vw, 1.5rem);
+  font-weight: 600;
+}
+
+.home-nav-link:nth-child(2) {
+  font-size: clamp(1.02rem, 1.16vw, 1.5rem);
+}
+
+.home-nav-link:nth-child(3) {
+  font-size: clamp(0.86rem, 0.95vw, 1.14rem);
+}
+
+.home-nav-link:nth-child(4),
+.home-nav-link:nth-child(5) {
+  font-size: clamp(0.88rem, 0.98vw, 1.18rem);
+}
+
+.home-nav-link:nth-child(6) {
+  font-size: clamp(1rem, 1.15vw, 1.48rem);
+}
+
+.home-nav-link:nth-child(7) {
+  font-size: clamp(1rem, 1.12vw, 1.42rem);
+}
+
+.home-nav-link:nth-child(8) {
+  font-size: clamp(1rem, 1.1vw, 1.38rem);
+}
+
+.home-nav-link:hover,
+.home-nav-link:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
+  outline: none;
+}
+
+.home-nav-link.active {
+  font-weight: 800;
+  transform: translateY(-0.06rem) scale(1.045);
+}
+
+.home-nav.section-nav {
+  border: 0.24rem solid #f486bb;
+  background: #f486bb;
+  box-shadow: none;
+  backdrop-filter: blur(8px);
+  box-sizing: border-box;
+}
+
+.home-nav.section-nav::before {
+  background: #fff;
+  box-shadow: none;
+}
+
+.home-nav.section-nav .home-nav-link {
+  color: #fff;
+}
+
+.home-nav.section-nav .home-nav-link.active {
+  color: #f486bb;
+}
+
+.home-nav.section-nav .home-nav-link:hover,
+.home-nav.section-nav .home-nav-link:focus-visible {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.home-nav.risk-nav {
+  border: 0.24rem solid #f486bb;
+  background: #fff;
+  box-shadow: 0 1.1rem 2.4rem rgba(160, 62, 105, 0.1);
+  backdrop-filter: blur(8px);
+  box-sizing: border-box;
+}
+
+.home-nav.risk-nav::before {
+  background: #f486bb;
+  box-shadow: none;
+}
+
+.home-nav.risk-nav .home-nav-link {
+  color: #f486bb;
+}
+
+.home-nav.risk-nav .home-nav-link.active {
+  color: #fff;
+}
+
+.home-nav.risk-nav .home-nav-link:hover,
+.home-nav.risk-nav .home-nav-link:focus-visible {
+  background: rgba(244, 134, 187, 0.12);
+}
+
+/* Subpage navbar — no active pill indicator, all links visible */
+.home-nav.risk-nav.subpage-nav {
+  position: static;
+  margin: 0 auto;
+  transform: none;
+  animation: none;
+}
+
+.home-nav.risk-nav.subpage-nav::before {
+  display: none;
+}
+
+.home-nav.risk-nav.subpage-nav .home-nav-link {
+  color: #f486bb;
+}
+
+.home-nav.risk-nav.subpage-nav .home-nav-link.active {
+  color: #fff;
+  background: #f486bb;
+}
+
+.mobile-menu-button,
+.mobile-menu-close {
+  display: none;
+}
+
+.mobile-menu-backdrop,
+.mobile-menu {
+  display: none;
+}

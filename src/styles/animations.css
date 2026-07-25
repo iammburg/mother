@@ -1,0 +1,125 @@
+@keyframes navDropIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -1.2rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes caretBlink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tossBackgroundDrift {
+  0% {
+    background-position: 0% 40%, 50% 50%;
+    transform: translate3d(-1.5%, -1%, 0) rotate(0deg) scale(1);
+  }
+
+  50% {
+    background-position: 82% 22%, 44% 62%;
+    transform: translate3d(1%, 0.8%, 0) rotate(2deg) scale(1.025);
+  }
+
+  100% {
+    background-position: 26% 92%, 58% 42%;
+    transform: translate3d(1.6%, -0.7%, 0) rotate(-1.5deg) scale(1.04);
+  }
+}
+
+@keyframes tossGlowFloatOne {
+  0% {
+    opacity: 0.62;
+    transform: translate3d(-18%, 3%, 0) scale(0.95);
+  }
+
+  42% {
+    opacity: 0.8;
+    transform: translate3d(48%, 24%, 0) scale(1.12);
+  }
+
+  100% {
+    opacity: 0.68;
+    transform: translate3d(12%, 70%, 0) scale(1.02);
+  }
+}
+
+@keyframes tossGlowFloatTwo {
+  0% {
+    opacity: 0.58;
+    transform: translate3d(73%, 7%, 0) scale(1);
+  }
+
+  36% {
+    opacity: 0.76;
+    transform: translate3d(20%, 49%, 0) scale(1.16);
+  }
+
+  100% {
+    opacity: 0.64;
+    transform: translate3d(88%, 72%, 0) scale(0.92);
+  }
+}
+
+@keyframes tossGlowFloatThree {
+  0% {
+    opacity: 0.54;
+    transform: translate3d(40%, 58%, 0) scale(1.1);
+  }
+
+  50% {
+    opacity: 0.74;
+    transform: translate3d(5%, 16%, 0) scale(0.96);
+  }
+
+  100% {
+    opacity: 0.62;
+    transform: translate3d(58%, 6%, 0) scale(1.18);
+  }
+}
+
+@keyframes tossGlowFloatFour {
+  0% {
+    opacity: 0.56;
+    transform: translate3d(6%, 72%, 0) scale(0.9);
+  }
+
+  44% {
+    opacity: 0.78;
+    transform: translate3d(66%, 38%, 0) scale(1.08);
+  }
+
+  100% {
+    opacity: 0.66;
+    transform: translate3d(18%, 10%, 0) scale(1);
+  }
+}
+
+@keyframes tossGlowFloatFive {
+  0% {
+    opacity: 0.52;
+    transform: translate3d(78%, 62%, 0) scale(1);
+  }
+
+  48% {
+    opacity: 0.72;
+    transform: translate3d(34%, 4%, 0) scale(1.14);
+  }
+
+  100% {
+    opacity: 0.6;
+    transform: translate3d(-4%, 42%, 0) scale(0.98);
+  }
+}

@@ -1,0 +1,58 @@
+.risk-check-section {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  scroll-margin-top: 0;
+  background: linear-gradient(to top, #e46b9c 0%, #f891bb 100%);
+  color: #f486bb;
+  padding: clamp(8.5rem, 13vh, 11.8rem) min(9vw, 10.9rem) clamp(3.2rem, 7vh, 5.1rem);
+}
+
+.risk-check-grid {
+  display: grid;
+  width: min(100%, 94rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(3rem, 5.9vw, 4.8rem);
+}
+
+.risk-check-card {
+  display: flex;
+  min-height: clamp(31rem, 54vw, 49.8rem);
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: clamp(3.3rem, 5vw, 6.2rem);
+  background: #fff;
+  padding: clamp(3.05rem, 4.2vw, 4.9rem) clamp(2.2rem, 3.2vw, 3.8rem) clamp(2.05rem, 3.3vw, 3.3rem);
+  text-align: center;
+  box-shadow: 0 1.6rem 3.6rem rgba(139, 36, 83, 0.08);
+}
+
+.risk-check-image-frame {
+  display: flex;
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: clamp(2.1rem, 3.8vw, 4.1rem);
+}
+
+.risk-check-image {
+  width: 100%;
+  height: 100%;
+  max-height: clamp(21rem, 37vw, 37.5rem);
+  object-fit: contain;
+}
+
+.risk-check-card h3 {
+  margin: clamp(1.15rem, 2.8vw, 2.35rem) 0 0;
+  color: #f486bb;
+  font-size: clamp(2.0rem, 3.5vw, 3.58rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 0;
+}

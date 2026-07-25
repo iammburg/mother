@@ -1,0 +1,237 @@
+.risk-form-page {
+  min-height: 100vh;
+  background: #fff;
+  color: #171717;
+  font-family: 'Nunito', sans-serif;
+  padding: 2.75rem clamp(1.25rem, 6vw, 4.75rem) 5rem;
+}
+
+.risk-form-nav {
+  display: grid;
+  width: min(100%, 70.5rem);
+  min-height: 3.8rem;
+  grid-template-columns:
+    minmax(5.8rem, 0.82fr)
+    minmax(6.5rem, 0.9fr)
+    minmax(9.9rem, 1.2fr)
+    minmax(8.4rem, 1.05fr)
+    minmax(9.5rem, 1.15fr)
+    minmax(7.9rem, 0.95fr)
+    minmax(5.5rem, 0.78fr);
+  align-items: center;
+  margin: 0 auto;
+  border: 0.2rem solid #de2a3b;
+  border-radius: 999px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.risk-form-nav-link {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 3.42rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: #de2a3b;
+  padding: 0 0.7rem;
+  font-size: clamp(1rem, 1.4vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.06;
+  text-align: center;
+  text-decoration: none;
+}
+
+.risk-form-nav-link span {
+  display: block;
+  white-space: nowrap;
+}
+
+.risk-form-nav-link.active {
+  min-height: 3.8rem;
+  background: #d12d3f;
+  color: #fff;
+  font-size: clamp(0.84rem, 1vw, 1.05rem);
+  font-weight: 900;
+}
+
+.risk-form-hero {
+  width: min(100%, 70.5rem);
+  margin: 2.65rem auto 0;
+  text-align: center;
+}
+
+.risk-form-hero h1 {
+  margin: 0;
+  color: #4d4d4d;
+  font-size: clamp(2rem, 3vw, 2.65rem);
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.risk-form-hero p {
+  width: min(100%, 56rem);
+  margin: 1.25rem auto 0;
+  color: #1d1d1d;
+  font-size: clamp(1.12rem, 2vw, 1.55rem);
+  font-weight: 500;
+  line-height: 1.16;
+}
+
+.risk-form-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.3rem, 2.8vw, 1.8rem);
+  margin-top: 2.75rem;
+}
+
+.risk-form-summary-card {
+  display: flex;
+  min-height: 8.9rem;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+  background: #d9d9d9;
+  padding: 1.25rem 1.4rem;
+  color: #484848;
+  text-align: left;
+}
+
+.risk-form-summary-card span {
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  font-weight: 800;
+}
+
+.risk-form-summary-card strong {
+  color: #d12d3f;
+  font-size: clamp(2rem, 3.5vw, 3.15rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.risk-form-content {
+  width: min(100%, 60.5rem);
+  margin: 3.9rem auto 0;
+}
+
+.risk-form-score-banner {
+  position: sticky;
+  top: 1rem;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border: 0.18rem solid rgba(209, 45, 63, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 0.78rem 1.2rem;
+  box-shadow: 0 1rem 2rem rgba(209, 45, 63, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.risk-form-score-banner span,
+.risk-form-score-banner strong {
+  color: #d12d3f;
+  font-size: clamp(0.98rem, 1.7vw, 1.18rem);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.risk-question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.35rem;
+}
+
+.risk-question {
+  min-width: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.risk-question legend {
+  display: flex;
+  align-items: baseline;
+  gap: 0.72rem;
+  margin: 0;
+  padding: 0;
+  color: #151515;
+  font-size: clamp(1.22rem, 2.2vw, 1.68rem);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.risk-question-number {
+  flex: 0 0 auto;
+  color: #d12d3f;
+  font-size: 0.78em;
+  font-weight: 900;
+}
+
+.risk-radio-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.35rem 2.65rem;
+  margin-top: 1.65rem;
+}
+
+.risk-radio-row-wrap {
+  gap: 1.25rem 2.2rem;
+}
+
+.risk-choice {
+  display: inline-flex;
+  min-height: 2.85rem;
+  align-items: center;
+  gap: 0.55rem;
+  color: #141414;
+  font-size: clamp(1.12rem, 2vw, 1.48rem);
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.risk-choice input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.risk-choice span {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 2.45rem;
+  aspect-ratio: 1;
+  border: 0.34rem solid #ff8abe;
+  border-radius: 50%;
+  background: #fcffc8;
+  box-shadow: inset 0 0 0 0.42rem #fcffc8;
+  transition:
+    background-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.risk-choice input:checked + span {
+  background: #d12d3f;
+}
+
+.risk-choice input:focus-visible + span {
+  outline: 0.18rem solid #d12d3f;
+  outline-offset: 0.18rem;
+}
+
+.risk-choice:hover span {
+  transform: scale(1.04);
+}

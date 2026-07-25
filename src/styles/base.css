@@ -1,0 +1,51 @@
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    margin: 0;
+  }
+
+  body.mobile-menu-open {
+    overflow: hidden;
+  }
+
+  html {
+    @apply font-sans;
+    background-color: var(--background);
+    scroll-behavior: smooth;
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light dark;
+  }
+
+  * {
+    @apply border-gray-200 dark:border-gray-800;
+  }
+
+  html,
+  body {
+    @apply text-gray-900 bg-gray-50 dark:bg-gray-950 dark:text-gray-200;
+    min-width: 320px;
+  }
+
+  .using-mouse * {
+    outline: none !important;
+  }
+}
