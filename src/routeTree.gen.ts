@@ -33,7 +33,9 @@ import { Route as InformasiKehamilanLaranganRouteImport } from './routes/informa
 import { Route as EducationVideoRouteImport } from './routes/education/video'
 import { Route as EducationFlipbookRouteImport } from './routes/education/flipbook'
 import { Route as AuthedPostsRouteRouteImport } from './routes/_authed/posts.route'
+import { Route as EducationFlipbookIndexRouteImport } from './routes/education/flipbook/index'
 import { Route as AuthedPostsIndexRouteImport } from './routes/_authed/posts.index'
+import { Route as EducationFlipbookIdRouteImport } from './routes/education/flipbook/$id'
 import { Route as AuthedPostsPostIdRouteImport } from './routes/_authed/posts.$postId'
 
 const TossRoute = TossRouteImport.update({
@@ -159,10 +161,20 @@ const AuthedPostsRouteRoute = AuthedPostsRouteRouteImport.update({
   path: '/posts',
   getParentRoute: () => AuthedRoute,
 } as any)
+const EducationFlipbookIndexRoute = EducationFlipbookIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => EducationFlipbookRoute,
+} as any)
 const AuthedPostsIndexRoute = AuthedPostsIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AuthedPostsRouteRoute,
+} as any)
+const EducationFlipbookIdRoute = EducationFlipbookIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => EducationFlipbookRoute,
 } as any)
 const AuthedPostsPostIdRoute = AuthedPostsPostIdRouteImport.update({
   id: '/$postId',
@@ -183,7 +195,7 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupRoute
   '/toss': typeof TossRoute
   '/posts': typeof AuthedPostsRouteRouteWithChildren
-  '/education/flipbook': typeof EducationFlipbookRoute
+  '/education/flipbook': typeof EducationFlipbookRouteWithChildren
   '/education/video': typeof EducationVideoRoute
   '/informasi-kehamilan/larangan': typeof InformasiKehamilanLaranganRoute
   '/informasi-kehamilan/masalah': typeof InformasiKehamilanMasalahRoute
@@ -195,7 +207,9 @@ export interface FileRoutesByFullPath {
   '/pemeriksaan-mandiri/': typeof PemeriksaanMandiriIndexRoute
   '/pemeriksaan-resiko/': typeof PemeriksaanResikoIndexRoute
   '/posts/$postId': typeof AuthedPostsPostIdRoute
+  '/education/flipbook/$id': typeof EducationFlipbookIdRoute
   '/posts/': typeof AuthedPostsIndexRoute
+  '/education/flipbook/': typeof EducationFlipbookIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -208,7 +222,6 @@ export interface FileRoutesByTo {
   '/quiz': typeof QuizRoute
   '/signup': typeof SignupRoute
   '/toss': typeof TossRoute
-  '/education/flipbook': typeof EducationFlipbookRoute
   '/education/video': typeof EducationVideoRoute
   '/informasi-kehamilan/larangan': typeof InformasiKehamilanLaranganRoute
   '/informasi-kehamilan/masalah': typeof InformasiKehamilanMasalahRoute
@@ -220,7 +233,9 @@ export interface FileRoutesByTo {
   '/pemeriksaan-mandiri': typeof PemeriksaanMandiriIndexRoute
   '/pemeriksaan-resiko': typeof PemeriksaanResikoIndexRoute
   '/posts/$postId': typeof AuthedPostsPostIdRoute
+  '/education/flipbook/$id': typeof EducationFlipbookIdRoute
   '/posts': typeof AuthedPostsIndexRoute
+  '/education/flipbook': typeof EducationFlipbookIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -237,7 +252,7 @@ export interface FileRoutesById {
   '/signup': typeof SignupRoute
   '/toss': typeof TossRoute
   '/_authed/posts': typeof AuthedPostsRouteRouteWithChildren
-  '/education/flipbook': typeof EducationFlipbookRoute
+  '/education/flipbook': typeof EducationFlipbookRouteWithChildren
   '/education/video': typeof EducationVideoRoute
   '/informasi-kehamilan/larangan': typeof InformasiKehamilanLaranganRoute
   '/informasi-kehamilan/masalah': typeof InformasiKehamilanMasalahRoute
@@ -249,7 +264,9 @@ export interface FileRoutesById {
   '/pemeriksaan-mandiri/': typeof PemeriksaanMandiriIndexRoute
   '/pemeriksaan-resiko/': typeof PemeriksaanResikoIndexRoute
   '/_authed/posts/$postId': typeof AuthedPostsPostIdRoute
+  '/education/flipbook/$id': typeof EducationFlipbookIdRoute
   '/_authed/posts/': typeof AuthedPostsIndexRoute
+  '/education/flipbook/': typeof EducationFlipbookIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -278,7 +295,9 @@ export interface FileRouteTypes {
     | '/pemeriksaan-mandiri/'
     | '/pemeriksaan-resiko/'
     | '/posts/$postId'
+    | '/education/flipbook/$id'
     | '/posts/'
+    | '/education/flipbook/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -291,7 +310,6 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/signup'
     | '/toss'
-    | '/education/flipbook'
     | '/education/video'
     | '/informasi-kehamilan/larangan'
     | '/informasi-kehamilan/masalah'
@@ -303,7 +321,9 @@ export interface FileRouteTypes {
     | '/pemeriksaan-mandiri'
     | '/pemeriksaan-resiko'
     | '/posts/$postId'
+    | '/education/flipbook/$id'
     | '/posts'
+    | '/education/flipbook'
   id:
     | '__root__'
     | '/'
@@ -331,7 +351,9 @@ export interface FileRouteTypes {
     | '/pemeriksaan-mandiri/'
     | '/pemeriksaan-resiko/'
     | '/_authed/posts/$postId'
+    | '/education/flipbook/$id'
     | '/_authed/posts/'
+    | '/education/flipbook/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -523,12 +545,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedPostsRouteRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/education/flipbook/': {
+      id: '/education/flipbook/'
+      path: '/'
+      fullPath: '/education/flipbook/'
+      preLoaderRoute: typeof EducationFlipbookIndexRouteImport
+      parentRoute: typeof EducationFlipbookRoute
+    }
     '/_authed/posts/': {
       id: '/_authed/posts/'
       path: '/'
       fullPath: '/posts/'
       preLoaderRoute: typeof AuthedPostsIndexRouteImport
       parentRoute: typeof AuthedPostsRouteRoute
+    }
+    '/education/flipbook/$id': {
+      id: '/education/flipbook/$id'
+      path: '/$id'
+      fullPath: '/education/flipbook/$id'
+      preLoaderRoute: typeof EducationFlipbookIdRouteImport
+      parentRoute: typeof EducationFlipbookRoute
     }
     '/_authed/posts/$postId': {
       id: '/_authed/posts/$postId'
@@ -564,14 +600,27 @@ const AuthedRouteChildren: AuthedRouteChildren = {
 const AuthedRouteWithChildren =
   AuthedRoute._addFileChildren(AuthedRouteChildren)
 
+interface EducationFlipbookRouteChildren {
+  EducationFlipbookIdRoute: typeof EducationFlipbookIdRoute
+  EducationFlipbookIndexRoute: typeof EducationFlipbookIndexRoute
+}
+
+const EducationFlipbookRouteChildren: EducationFlipbookRouteChildren = {
+  EducationFlipbookIdRoute: EducationFlipbookIdRoute,
+  EducationFlipbookIndexRoute: EducationFlipbookIndexRoute,
+}
+
+const EducationFlipbookRouteWithChildren =
+  EducationFlipbookRoute._addFileChildren(EducationFlipbookRouteChildren)
+
 interface EducationRouteChildren {
-  EducationFlipbookRoute: typeof EducationFlipbookRoute
+  EducationFlipbookRoute: typeof EducationFlipbookRouteWithChildren
   EducationVideoRoute: typeof EducationVideoRoute
   EducationIndexRoute: typeof EducationIndexRoute
 }
 
 const EducationRouteChildren: EducationRouteChildren = {
-  EducationFlipbookRoute: EducationFlipbookRoute,
+  EducationFlipbookRoute: EducationFlipbookRouteWithChildren,
   EducationVideoRoute: EducationVideoRoute,
   EducationIndexRoute: EducationIndexRoute,
 }
