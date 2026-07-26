@@ -217,7 +217,7 @@ function PemeriksaanResikoPage() {
       {/* Bottom buttons */}
       <div className="shrink-0 px-4 pb-6 pt-3">
         <div className="mx-auto flex max-w-4xl items-center justify-between">
-          <Link to="/" hash="cek-risiko">
+          <Link to="/cek-risiko">
             <Button className="border-primary-foreground/40 bg-white p-4 text-primary hover:bg-white/90">
               <ChevronLeft className="size-4" />
               Kembali

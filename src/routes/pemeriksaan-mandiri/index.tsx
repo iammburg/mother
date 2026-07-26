@@ -578,7 +578,7 @@ function PemeriksaanMandiriPage() {
         ) : null}
 
         <div className="self-check-actions">
-          <Link to="/" hash="cek-risiko" className="self-check-button back">
+          <Link to="/cek-risiko" className="self-check-button back">
             <img src="/assets/images/button/back.png" alt="" />
             <span>Kembali</span>
           </Link>

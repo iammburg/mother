@@ -1,33 +1,53 @@
 .risk-check-section {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
   scroll-margin-top: 0;
   background: linear-gradient(to top, #e46b9c 0%, #f891bb 100%);
   color: #f486bb;
-  padding: clamp(8.5rem, 13vh, 11.8rem) min(9vw, 10.9rem) clamp(3.2rem, 7vh, 5.1rem);
+  padding: clamp(4.5rem, 9.5vh, 6.8rem) clamp(1.2rem, 4vw, 3.5rem) clamp(1rem, 2.5vh, 2rem);
 }
 
 .risk-check-grid {
   display: grid;
-  width: min(100%, 94rem);
+  width: min(100%, clamp(66rem, 100vw, 74rem));
+  max-height: calc(100vh - clamp(5rem, 10vh, 7.5rem));
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
-  gap: clamp(3rem, 5.9vw, 4.8rem);
+  align-items: center;
+  gap: clamp(1.4rem, 2.8vw, 2.8rem);
 }
 
 .risk-check-card {
   display: flex;
-  min-height: clamp(31rem, 54vw, 49.8rem);
+  height: 100%;
+  max-height: clamp(39rem, 37vh, 64rem);
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border-radius: clamp(3.3rem, 5vw, 6.2rem);
+  border-radius: clamp(2.2rem, 3.8vw, 4.4rem);
   background: #fff;
-  padding: clamp(3.05rem, 4.2vw, 4.9rem) clamp(2.2rem, 3.2vw, 3.8rem) clamp(2.05rem, 3.3vw, 3.3rem);
+  padding: clamp(1.4rem, 2.8vh, 2.8rem) clamp(1.2rem, 2.4vw, 2.4rem) clamp(1.2rem, 2.4vh, 2.2rem);
   text-align: center;
-  box-shadow: 0 1.6rem 3.6rem rgba(139, 36, 83, 0.08);
+  text-decoration: none;
+  box-shadow: 0 1.2rem 3.2rem rgba(139, 36, 83, 0.12);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.risk-check-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 1.8rem 4rem rgba(139, 36, 83, 0.18);
+}
+.risk-check-card:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
 }
 
 .risk-check-image-frame {
@@ -38,7 +58,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-radius: clamp(2.1rem, 3.8vw, 4.1rem);
+  border-radius: clamp(1.5rem, 2.6vw, 3rem);
 }
 
 .risk-check-image {
@@ -46,13 +66,52 @@
   height: 100%;
   max-height: clamp(21rem, 37vw, 37.5rem);
   object-fit: contain;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.risk-check-card h3 {
+.risk-check-card:hover .risk-check-image {
+  transform: scale(1.03);
+}
+
+.risk-check-card h2 {
   margin: clamp(1.15rem, 2.8vw, 2.35rem) 0 0;
   color: #f486bb;
-  font-size: clamp(2.0rem, 3.5vw, 3.58rem);
+  font-size: clamp(1.4rem, 3.5vw, 2.58rem);
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: 0;
+}
+
+/* Responsive adjustments for low-height screens or mobile displays */
+@media (max-height: 740px) {
+  .risk-check-section {
+    padding-top: clamp(4rem, 8.5vh, 5.2rem);
+    padding-bottom: 0.6rem;
+  }
+  .risk-check-grid {
+    gap: 1.2rem;
+    width: min(100%, 60rem);
+  }
+  .risk-check-card {
+    padding: 1rem 1rem 0.9rem;
+    max-height: 34vh;
+  }
+  .risk-check-image {
+    max-height: 18vh;
+  }
+  .risk-check-card h2 {
+    font-size: clamp(1.1rem, 2.2vh, 1.6rem);
+  }
+}
+@media (max-width: 540px) {
+  .risk-check-grid {
+    gap: 1.1rem;
+    width: 100%;
+  }
+  .risk-check-card {
+    padding: 1rem 0.8rem 0.8rem;
+  }
+  .risk-check-card h2 {
+    font-size: clamp(1rem, 4vw, 1.35rem);
+  }
 }

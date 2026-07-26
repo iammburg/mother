@@ -26,6 +26,11 @@
   animation: navDropIn 760ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
   backdrop-filter: blur(2px);
   box-sizing: border-box;
+  transition:
+    border-color 360ms ease,
+    background-color 360ms ease,
+    box-shadow 360ms ease,
+    backdrop-filter 360ms ease;
 }
 
 .home-nav::before {
@@ -41,8 +46,15 @@
   content: "";
   transform: translateX(var(--active-left, 0));
   transition:
-    width 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    width 520ms cubic-bezier(0.18, 0.9, 0.22, 1),
+    transform 520ms cubic-bezier(0.18, 0.9, 0.22, 1),
+    background-color 360ms ease,
+    box-shadow 360ms ease;
+  will-change: width, transform;
+}
+
+.home-nav.nav-route-changing::before {
+  animation: navPillSettle 520ms cubic-bezier(0.18, 0.9, 0.22, 1) both;
 }
 
 .home-nav-link {
@@ -65,8 +77,9 @@
   white-space: normal;
   transition:
     background-color 160ms ease,
-    color 180ms ease,
-    transform 220ms ease;
+    color 260ms ease,
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 220ms ease;
 }
 
 .home-nav-link span {
@@ -114,6 +127,10 @@
 .home-nav-link.active {
   font-weight: 800;
   transform: translateY(-0.06rem) scale(1.045);
+}
+
+.home-nav.nav-route-changing .home-nav-link.active {
+  animation: navLinkSettle 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .home-nav.section-nav {

@@ -1,0 +1,148 @@
+.education-page {
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow: hidden;
+  background-color: #f486bb;
+  font-family: 'Nunito', sans-serif;
+}
+
+.education-section {
+  display: flex;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(6rem, 12vh, 7.5rem) clamp(1.5rem, 4vw, 4rem) clamp(1.5rem, 3vh, 2.5rem);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.education-mobile-title {
+  display: none;
+}
+
+.education-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+  width: min(100%, clamp(56rem, 78vw, 88rem));
+  align-items: center;
+  justify-content: center;
+}
+
+.education-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: clamp(3rem, 5.5vw, 5rem);
+  padding: clamp(2.2rem, 5vh, 4rem) clamp(2rem, 3.5vw, 3.8rem) clamp(2rem, 4vh, 3.6rem);
+  box-shadow: 0 1.4rem 4rem rgba(140, 25, 75, 0.18), 0 0.5rem 1.2rem rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  height: clamp(24rem, 54vh, 38rem);
+  text-decoration: none;
+}
+
+.education-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 2rem 4.5rem rgba(140, 25, 75, 0.24), 0 0.8rem 1.6rem rgba(0, 0, 0, 0.06);
+}
+
+.education-card:focus-visible {
+  outline: 4px solid #f486bb;
+  outline-offset: 4px;
+}
+
+.education-card-image-wrap {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: clamp(0.5rem, 1.2vh, 1.2rem);
+}
+
+.education-card-image {
+  max-width: 100%;
+  max-height: clamp(15rem, 36vh, 28rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.education-card:hover .education-card-image {
+  transform: scale(1.04);
+}
+
+.education-card-title {
+  margin: clamp(0.8rem, 1.5vh, 1.8rem) 0 0;
+  color: #f486bb;
+  font-size: clamp(2.2rem, 4.2vh, 3.6rem);
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+/* Mobile Responsive Layout matching Android HP UI Design without vertical scrolling */
+@media (max-width: 768px) {
+  .education-section {
+    justify-content: flex-start;
+    padding: clamp(3.6rem, 7.5vh, 4.5rem) 1rem clamp(0.5rem, 1.5vh, 1rem);
+  }
+
+  .education-mobile-title {
+    display: block;
+    margin: 0.3rem 0 clamp(0.3rem, 1vh, 0.6rem);
+    color: #ffffff;
+    font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .education-container {
+    grid-template-columns: 1fr;
+    width: min(80%, 20.5rem);
+    flex: 1;
+    min-height: 0;
+    gap: clamp(1.8rem, 3.2vh, 2.6rem);
+    justify-content: space-evenly;
+    align-content: center;
+  }
+
+  .education-card {
+    height: auto;
+    flex: 1;
+    min-height: 0;
+    max-height: clamp(12rem, 26vh, 16.5rem);
+    border-radius: clamp(1.8rem, 5vw, 2.4rem);
+    padding: clamp(1rem, 2vh, 1.5rem) 1rem;
+    box-shadow: 0 0.8rem 2.2rem rgba(140, 25, 75, 0.28), 0 0.2rem 0.6rem rgba(0, 0, 0, 0.12);
+  }
+
+  .education-card-image-wrap {
+    padding: 0.25rem;
+  }
+
+  .education-card-image {
+    max-height: clamp(7.5rem, 17vh, 11rem);
+  }
+
+  .education-card-title {
+    margin-top: clamp(0.4rem, 1vh, 0.8rem);
+    font-size: clamp(1.4rem, 4.5vw, 1.8rem);
+  }
+}

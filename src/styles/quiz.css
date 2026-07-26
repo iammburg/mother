@@ -1,0 +1,94 @@
+.quiz-page {
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow: hidden;
+  background-color: #eb488b;
+  font-family: 'Nunito', sans-serif;
+}
+
+.quiz-hero {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.42)),
+    url('/assets/images/Quiz.avif');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.quiz-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(86rem, calc(100vw - 3rem));
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.quiz-title {
+  display: inline-flex;
+  min-height: 1.1em;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(3rem, 5.5vw, 5.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0.25rem 1.2rem rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: translateY(1rem);
+  transition:
+    opacity 600ms ease,
+    transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.quiz-page-ready .quiz-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quiz-title-text {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.quiz-title .typing-caret {
+  background: #ffffff;
+}
+
+/* Mobile Layout matching Android HP Screenshot (Solid Pink background, centered white text, no desktop bg image) */
+@media (max-width: 768px) {
+  .quiz-page {
+    background-color: #eb488b;
+  }
+
+  .quiz-hero {
+    background-image: none;
+    background-color: #eb488b;
+  }
+
+  .quiz-copy {
+    width: calc(100vw - 2rem);
+    padding: 0;
+  }
+
+  .quiz-title {
+    font-size: clamp(1.8rem, 6.8vw, 2.5rem);
+    font-weight: 700;
+    text-shadow: none;
+  }
+}

@@ -4,11 +4,14 @@ import {
   Outlet,
   Scripts,
   createRootRoute,
+  useRouterState,
 } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import * as React from 'react'
+import { AppNavbar } from '~/components/AppNavbar.js'
 import { DefaultCatchBoundary } from '~/components/DefaultCatchBoundary.js'
 import { NotFound } from '~/components/NotFound.js'
+import { navigationItems } from '~/constants/navigation.js'
 import appCss from '~/styles/app.css?url'
 import { seo } from '~/utils/seo.js'
 import { useAppSession } from '~/utils/session.js'
@@ -90,8 +93,17 @@ export const Route = createRootRoute({
 })
 
 function RootComponent() {
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  })
+  const normalizedPathname = normalizePath(pathname)
+  const showMainNavigation = navigationItems.some(
+    (item) => normalizePath(item.href) === normalizedPathname,
+  )
+
   return (
     <RootDocument>
+      {showMainNavigation ? <AppNavbar /> : null}
       <Outlet />
     </RootDocument>
   )
@@ -109,4 +121,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </body>
     </html>
   )
+}
+
+function normalizePath(path: string) {
+  return path.length > 1 ? path.replace(/\/+$/, '') : path
 }

@@ -1,0 +1,247 @@
+.deteksi-tb-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: #ffffff;
+  font-family: 'Nunito', sans-serif;
+}
+
+.deteksi-tb-section {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(6.2rem, 12vh, 7.8rem) clamp(1.5rem, 4vw, 4rem) clamp(2rem, 4vh, 3rem);
+  box-sizing: border-box;
+}
+
+.deteksi-tb-mobile-title {
+  display: none;
+}
+
+.deteksi-tb-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, clamp(52rem, 80vw, 82rem));
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+}
+
+/* Card Styling */
+.deteksi-tb-card {
+  width: clamp(20rem, 30vw, 25rem);
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: clamp(1.6rem, 3vw, 2.4rem);
+  background-color: #ffffff;
+  border: 3px solid rgba(244, 134, 187, 0.15);
+  box-shadow:
+    0 0.9rem 2.8rem rgba(244, 134, 187, 0.22),
+    0 0.3rem 0.8rem rgba(0, 0, 0, 0.05);
+  padding: clamp(1.4rem, 2.5vw, 2.2rem) clamp(1.2rem, 2vw, 1.8rem);
+  box-sizing: border-box;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.deteksi-tb-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 1.2rem 3.4rem rgba(244, 134, 187, 0.28),
+    0 0.4rem 1rem rgba(0, 0, 0, 0.08);
+}
+
+.deteksi-tb-card-header {
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+
+.deteksi-tb-card-lead {
+  margin: 0;
+  color: #f486bb;
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.deteksi-tb-card-headline {
+  margin: 0.15rem 0 0;
+  color: #f486bb;
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.deteksi-tb-card-image-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0;
+  padding: 0.2rem;
+}
+
+.deteksi-tb-card-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.8rem;
+  display: block;
+}
+
+.deteksi-tb-card-footer {
+  text-align: center;
+  margin-top: 0.6rem;
+}
+
+.deteksi-tb-card-subtext {
+  margin: 0;
+  color: #f486bb;
+  font-size: clamp(0.95rem, 1.2vw, 1.18rem);
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+/* Info Section Right Column */
+.deteksi-tb-info {
+  flex: 1 1 auto;
+  max-width: 44rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.6rem, 3vh, 2.5rem);
+}
+
+.deteksi-tb-info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.deteksi-tb-info-title {
+  margin: 0;
+  color: #f486bb;
+  font-size: clamp(1.15rem, 1.6vw, 1.6rem);
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.deteksi-tb-list {
+  margin-left: 1.5rem;
+  padding-left: 1.5rem;
+  list-style-type: decimal;
+  color: #f486bb;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.deteksi-tb-list li {
+  color: #f486bb;
+  font-size: clamp(0.95rem, 1.25vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.deteksi-tb-list li::marker {
+  color: #f486bb;
+  font-weight: 500;
+}
+
+/* Mobile responsive layout matching exact UI design */
+@media (max-width: 900px) {
+  .deteksi-tb-section {
+    min-height: 100vh;
+    min-height: 100dvh;
+    justify-content: flex-start;
+    padding: clamp(4.2rem, 8vh, 5.2rem) 1.2rem clamp(1.5rem, 3vh, 2.5rem);
+    box-sizing: border-box;
+  }
+
+  .deteksi-tb-mobile-title {
+    display: block;
+    margin: 0.8rem 0 clamp(1.2rem, 2.5vh, 1.8rem);
+    color: #f486bb;
+    font-size: clamp(1.4rem, 5.5vw, 1.75rem);
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .deteksi-tb-container {
+    flex-direction: column;
+    width: min(100%, 19.5rem);
+    margin: 0 auto;
+    gap: clamp(1.4rem, 2.8vh, 2rem);
+  }
+
+  .deteksi-tb-card {
+    width: 100%;
+    border-radius: clamp(1.4rem, 3.8vw, 1.8rem);
+    padding: clamp(1rem, 2vh, 1.35rem) clamp(0.9rem, 2.8vw, 1.15rem);
+    border: 3px solid rgba(244, 134, 187, 0.18);
+    box-shadow:
+      0 0.8rem 2.4rem rgba(244, 134, 187, 0.22),
+      0 0.2rem 0.6rem rgba(0, 0, 0, 0.05);
+  }
+
+  .deteksi-tb-card-header {
+    margin-bottom: 0.35rem;
+  }
+
+  .deteksi-tb-card-lead,
+  .deteksi-tb-card-headline {
+    font-size: clamp(1.1rem, 2.4vh, 1.35rem);
+    line-height: 1.2;
+  }
+
+  .deteksi-tb-card-image-wrap {
+    margin: clamp(0.4rem, 0.8vh, 0.7rem) 0;
+    padding: 0;
+  }
+
+  .deteksi-tb-card-image {
+    width: 100%;
+    max-height: clamp(8rem, 18vh, 12rem);
+    object-fit: contain;
+  }
+
+  .deteksi-tb-card-footer {
+    margin-top: 0.35rem;
+  }
+
+  .deteksi-tb-card-subtext {
+    font-size: clamp(0.85rem, 1.8vh, 1.02rem);
+    line-height: 1.25;
+  }
+
+  .deteksi-tb-info {
+    width: 100%;
+    max-width: 100%;
+    gap: clamp(1.2rem, 2.4vh, 1.8rem);
+  }
+
+  .deteksi-tb-info-group {
+    gap: 0.3rem;
+  }
+
+  .deteksi-tb-info-title {
+    font-size: clamp(1.02rem, 2.2vh, 1.2rem);
+    margin-bottom: 0.4rem;
+  }
+
+  .deteksi-tb-list {
+    padding-left: 1.35rem;
+    gap: clamp(0.35rem, 0.8vh, 0.55rem);
+  }
+
+  .deteksi-tb-list li {
+    font-size: clamp(0.82rem, 1.8vh, 0.95rem);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+}

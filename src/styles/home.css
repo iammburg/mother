@@ -5,6 +5,12 @@
   font-family: 'Nunito', sans-serif;
 }
 
+.home-page-no-scroll {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
 .home-hero {
   position: relative;
   display: flex;
@@ -19,6 +25,13 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.home-page-no-scroll .home-hero {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .home-copy {
@@ -131,6 +144,7 @@
   background: #f9d0cd;
 }
 
+.single-page-section h1,
 .single-page-section h2 {
   margin: 0;
   font-size: clamp(2.4rem, 5vw, 5rem);

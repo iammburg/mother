@@ -1,30 +1,30 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
-import { heroTitle } from "~/constants/hero";
-
-export const Route = createFileRoute("/")({
-  component: Home,
+export const Route = createFileRoute("/quiz")({
+  component: QuizPage,
 });
 
-function Home() {
-  const [isHeroVisible, setIsHeroVisible] = useState(false);
-  const [typedTitle, setTypedTitle] = useState(heroTitle);
+const COMING_SOON_TEXT = "Coming Soon . . .";
+
+function QuizPage() {
+  const [typedText, setTypedText] = useState(COMING_SOON_TEXT);
+  const [isPageReady, setIsPageReady] = useState(false);
 
   useEffect(() => {
     const revealTimer = window.setTimeout(() => {
-      setIsHeroVisible(true);
-    }, 120);
+      setIsPageReady(true);
+    }, 100);
 
     let typingTimer: number | undefined;
     const typingStartTimer = window.setTimeout(() => {
-      let characterIndex = heroTitle.length;
+      let characterIndex = COMING_SOON_TEXT.length;
       let isDeleting = true;
 
       const runTypingLoop = () => {
         if (isDeleting) {
           characterIndex -= 1;
-          setTypedTitle(heroTitle.slice(0, characterIndex));
+          setTypedText(COMING_SOON_TEXT.slice(0, characterIndex));
 
           if (characterIndex <= 0) {
             isDeleting = false;
@@ -37,9 +37,9 @@ function Home() {
         }
 
         characterIndex += 1;
-        setTypedTitle(heroTitle.slice(0, characterIndex));
+        setTypedText(COMING_SOON_TEXT.slice(0, characterIndex));
 
-        if (characterIndex >= heroTitle.length) {
+        if (characterIndex >= COMING_SOON_TEXT.length) {
           isDeleting = true;
           typingTimer = window.setTimeout(runTypingLoop, 1800);
           return;
@@ -49,7 +49,7 @@ function Home() {
       };
 
       runTypingLoop();
-    }, 2300);
+    }, 2000);
 
     return () => {
       window.clearTimeout(revealTimer);
@@ -63,24 +63,18 @@ function Home() {
 
   return (
     <main
-      className={
-        isHeroVisible
-          ? "home-page home-page-ready home-page-no-scroll"
-          : "home-page home-page-no-scroll"
-      }
+      className={`quiz-page home-page-no-scroll ${
+        isPageReady ? "quiz-page-ready" : ""
+      }`}
     >
-      <section className="home-hero" aria-label="Beranda TOSS TB">
-        <div className="home-copy">
-          <h1 className="home-title" aria-label={heroTitle}>
-            <span className="home-title-text" aria-hidden="true">
-              {typedTitle}
+      <section className="quiz-hero" aria-label="Quiz TOSS TB">
+        <div className="quiz-copy">
+          <h1 className="quiz-title" aria-label={COMING_SOON_TEXT}>
+            <span className="quiz-title-text" aria-hidden="true">
+              {typedText}
             </span>
             <span className="typing-caret" aria-hidden="true" />
           </h1>
-          <p className="home-subtitle">Bayi sehat tanpa TBC</p>
-          <strong className="home-tagline">
-            TOSS TB : Temukan, Obati, Sampai tuntas
-          </strong>
         </div>
       </section>
     </main>

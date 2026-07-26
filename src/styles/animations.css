@@ -10,6 +10,37 @@
   }
 }
 
+@keyframes navPillSettle {
+  0% {
+    opacity: 0.78;
+    transform: translateX(var(--active-left, 0)) scaleX(0.92);
+  }
+
+  72% {
+    opacity: 1;
+    transform: translateX(var(--active-left, 0)) scaleX(1.035);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(var(--active-left, 0)) scaleX(1);
+  }
+}
+
+@keyframes navLinkSettle {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  62% {
+    transform: translateY(-0.1rem) scale(1.065);
+  }
+
+  100% {
+    transform: translateY(-0.06rem) scale(1.045);
+  }
+}
+
 @keyframes caretBlink {
   0%,
   49% {
