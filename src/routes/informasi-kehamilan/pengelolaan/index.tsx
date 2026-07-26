@@ -54,48 +54,6 @@ function PengelolaanKehamilanPage() {
       image: "/assets/images/pengelolaan_kehamilan/pengelolaan_kehamilan_kebersihan-diri.avif",
       hasDetail: true,
     },
-    {
-      id: 9,
-      title: "AKTIFITAS RINGAN SECARA TERATUR",
-      image: "/assets/images/pengelolaan_kehamilan/pengelolaan_kehamilan_aktifitas_ringan.avif",
-      hasDetail: false,
-    },
-    {
-      id: 10,
-      title: "RAJIN MENCUCI TANGAN",
-      image: "/assets/images/pengelolaan_kehamilan/pengelolaan_kehamilan_cuci_tangan.avif",
-      hasDetail: false,
-    },
-    {
-      id: 11,
-      title: "MENGGANTI PAKAIAN DALAM SECARA RUTIN",
-      image: "/assets/images/pengelolaan_kehamilan/pengelolaan_kehamilan_ganti_cd.avif",
-      hasDetail: false,
-    },
-    {
-      id: 12,
-      title: "MENGGANTI PAKAIAN SETELAH BERAKTIFITAS",
-      image: "/assets/images/pengelolaan_kehamilan/pengelolaan_kehamilan_ganti_pakaian.avif",
-      hasDetail: false,
-    },
-    {
-      id: 13,
-      title: "HUBUNGAN SUAMI ISTRI YANG AMAN",
-      image: "/assets/images/pengelolaan_kehamilan/pengelolaan_kehamilan_hub_seksual.avif",
-      hasDetail: false,
-    },
-    {
-      id: 14,
-      title: "MANDI MINIMAL 2 KALI SEHARI",
-      image: "/assets/images/pengelolaan_kehamilan/pengelolaan_kehamilan_mandi.avif",
-      hasDetail: false,
-    },
-    {
-      id: 15,
-      title: "MENYIKAT GIGI SECARA TERATUR",
-      image: "/assets/images/pengelolaan_kehamilan/pengelolaan_kehamilan_sikat_gigi.avif",
-      hasDetail: false,
-    },
   ];
 
   return (
