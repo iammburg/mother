@@ -1,4 +1,5 @@
 .education-page {
+  position: relative;
   height: 100vh;
   height: 100dvh;
   max-height: 100vh;
@@ -9,6 +10,7 @@
 }
 
 .education-section {
+  position: relative;
   display: flex;
   height: 100vh;
   height: 100dvh;
@@ -17,7 +19,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(6rem, 12vh, 7.5rem) clamp(1.5rem, 4vw, 4rem) clamp(1.5rem, 3vh, 2.5rem);
+  padding: clamp(5.5rem, 11vh, 7rem) clamp(1.5rem, 4vw, 4rem) clamp(1.5rem, 3vh, 2.5rem);
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -95,11 +97,250 @@
   letter-spacing: -0.01em;
 }
 
+/* Flipbook Submenu Specific Styles */
+.flipbook-submenu-section {
+  padding-top: clamp(3rem, 6.5vh, 5rem);
+  justify-content: flex-start;
+}
+
+.flipbook-submenu-title {
+  margin: clamp(0.3rem, 0.8vh, 0.8rem) 0 clamp(2rem, 4.5vh, 3.5rem);
+  color: #ffffff;
+  font-size: clamp(2.4rem, 5.2vh, 4rem);
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.flipbook-submenu-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.6rem, 3vw, 3.2rem);
+  width: min(100%, clamp(54rem, 82vw, 92rem));
+  align-items: center;
+  justify-content: center;
+}
+
+.flipbook-submenu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: clamp(2.2rem, 4vw, 3.8rem);
+  padding: clamp(1.4rem, 2.5vh, 2.2rem) clamp(1.2rem, 2.4vw, 2.2rem) clamp(1.2rem, 2.4vh, 2rem);
+  box-shadow: 0 1.2rem 3.5rem rgba(140, 25, 75, 0.18), 0 0.4rem 1rem rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  height: clamp(22rem, 48vh, 34rem);
+  text-decoration: none;
+}
+
+.flipbook-submenu-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 1.8rem 4.2rem rgba(140, 25, 75, 0.25), 0 0.6rem 1.4rem rgba(0, 0, 0, 0.06);
+}
+
+.flipbook-cover-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  background-color: #ea73a7;
+  border-radius: clamp(1rem, 2vw, 1.6rem);
+  padding: 6px;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 0 0.4rem 1.4rem rgba(0, 0, 0, 0.12);
+}
+
+.flipbook-cover-image {
+  max-width: 100%;
+  max-height: clamp(15rem, 34vh, 24rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: clamp(0.7rem, 1.5vw, 1.2rem);
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.flipbook-submenu-card:hover .flipbook-cover-image {
+  transform: scale(1.03);
+}
+
+.flipbook-card-title {
+  margin: clamp(0.8rem, 1.4vh, 1.5rem) 0 0;
+  color: #f486bb;
+  font-size: clamp(1.6rem, 3.2vh, 2.6rem);
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.flipbook-back-wrapper {
+  position: absolute;
+  left: clamp(2rem, 5vw, 5rem);
+  bottom: clamp(2rem, 5vh, 4rem);
+  z-index: 10;
+}
+
+.flipbook-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: #ffffff;
+  color: #f486bb;
+  font-weight: 900;
+  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+  padding: clamp(0.6rem, 1.2vh, 0.9rem) clamp(1.4rem, 2.8vw, 2.2rem);
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 0.6rem 2rem rgba(140, 25, 75, 0.18);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.flipbook-back-button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0.9rem 2.5rem rgba(140, 25, 75, 0.24);
+  background-color: #ffffff;
+}
+
+/* Video Submenu Specific Styles */
+.video-submenu-section {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: clamp(3rem, 6.5vh, 5rem);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.video-submenu-title {
+  margin: clamp(0.3rem, 0.8vh, 0.8rem) 0 clamp(1.8rem, 4vh, 3.2rem);
+  color: #ffffff;
+  font-size: clamp(2.4rem, 5.2vh, 4rem);
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.video-submenu-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.6rem, 3vw, 3.2rem);
+  width: min(100%, clamp(56rem, 84vw, 94rem));
+  align-items: center;
+  justify-content: center;
+}
+
+.video-submenu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: clamp(2.2rem, 4vw, 3.8rem);
+  padding: clamp(1.4rem, 2.5vh, 2.2rem) clamp(1.2rem, 2.4vw, 2.2rem) clamp(1.2rem, 2.4vh, 2rem);
+  box-shadow: 0 1.2rem 3.5rem rgba(140, 25, 75, 0.18), 0 0.4rem 1rem rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  height: clamp(22rem, 48vh, 34rem);
+  text-decoration: none;
+}
+
+.video-submenu-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 1.8rem 4.2rem rgba(140, 25, 75, 0.25), 0 0.6rem 1.4rem rgba(0, 0, 0, 0.06);
+}
+
+.video-thumbnail-frame {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  border-radius: clamp(1.5rem, 2.8vw, 2.6rem);
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: #000000;
+  box-shadow: 0 0.4rem 1.4rem rgba(0, 0, 0, 0.15);
+}
+
+.video-thumbnail-image {
+  width: 100%;
+  height: 100%;
+  max-height: clamp(13rem, 30vh, 22rem);
+  object-fit: cover;
+  border-radius: clamp(1.5rem, 2.8vw, 2.6rem);
+  transition: transform 0.25s ease;
+}
+
+.video-submenu-card:hover .video-thumbnail-image {
+  transform: scale(1.04);
+}
+
+.video-card-title {
+  margin: clamp(0.8rem, 1.4vh, 1.5rem) 0 0;
+  color: #f486bb;
+  font-size: clamp(1.6rem, 3.2vh, 2.6rem);
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.video-back-wrapper {
+  position: absolute;
+  left: clamp(2rem, 5vw, 5rem);
+  bottom: clamp(2rem, 5vh, 4rem);
+  z-index: 10;
+}
+
+.video-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: #ffffff;
+  color: #f486bb;
+  font-weight: 900;
+  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+  padding: clamp(0.6rem, 1.2vh, 0.9rem) clamp(1.4rem, 2.8vw, 2.2rem);
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 0.6rem 2rem rgba(140, 25, 75, 0.18);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.video-back-button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0.9rem 2.5rem rgba(140, 25, 75, 0.24);
+  background-color: #ffffff;
+}
+
 /* Mobile Responsive Layout matching Android HP UI Design without vertical scrolling */
 @media (max-width: 768px) {
   .education-section {
     justify-content: flex-start;
     padding: clamp(3.6rem, 7.5vh, 4.5rem) 1rem clamp(0.5rem, 1.5vh, 1rem);
+  }
+
+  .education-section h1 {
+    padding: clamp(1.85rem, 6.5vh, 4.5rem) 2rem clamp(0.2rem, 1.0vh, 1rem);
   }
 
   .education-mobile-title {
@@ -118,7 +359,7 @@
     width: min(80%, 20.5rem);
     flex: 1;
     min-height: 0;
-    gap: clamp(1.8rem, 3.2vh, 2.6rem);
+    gap: clamp(2.8rem, 3.2vh, 3.6rem);
     justify-content: space-evenly;
     align-content: center;
   }
@@ -144,5 +385,149 @@
   .education-card-title {
     margin-top: clamp(0.4rem, 1vh, 0.8rem);
     font-size: clamp(1.4rem, 4.5vw, 1.8rem);
+  }
+
+  /* Flipbook Mobile Submenu matching exact UI screenshot */
+  .flipbook-submenu-section {
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow: hidden;
+    justify-content: flex-start;
+    align-items: center;
+    padding: clamp(3.4rem, 6.5vh, 4.2rem) 0.8rem 0.8rem;
+    box-sizing: border-box;
+  }
+
+  .flipbook-submenu-title {
+    font-size: clamp(1.65rem, 5.8vw, 2.3rem);
+    margin: 0.1rem 0 clamp(1.8rem, 4vh, 2.8rem);
+    text-align: center;
+  }
+
+  .flipbook-submenu-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.75rem, 1.8vh, 1.2rem) clamp(0.75rem, 2.8vw, 1.2rem);
+    width: min(86%, 20rem);
+    margin: 0 auto;
+    align-items: center;
+    justify-items: center;
+    flex: none;
+    min-height: 0;
+  }
+
+  .flipbook-submenu-card {
+    width: 100%;
+    height: auto;
+    max-height: clamp(10.5rem, 23vh, 14.5rem);
+    border-radius: clamp(1.3rem, 3.8vw, 1.8rem);
+    padding: clamp(0.6rem, 1.2vh, 0.95rem) clamp(0.5rem, 1.5vw, 0.8rem);
+    box-shadow: 0 0.8rem 2.2rem rgba(140, 25, 75, 0.24);
+  }
+
+  .flipbook-submenu-card:nth-child(3) {
+    grid-column: 1 / -1;
+    width: calc(50% - 0.4rem);
+    justify-self: center;
+  }
+
+  .flipbook-cover-frame {
+    width: auto;
+    border-radius: clamp(0.75rem, 2.2vw, 1.1rem);
+    padding: 3.5px;
+  }
+
+  .flipbook-cover-image {
+    max-height: clamp(7rem, 15.5vh, 10rem);
+    border-radius: clamp(0.45rem, 1.4vw, 0.75rem);
+  }
+
+  .flipbook-card-title {
+    font-size: clamp(0.95rem, 3.4vw, 1.25rem);
+    margin-top: clamp(0.3rem, 0.7vh, 0.6rem);
+  }
+
+  .flipbook-back-wrapper {
+    position: fixed;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 50;
+  }
+
+  .flipbook-back-button {
+    font-size: 0.95rem;
+    padding: 0.45rem 1rem;
+    box-shadow: 0 0.4rem 1.2rem rgba(140, 25, 75, 0.3);
+  }
+
+  /* Video Mobile Submenu matching exact UI screenshot */
+  .video-submenu-section {
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow: hidden;
+    justify-content: flex-start;
+    align-items: center;
+    padding: clamp(3.4rem, 6.5vh, 4.2rem) 0.8rem 0.8rem;
+    box-sizing: border-box;
+  }
+
+  .video-submenu-title {
+    font-size: clamp(1.65rem, 5.8vw, 2.3rem);
+    margin: 0.1rem 0 clamp(1.4rem, 3.2vh, 2.2rem);
+    text-align: center;
+  }
+
+  .video-submenu-container {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+    gap: clamp(0.6rem, 1.4vh, 0.95rem);
+    width: min(84%, 19.5rem);
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    min-height: 0;
+  }
+
+  .video-submenu-card {
+    width: 100%;
+    height: auto;
+    max-height: clamp(8.5rem, 18.5vh, 11.5rem);
+    border-radius: clamp(1.2rem, 3.5vw, 1.6rem);
+    padding: clamp(0.5rem, 1vh, 0.75rem) clamp(0.45rem, 1.2vw, 0.7rem);
+    box-shadow: 0 0.6rem 1.8rem rgba(140, 25, 75, 0.22);
+  }
+
+  .video-thumbnail-frame {
+    width: 100%;
+    border-radius: clamp(0.9rem, 2.5vw, 1.2rem);
+  }
+
+  .video-thumbnail-image {
+    max-height: clamp(5.8rem, 13vh, 8.2rem);
+    border-radius: clamp(0.9rem, 2.5vw, 1.2rem);
+  }
+
+  .video-card-title {
+    font-size: clamp(0.9rem, 3.2vw, 1.15rem);
+    margin-top: clamp(0.2rem, 0.5vh, 0.45rem);
+  }
+
+  .video-back-wrapper {
+    position: fixed;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 50;
+  }
+
+  .video-back-button {
+    font-size: 0.95rem;
+    padding: 0.45rem 1rem;
+    box-shadow: 0 0.4rem 1.2rem rgba(140, 25, 75, 0.3);
   }
 }
