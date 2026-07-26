@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { informasiKehamilanCards } from "~/constants/informasiKehamilan";
 
-export const Route = createFileRoute("/informasi-kehamilan")({
+export const Route = createFileRoute("/informasi-kehamilan/")({
   component: InformasiKehamilanPage,
 });
 
@@ -11,9 +11,10 @@ function InformasiKehamilanPage() {
     <main className="home-page home-page-no-scroll">
       <section
         className="informasi-kehamilan-section"
-        aria-labelledby="informasi-kehamilan-title"
-      >
-        <h1 id="informasi-kehamilan-title" className="informasi-kehamilan-title">
+        aria-labelledby="informasi-kehamilan-title">
+        <h1
+          id="informasi-kehamilan-title"
+          className="informasi-kehamilan-title">
           Informasi Kehamilan
         </h1>
         <div className="informasi-kehamilan-grid">
@@ -22,8 +23,7 @@ function InformasiKehamilanPage() {
               key={card.title}
               to={card.href as any}
               className="informasi-kehamilan-card"
-              aria-label={card.description}
-            >
+              aria-label={card.description}>
               <div className="informasi-kehamilan-image-frame">
                 <img
                   src={card.image}
