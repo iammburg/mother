@@ -91,15 +91,20 @@ pnpm run build
 Aplikasi akan di-manage oleh **PM2** agar tetap berjalan 24/7 dan otomatis restart jika VPS di-reboot.
 
 ```bash
+# Hapus proses lama jika ada yang mengalami crash loop
+pm2 delete mother-app
+
 # Jalankan PM2 menggunakan ecosystem.config.cjs
 pm2 start ecosystem.config.cjs
+
+# Atau jalankan langsung via npm:
+# pm2 start npm --name "mother-app" -- run start
 
 # Simpan state PM2 agar auto-start saat VPS di-reboot
 pm2 save
 
 # Generate script startup PM2 untuk systemd
 pm2 startup
-# (Salin dan jalankan perintah yang dimunculkan oleh pm2 startup jika ada)
 ```
 
 ---
@@ -114,8 +119,6 @@ sudo cp nginx.conf.example /etc/nginx/conf.d/mother.conf
 sudo nano /etc/nginx/conf.d/mother.conf
 ```
 
-> **Catatan Edit:** Ganti `example.com www.example.com` pada baris `server_name` dengan nama domain Anda atau alamat IP VPS.
-
 ```bash
 # Uji konfigurasi Nginx
 sudo nginx -t
@@ -126,29 +129,19 @@ sudo systemctl enable --now nginx
 
 ---
 
-## 🔐 Langkah 7: Install SSL HTTPS (Certbot Let's Encrypt)
+## 🛠 PENGUJIAN & DIAGNOSIS ERROR PM2
 
-```bash
-# Install Certbot untuk Nginx
-sudo dnf install -y certbot python3-certbot-nginx || sudo yum install -y certbot python3-certbot-nginx
+Jika `pm2 status` menunjukkan jumlah restart (kolom `↺`) bertambah terus (crash loop):
 
-# Request & Pasang sertifikat SSL otomatis
-sudo certbot --nginx -d domainanda.com -d www.domainanda.com
-```
-
----
-
-## 🛠 PERINTAH PEMELIHARAAN (MAINTENANCE)
-
-- **Cek Status Aplikasi:** `pm2 status`
-- **Cek Log Error Aplikasi:** `pm2 logs mother-app`
-- **Restart Aplikasi:** `pm2 restart mother-app`
-- **Update Kode/Deploy Ulang:**
-  ```bash
-  cd /var/www/mother
-  git pull
-  pnpm install
-  pnpm run prisma-generate
-  pnpm run build
-  pm2 restart mother-app
-  ```
+1. **Cek Log Error Aplikasi:**
+   ```bash
+   pm2 logs mother-app --lines 50
+   ```
+2. **Cek ketersediaan port 3000:**
+   ```bash
+   netstat -tlpn | grep 3000  # atau lsof -i :3000
+   ```
+3. **Cek tes manual jalan tanpa PM2:**
+   ```bash
+   npm run start
+   ```

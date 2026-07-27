@@ -2,9 +2,9 @@ module.exports = {
   apps: [
     {
       name: 'mother-app',
-      script: 'npx',
-      args: 'srvx --prod -s ../client dist/server/server.js',
-      instances: 1,
+      script: 'npm',
+      args: 'run start',
+      exec_mode: 'fork',
       autorestart: true,
       watch: false,
       max_memory_restart: '1G',
