@@ -22,8 +22,8 @@ export const videosData: Record<string, VideoData> = {
     numberTitle: "Video Edukasi - 2",
     subtitle:
       "Mengenal TBC dan Cara Ampuh Mencegahnya Pada Ibu Hamil: Lindungi Ibu & Si Kecil Sejak Dini!",
-    youtubeId: "-F4bSLgAcZg",
-    youtubeUrl: "https://youtu.be/-F4bSLgAcZg",
+    youtubeId: "DxI9Zn7ke20",
+    youtubeUrl: "https://youtu.be/DxI9Zn7ke20",
     thumbnail: "/assets/images/thumbnail/Thumbnail_video-2.avif",
   },
   "3": {
