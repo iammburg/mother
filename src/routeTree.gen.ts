@@ -14,7 +14,6 @@ import { Route as SignupRouteImport } from './routes/signup'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as LogoutRouteImport } from './routes/logout'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as InformasiKehamilanRouteImport } from './routes/informasi-kehamilan'
 import { Route as IbuHamilTanpaTbRouteImport } from './routes/ibu-hamil-tanpa-tb'
 import { Route as EducationRouteImport } from './routes/education'
 import { Route as DeteksiDiniTbRouteImport } from './routes/deteksi-dini-tb'
@@ -23,18 +22,23 @@ import { Route as AuthedRouteImport } from './routes/_authed'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PemeriksaanResikoIndexRouteImport } from './routes/pemeriksaan-resiko/index'
 import { Route as PemeriksaanMandiriIndexRouteImport } from './routes/pemeriksaan-mandiri/index'
+import { Route as InformasiKehamilanIndexRouteImport } from './routes/informasi-kehamilan/index'
 import { Route as EducationIndexRouteImport } from './routes/education/index'
 import { Route as PemeriksaanResikoHasilRouteImport } from './routes/pemeriksaan-resiko/hasil'
 import { Route as PemeriksaanMandiriHasilRouteImport } from './routes/pemeriksaan-mandiri/hasil'
-import { Route as InformasiKehamilanTandaBahayaRouteImport } from './routes/informasi-kehamilan/tanda-bahaya'
-import { Route as InformasiKehamilanPengelolaanRouteImport } from './routes/informasi-kehamilan/pengelolaan'
-import { Route as InformasiKehamilanMasalahRouteImport } from './routes/informasi-kehamilan/masalah'
-import { Route as InformasiKehamilanLaranganRouteImport } from './routes/informasi-kehamilan/larangan'
 import { Route as EducationVideoRouteImport } from './routes/education/video'
 import { Route as EducationFlipbookRouteImport } from './routes/education/flipbook'
 import { Route as AuthedPostsRouteRouteImport } from './routes/_authed/posts.route'
+import { Route as InformasiKehamilanTandaBahayaIndexRouteImport } from './routes/informasi-kehamilan/tanda-bahaya/index'
+import { Route as InformasiKehamilanPengelolaanIndexRouteImport } from './routes/informasi-kehamilan/pengelolaan/index'
+import { Route as InformasiKehamilanMasalahIndexRouteImport } from './routes/informasi-kehamilan/masalah/index'
+import { Route as InformasiKehamilanLaranganIndexRouteImport } from './routes/informasi-kehamilan/larangan/index'
+import { Route as EducationVideoIndexRouteImport } from './routes/education/video/index'
 import { Route as EducationFlipbookIndexRouteImport } from './routes/education/flipbook/index'
 import { Route as AuthedPostsIndexRouteImport } from './routes/_authed/posts.index'
+import { Route as InformasiKehamilanPengelolaanPengelolaanIdRouteImport } from './routes/informasi-kehamilan/pengelolaan/$pengelolaanId'
+import { Route as InformasiKehamilanMasalahMasalahIdRouteImport } from './routes/informasi-kehamilan/masalah/$masalahId'
+import { Route as EducationVideoIdRouteImport } from './routes/education/video/$id'
 import { Route as EducationFlipbookIdRouteImport } from './routes/education/flipbook/$id'
 import { Route as AuthedPostsPostIdRouteImport } from './routes/_authed/posts.$postId'
 
@@ -61,11 +65,6 @@ const LogoutRoute = LogoutRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InformasiKehamilanRoute = InformasiKehamilanRouteImport.update({
-  id: '/informasi-kehamilan',
-  path: '/informasi-kehamilan',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IbuHamilTanpaTbRoute = IbuHamilTanpaTbRouteImport.update({
@@ -107,6 +106,11 @@ const PemeriksaanMandiriIndexRoute = PemeriksaanMandiriIndexRouteImport.update({
   path: '/pemeriksaan-mandiri/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InformasiKehamilanIndexRoute = InformasiKehamilanIndexRouteImport.update({
+  id: '/informasi-kehamilan/',
+  path: '/informasi-kehamilan/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EducationIndexRoute = EducationIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -122,30 +126,6 @@ const PemeriksaanMandiriHasilRoute = PemeriksaanMandiriHasilRouteImport.update({
   path: '/pemeriksaan-mandiri/hasil',
   getParentRoute: () => rootRouteImport,
 } as any)
-const InformasiKehamilanTandaBahayaRoute =
-  InformasiKehamilanTandaBahayaRouteImport.update({
-    id: '/tanda-bahaya',
-    path: '/tanda-bahaya',
-    getParentRoute: () => InformasiKehamilanRoute,
-  } as any)
-const InformasiKehamilanPengelolaanRoute =
-  InformasiKehamilanPengelolaanRouteImport.update({
-    id: '/pengelolaan',
-    path: '/pengelolaan',
-    getParentRoute: () => InformasiKehamilanRoute,
-  } as any)
-const InformasiKehamilanMasalahRoute =
-  InformasiKehamilanMasalahRouteImport.update({
-    id: '/masalah',
-    path: '/masalah',
-    getParentRoute: () => InformasiKehamilanRoute,
-  } as any)
-const InformasiKehamilanLaranganRoute =
-  InformasiKehamilanLaranganRouteImport.update({
-    id: '/larangan',
-    path: '/larangan',
-    getParentRoute: () => InformasiKehamilanRoute,
-  } as any)
 const EducationVideoRoute = EducationVideoRouteImport.update({
   id: '/video',
   path: '/video',
@@ -161,6 +141,35 @@ const AuthedPostsRouteRoute = AuthedPostsRouteRouteImport.update({
   path: '/posts',
   getParentRoute: () => AuthedRoute,
 } as any)
+const InformasiKehamilanTandaBahayaIndexRoute =
+  InformasiKehamilanTandaBahayaIndexRouteImport.update({
+    id: '/informasi-kehamilan/tanda-bahaya/',
+    path: '/informasi-kehamilan/tanda-bahaya/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InformasiKehamilanPengelolaanIndexRoute =
+  InformasiKehamilanPengelolaanIndexRouteImport.update({
+    id: '/informasi-kehamilan/pengelolaan/',
+    path: '/informasi-kehamilan/pengelolaan/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InformasiKehamilanMasalahIndexRoute =
+  InformasiKehamilanMasalahIndexRouteImport.update({
+    id: '/informasi-kehamilan/masalah/',
+    path: '/informasi-kehamilan/masalah/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InformasiKehamilanLaranganIndexRoute =
+  InformasiKehamilanLaranganIndexRouteImport.update({
+    id: '/informasi-kehamilan/larangan/',
+    path: '/informasi-kehamilan/larangan/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const EducationVideoIndexRoute = EducationVideoIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => EducationVideoRoute,
+} as any)
 const EducationFlipbookIndexRoute = EducationFlipbookIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -170,6 +179,23 @@ const AuthedPostsIndexRoute = AuthedPostsIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AuthedPostsRouteRoute,
+} as any)
+const InformasiKehamilanPengelolaanPengelolaanIdRoute =
+  InformasiKehamilanPengelolaanPengelolaanIdRouteImport.update({
+    id: '/informasi-kehamilan/pengelolaan/$pengelolaanId',
+    path: '/informasi-kehamilan/pengelolaan/$pengelolaanId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InformasiKehamilanMasalahMasalahIdRoute =
+  InformasiKehamilanMasalahMasalahIdRouteImport.update({
+    id: '/informasi-kehamilan/masalah/$masalahId',
+    path: '/informasi-kehamilan/masalah/$masalahId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const EducationVideoIdRoute = EducationVideoIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => EducationVideoRoute,
 } as any)
 const EducationFlipbookIdRoute = EducationFlipbookIdRouteImport.update({
   id: '/$id',
@@ -188,7 +214,6 @@ export interface FileRoutesByFullPath {
   '/deteksi-dini-tb': typeof DeteksiDiniTbRoute
   '/education': typeof EducationRouteWithChildren
   '/ibu-hamil-tanpa-tb': typeof IbuHamilTanpaTbRoute
-  '/informasi-kehamilan': typeof InformasiKehamilanRouteWithChildren
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
   '/quiz': typeof QuizRoute
@@ -196,46 +221,54 @@ export interface FileRoutesByFullPath {
   '/toss': typeof TossRoute
   '/posts': typeof AuthedPostsRouteRouteWithChildren
   '/education/flipbook': typeof EducationFlipbookRouteWithChildren
-  '/education/video': typeof EducationVideoRoute
-  '/informasi-kehamilan/larangan': typeof InformasiKehamilanLaranganRoute
-  '/informasi-kehamilan/masalah': typeof InformasiKehamilanMasalahRoute
-  '/informasi-kehamilan/pengelolaan': typeof InformasiKehamilanPengelolaanRoute
-  '/informasi-kehamilan/tanda-bahaya': typeof InformasiKehamilanTandaBahayaRoute
+  '/education/video': typeof EducationVideoRouteWithChildren
   '/pemeriksaan-mandiri/hasil': typeof PemeriksaanMandiriHasilRoute
   '/pemeriksaan-resiko/hasil': typeof PemeriksaanResikoHasilRoute
   '/education/': typeof EducationIndexRoute
+  '/informasi-kehamilan/': typeof InformasiKehamilanIndexRoute
   '/pemeriksaan-mandiri/': typeof PemeriksaanMandiriIndexRoute
   '/pemeriksaan-resiko/': typeof PemeriksaanResikoIndexRoute
   '/posts/$postId': typeof AuthedPostsPostIdRoute
   '/education/flipbook/$id': typeof EducationFlipbookIdRoute
+  '/education/video/$id': typeof EducationVideoIdRoute
+  '/informasi-kehamilan/masalah/$masalahId': typeof InformasiKehamilanMasalahMasalahIdRoute
+  '/informasi-kehamilan/pengelolaan/$pengelolaanId': typeof InformasiKehamilanPengelolaanPengelolaanIdRoute
   '/posts/': typeof AuthedPostsIndexRoute
   '/education/flipbook/': typeof EducationFlipbookIndexRoute
+  '/education/video/': typeof EducationVideoIndexRoute
+  '/informasi-kehamilan/larangan/': typeof InformasiKehamilanLaranganIndexRoute
+  '/informasi-kehamilan/masalah/': typeof InformasiKehamilanMasalahIndexRoute
+  '/informasi-kehamilan/pengelolaan/': typeof InformasiKehamilanPengelolaanIndexRoute
+  '/informasi-kehamilan/tanda-bahaya/': typeof InformasiKehamilanTandaBahayaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cek-risiko': typeof CekRisikoRoute
   '/deteksi-dini-tb': typeof DeteksiDiniTbRoute
   '/ibu-hamil-tanpa-tb': typeof IbuHamilTanpaTbRoute
-  '/informasi-kehamilan': typeof InformasiKehamilanRouteWithChildren
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
   '/quiz': typeof QuizRoute
   '/signup': typeof SignupRoute
   '/toss': typeof TossRoute
-  '/education/video': typeof EducationVideoRoute
-  '/informasi-kehamilan/larangan': typeof InformasiKehamilanLaranganRoute
-  '/informasi-kehamilan/masalah': typeof InformasiKehamilanMasalahRoute
-  '/informasi-kehamilan/pengelolaan': typeof InformasiKehamilanPengelolaanRoute
-  '/informasi-kehamilan/tanda-bahaya': typeof InformasiKehamilanTandaBahayaRoute
   '/pemeriksaan-mandiri/hasil': typeof PemeriksaanMandiriHasilRoute
   '/pemeriksaan-resiko/hasil': typeof PemeriksaanResikoHasilRoute
   '/education': typeof EducationIndexRoute
+  '/informasi-kehamilan': typeof InformasiKehamilanIndexRoute
   '/pemeriksaan-mandiri': typeof PemeriksaanMandiriIndexRoute
   '/pemeriksaan-resiko': typeof PemeriksaanResikoIndexRoute
   '/posts/$postId': typeof AuthedPostsPostIdRoute
   '/education/flipbook/$id': typeof EducationFlipbookIdRoute
+  '/education/video/$id': typeof EducationVideoIdRoute
+  '/informasi-kehamilan/masalah/$masalahId': typeof InformasiKehamilanMasalahMasalahIdRoute
+  '/informasi-kehamilan/pengelolaan/$pengelolaanId': typeof InformasiKehamilanPengelolaanPengelolaanIdRoute
   '/posts': typeof AuthedPostsIndexRoute
   '/education/flipbook': typeof EducationFlipbookIndexRoute
+  '/education/video': typeof EducationVideoIndexRoute
+  '/informasi-kehamilan/larangan': typeof InformasiKehamilanLaranganIndexRoute
+  '/informasi-kehamilan/masalah': typeof InformasiKehamilanMasalahIndexRoute
+  '/informasi-kehamilan/pengelolaan': typeof InformasiKehamilanPengelolaanIndexRoute
+  '/informasi-kehamilan/tanda-bahaya': typeof InformasiKehamilanTandaBahayaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -245,7 +278,6 @@ export interface FileRoutesById {
   '/deteksi-dini-tb': typeof DeteksiDiniTbRoute
   '/education': typeof EducationRouteWithChildren
   '/ibu-hamil-tanpa-tb': typeof IbuHamilTanpaTbRoute
-  '/informasi-kehamilan': typeof InformasiKehamilanRouteWithChildren
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
   '/quiz': typeof QuizRoute
@@ -253,20 +285,25 @@ export interface FileRoutesById {
   '/toss': typeof TossRoute
   '/_authed/posts': typeof AuthedPostsRouteRouteWithChildren
   '/education/flipbook': typeof EducationFlipbookRouteWithChildren
-  '/education/video': typeof EducationVideoRoute
-  '/informasi-kehamilan/larangan': typeof InformasiKehamilanLaranganRoute
-  '/informasi-kehamilan/masalah': typeof InformasiKehamilanMasalahRoute
-  '/informasi-kehamilan/pengelolaan': typeof InformasiKehamilanPengelolaanRoute
-  '/informasi-kehamilan/tanda-bahaya': typeof InformasiKehamilanTandaBahayaRoute
+  '/education/video': typeof EducationVideoRouteWithChildren
   '/pemeriksaan-mandiri/hasil': typeof PemeriksaanMandiriHasilRoute
   '/pemeriksaan-resiko/hasil': typeof PemeriksaanResikoHasilRoute
   '/education/': typeof EducationIndexRoute
+  '/informasi-kehamilan/': typeof InformasiKehamilanIndexRoute
   '/pemeriksaan-mandiri/': typeof PemeriksaanMandiriIndexRoute
   '/pemeriksaan-resiko/': typeof PemeriksaanResikoIndexRoute
   '/_authed/posts/$postId': typeof AuthedPostsPostIdRoute
   '/education/flipbook/$id': typeof EducationFlipbookIdRoute
+  '/education/video/$id': typeof EducationVideoIdRoute
+  '/informasi-kehamilan/masalah/$masalahId': typeof InformasiKehamilanMasalahMasalahIdRoute
+  '/informasi-kehamilan/pengelolaan/$pengelolaanId': typeof InformasiKehamilanPengelolaanPengelolaanIdRoute
   '/_authed/posts/': typeof AuthedPostsIndexRoute
   '/education/flipbook/': typeof EducationFlipbookIndexRoute
+  '/education/video/': typeof EducationVideoIndexRoute
+  '/informasi-kehamilan/larangan/': typeof InformasiKehamilanLaranganIndexRoute
+  '/informasi-kehamilan/masalah/': typeof InformasiKehamilanMasalahIndexRoute
+  '/informasi-kehamilan/pengelolaan/': typeof InformasiKehamilanPengelolaanIndexRoute
+  '/informasi-kehamilan/tanda-bahaya/': typeof InformasiKehamilanTandaBahayaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -276,7 +313,6 @@ export interface FileRouteTypes {
     | '/deteksi-dini-tb'
     | '/education'
     | '/ibu-hamil-tanpa-tb'
-    | '/informasi-kehamilan'
     | '/login'
     | '/logout'
     | '/quiz'
@@ -285,45 +321,53 @@ export interface FileRouteTypes {
     | '/posts'
     | '/education/flipbook'
     | '/education/video'
-    | '/informasi-kehamilan/larangan'
-    | '/informasi-kehamilan/masalah'
-    | '/informasi-kehamilan/pengelolaan'
-    | '/informasi-kehamilan/tanda-bahaya'
     | '/pemeriksaan-mandiri/hasil'
     | '/pemeriksaan-resiko/hasil'
     | '/education/'
+    | '/informasi-kehamilan/'
     | '/pemeriksaan-mandiri/'
     | '/pemeriksaan-resiko/'
     | '/posts/$postId'
     | '/education/flipbook/$id'
+    | '/education/video/$id'
+    | '/informasi-kehamilan/masalah/$masalahId'
+    | '/informasi-kehamilan/pengelolaan/$pengelolaanId'
     | '/posts/'
     | '/education/flipbook/'
+    | '/education/video/'
+    | '/informasi-kehamilan/larangan/'
+    | '/informasi-kehamilan/masalah/'
+    | '/informasi-kehamilan/pengelolaan/'
+    | '/informasi-kehamilan/tanda-bahaya/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/cek-risiko'
     | '/deteksi-dini-tb'
     | '/ibu-hamil-tanpa-tb'
-    | '/informasi-kehamilan'
     | '/login'
     | '/logout'
     | '/quiz'
     | '/signup'
     | '/toss'
+    | '/pemeriksaan-mandiri/hasil'
+    | '/pemeriksaan-resiko/hasil'
+    | '/education'
+    | '/informasi-kehamilan'
+    | '/pemeriksaan-mandiri'
+    | '/pemeriksaan-resiko'
+    | '/posts/$postId'
+    | '/education/flipbook/$id'
+    | '/education/video/$id'
+    | '/informasi-kehamilan/masalah/$masalahId'
+    | '/informasi-kehamilan/pengelolaan/$pengelolaanId'
+    | '/posts'
+    | '/education/flipbook'
     | '/education/video'
     | '/informasi-kehamilan/larangan'
     | '/informasi-kehamilan/masalah'
     | '/informasi-kehamilan/pengelolaan'
     | '/informasi-kehamilan/tanda-bahaya'
-    | '/pemeriksaan-mandiri/hasil'
-    | '/pemeriksaan-resiko/hasil'
-    | '/education'
-    | '/pemeriksaan-mandiri'
-    | '/pemeriksaan-resiko'
-    | '/posts/$postId'
-    | '/education/flipbook/$id'
-    | '/posts'
-    | '/education/flipbook'
   id:
     | '__root__'
     | '/'
@@ -332,7 +376,6 @@ export interface FileRouteTypes {
     | '/deteksi-dini-tb'
     | '/education'
     | '/ibu-hamil-tanpa-tb'
-    | '/informasi-kehamilan'
     | '/login'
     | '/logout'
     | '/quiz'
@@ -341,19 +384,24 @@ export interface FileRouteTypes {
     | '/_authed/posts'
     | '/education/flipbook'
     | '/education/video'
-    | '/informasi-kehamilan/larangan'
-    | '/informasi-kehamilan/masalah'
-    | '/informasi-kehamilan/pengelolaan'
-    | '/informasi-kehamilan/tanda-bahaya'
     | '/pemeriksaan-mandiri/hasil'
     | '/pemeriksaan-resiko/hasil'
     | '/education/'
+    | '/informasi-kehamilan/'
     | '/pemeriksaan-mandiri/'
     | '/pemeriksaan-resiko/'
     | '/_authed/posts/$postId'
     | '/education/flipbook/$id'
+    | '/education/video/$id'
+    | '/informasi-kehamilan/masalah/$masalahId'
+    | '/informasi-kehamilan/pengelolaan/$pengelolaanId'
     | '/_authed/posts/'
     | '/education/flipbook/'
+    | '/education/video/'
+    | '/informasi-kehamilan/larangan/'
+    | '/informasi-kehamilan/masalah/'
+    | '/informasi-kehamilan/pengelolaan/'
+    | '/informasi-kehamilan/tanda-bahaya/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -363,7 +411,6 @@ export interface RootRouteChildren {
   DeteksiDiniTbRoute: typeof DeteksiDiniTbRoute
   EducationRoute: typeof EducationRouteWithChildren
   IbuHamilTanpaTbRoute: typeof IbuHamilTanpaTbRoute
-  InformasiKehamilanRoute: typeof InformasiKehamilanRouteWithChildren
   LoginRoute: typeof LoginRoute
   LogoutRoute: typeof LogoutRoute
   QuizRoute: typeof QuizRoute
@@ -371,8 +418,15 @@ export interface RootRouteChildren {
   TossRoute: typeof TossRoute
   PemeriksaanMandiriHasilRoute: typeof PemeriksaanMandiriHasilRoute
   PemeriksaanResikoHasilRoute: typeof PemeriksaanResikoHasilRoute
+  InformasiKehamilanIndexRoute: typeof InformasiKehamilanIndexRoute
   PemeriksaanMandiriIndexRoute: typeof PemeriksaanMandiriIndexRoute
   PemeriksaanResikoIndexRoute: typeof PemeriksaanResikoIndexRoute
+  InformasiKehamilanMasalahMasalahIdRoute: typeof InformasiKehamilanMasalahMasalahIdRoute
+  InformasiKehamilanPengelolaanPengelolaanIdRoute: typeof InformasiKehamilanPengelolaanPengelolaanIdRoute
+  InformasiKehamilanLaranganIndexRoute: typeof InformasiKehamilanLaranganIndexRoute
+  InformasiKehamilanMasalahIndexRoute: typeof InformasiKehamilanMasalahIndexRoute
+  InformasiKehamilanPengelolaanIndexRoute: typeof InformasiKehamilanPengelolaanIndexRoute
+  InformasiKehamilanTandaBahayaIndexRoute: typeof InformasiKehamilanTandaBahayaIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -410,13 +464,6 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/informasi-kehamilan': {
-      id: '/informasi-kehamilan'
-      path: '/informasi-kehamilan'
-      fullPath: '/informasi-kehamilan'
-      preLoaderRoute: typeof InformasiKehamilanRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ibu-hamil-tanpa-tb': {
@@ -475,6 +522,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PemeriksaanMandiriIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/informasi-kehamilan/': {
+      id: '/informasi-kehamilan/'
+      path: '/informasi-kehamilan'
+      fullPath: '/informasi-kehamilan/'
+      preLoaderRoute: typeof InformasiKehamilanIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/education/': {
       id: '/education/'
       path: '/'
@@ -495,34 +549,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/pemeriksaan-mandiri/hasil'
       preLoaderRoute: typeof PemeriksaanMandiriHasilRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/informasi-kehamilan/tanda-bahaya': {
-      id: '/informasi-kehamilan/tanda-bahaya'
-      path: '/tanda-bahaya'
-      fullPath: '/informasi-kehamilan/tanda-bahaya'
-      preLoaderRoute: typeof InformasiKehamilanTandaBahayaRouteImport
-      parentRoute: typeof InformasiKehamilanRoute
-    }
-    '/informasi-kehamilan/pengelolaan': {
-      id: '/informasi-kehamilan/pengelolaan'
-      path: '/pengelolaan'
-      fullPath: '/informasi-kehamilan/pengelolaan'
-      preLoaderRoute: typeof InformasiKehamilanPengelolaanRouteImport
-      parentRoute: typeof InformasiKehamilanRoute
-    }
-    '/informasi-kehamilan/masalah': {
-      id: '/informasi-kehamilan/masalah'
-      path: '/masalah'
-      fullPath: '/informasi-kehamilan/masalah'
-      preLoaderRoute: typeof InformasiKehamilanMasalahRouteImport
-      parentRoute: typeof InformasiKehamilanRoute
-    }
-    '/informasi-kehamilan/larangan': {
-      id: '/informasi-kehamilan/larangan'
-      path: '/larangan'
-      fullPath: '/informasi-kehamilan/larangan'
-      preLoaderRoute: typeof InformasiKehamilanLaranganRouteImport
-      parentRoute: typeof InformasiKehamilanRoute
     }
     '/education/video': {
       id: '/education/video'
@@ -545,6 +571,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedPostsRouteRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/informasi-kehamilan/tanda-bahaya/': {
+      id: '/informasi-kehamilan/tanda-bahaya/'
+      path: '/informasi-kehamilan/tanda-bahaya'
+      fullPath: '/informasi-kehamilan/tanda-bahaya/'
+      preLoaderRoute: typeof InformasiKehamilanTandaBahayaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/informasi-kehamilan/pengelolaan/': {
+      id: '/informasi-kehamilan/pengelolaan/'
+      path: '/informasi-kehamilan/pengelolaan'
+      fullPath: '/informasi-kehamilan/pengelolaan/'
+      preLoaderRoute: typeof InformasiKehamilanPengelolaanIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/informasi-kehamilan/masalah/': {
+      id: '/informasi-kehamilan/masalah/'
+      path: '/informasi-kehamilan/masalah'
+      fullPath: '/informasi-kehamilan/masalah/'
+      preLoaderRoute: typeof InformasiKehamilanMasalahIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/informasi-kehamilan/larangan/': {
+      id: '/informasi-kehamilan/larangan/'
+      path: '/informasi-kehamilan/larangan'
+      fullPath: '/informasi-kehamilan/larangan/'
+      preLoaderRoute: typeof InformasiKehamilanLaranganIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/education/video/': {
+      id: '/education/video/'
+      path: '/'
+      fullPath: '/education/video/'
+      preLoaderRoute: typeof EducationVideoIndexRouteImport
+      parentRoute: typeof EducationVideoRoute
+    }
     '/education/flipbook/': {
       id: '/education/flipbook/'
       path: '/'
@@ -558,6 +619,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/posts/'
       preLoaderRoute: typeof AuthedPostsIndexRouteImport
       parentRoute: typeof AuthedPostsRouteRoute
+    }
+    '/informasi-kehamilan/pengelolaan/$pengelolaanId': {
+      id: '/informasi-kehamilan/pengelolaan/$pengelolaanId'
+      path: '/informasi-kehamilan/pengelolaan/$pengelolaanId'
+      fullPath: '/informasi-kehamilan/pengelolaan/$pengelolaanId'
+      preLoaderRoute: typeof InformasiKehamilanPengelolaanPengelolaanIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/informasi-kehamilan/masalah/$masalahId': {
+      id: '/informasi-kehamilan/masalah/$masalahId'
+      path: '/informasi-kehamilan/masalah/$masalahId'
+      fullPath: '/informasi-kehamilan/masalah/$masalahId'
+      preLoaderRoute: typeof InformasiKehamilanMasalahMasalahIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/education/video/$id': {
+      id: '/education/video/$id'
+      path: '/$id'
+      fullPath: '/education/video/$id'
+      preLoaderRoute: typeof EducationVideoIdRouteImport
+      parentRoute: typeof EducationVideoRoute
     }
     '/education/flipbook/$id': {
       id: '/education/flipbook/$id'
@@ -613,38 +695,35 @@ const EducationFlipbookRouteChildren: EducationFlipbookRouteChildren = {
 const EducationFlipbookRouteWithChildren =
   EducationFlipbookRoute._addFileChildren(EducationFlipbookRouteChildren)
 
+interface EducationVideoRouteChildren {
+  EducationVideoIdRoute: typeof EducationVideoIdRoute
+  EducationVideoIndexRoute: typeof EducationVideoIndexRoute
+}
+
+const EducationVideoRouteChildren: EducationVideoRouteChildren = {
+  EducationVideoIdRoute: EducationVideoIdRoute,
+  EducationVideoIndexRoute: EducationVideoIndexRoute,
+}
+
+const EducationVideoRouteWithChildren = EducationVideoRoute._addFileChildren(
+  EducationVideoRouteChildren,
+)
+
 interface EducationRouteChildren {
   EducationFlipbookRoute: typeof EducationFlipbookRouteWithChildren
-  EducationVideoRoute: typeof EducationVideoRoute
+  EducationVideoRoute: typeof EducationVideoRouteWithChildren
   EducationIndexRoute: typeof EducationIndexRoute
 }
 
 const EducationRouteChildren: EducationRouteChildren = {
   EducationFlipbookRoute: EducationFlipbookRouteWithChildren,
-  EducationVideoRoute: EducationVideoRoute,
+  EducationVideoRoute: EducationVideoRouteWithChildren,
   EducationIndexRoute: EducationIndexRoute,
 }
 
 const EducationRouteWithChildren = EducationRoute._addFileChildren(
   EducationRouteChildren,
 )
-
-interface InformasiKehamilanRouteChildren {
-  InformasiKehamilanLaranganRoute: typeof InformasiKehamilanLaranganRoute
-  InformasiKehamilanMasalahRoute: typeof InformasiKehamilanMasalahRoute
-  InformasiKehamilanPengelolaanRoute: typeof InformasiKehamilanPengelolaanRoute
-  InformasiKehamilanTandaBahayaRoute: typeof InformasiKehamilanTandaBahayaRoute
-}
-
-const InformasiKehamilanRouteChildren: InformasiKehamilanRouteChildren = {
-  InformasiKehamilanLaranganRoute: InformasiKehamilanLaranganRoute,
-  InformasiKehamilanMasalahRoute: InformasiKehamilanMasalahRoute,
-  InformasiKehamilanPengelolaanRoute: InformasiKehamilanPengelolaanRoute,
-  InformasiKehamilanTandaBahayaRoute: InformasiKehamilanTandaBahayaRoute,
-}
-
-const InformasiKehamilanRouteWithChildren =
-  InformasiKehamilanRoute._addFileChildren(InformasiKehamilanRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -653,7 +732,6 @@ const rootRouteChildren: RootRouteChildren = {
   DeteksiDiniTbRoute: DeteksiDiniTbRoute,
   EducationRoute: EducationRouteWithChildren,
   IbuHamilTanpaTbRoute: IbuHamilTanpaTbRoute,
-  InformasiKehamilanRoute: InformasiKehamilanRouteWithChildren,
   LoginRoute: LoginRoute,
   LogoutRoute: LogoutRoute,
   QuizRoute: QuizRoute,
@@ -661,8 +739,19 @@ const rootRouteChildren: RootRouteChildren = {
   TossRoute: TossRoute,
   PemeriksaanMandiriHasilRoute: PemeriksaanMandiriHasilRoute,
   PemeriksaanResikoHasilRoute: PemeriksaanResikoHasilRoute,
+  InformasiKehamilanIndexRoute: InformasiKehamilanIndexRoute,
   PemeriksaanMandiriIndexRoute: PemeriksaanMandiriIndexRoute,
   PemeriksaanResikoIndexRoute: PemeriksaanResikoIndexRoute,
+  InformasiKehamilanMasalahMasalahIdRoute:
+    InformasiKehamilanMasalahMasalahIdRoute,
+  InformasiKehamilanPengelolaanPengelolaanIdRoute:
+    InformasiKehamilanPengelolaanPengelolaanIdRoute,
+  InformasiKehamilanLaranganIndexRoute: InformasiKehamilanLaranganIndexRoute,
+  InformasiKehamilanMasalahIndexRoute: InformasiKehamilanMasalahIndexRoute,
+  InformasiKehamilanPengelolaanIndexRoute:
+    InformasiKehamilanPengelolaanIndexRoute,
+  InformasiKehamilanTandaBahayaIndexRoute:
+    InformasiKehamilanTandaBahayaIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
