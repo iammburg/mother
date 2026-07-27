@@ -1,6 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import "~/styles/deteksi-dini-tb.css";
 
-export const Route = createFileRoute("/deteksi-dini-tb")({
+export const Route = createFileRoute("/deteksi-dini-tb/")({
   component: DeteksiDiniTbPage,
 });
 
@@ -13,7 +14,7 @@ function DeteksiDiniTbPage() {
         </h1>
 
         <div className="deteksi-tb-container">
-          <article className="deteksi-tb-card">
+          <Link to="/deteksi-dini-tb/skrining" className="deteksi-tb-card">
             <div className="deteksi-tb-card-header">
               <h2 className="deteksi-tb-card-lead">Ayo,</h2>
               <h2 className="deteksi-tb-card-headline">Cek Sekarang Juga !</h2>
@@ -28,7 +29,7 @@ function DeteksiDiniTbPage() {
             <div className="deteksi-tb-card-footer">
               <p className="deteksi-tb-card-subtext">Deteksi Dini TB pada Ibu Hamil</p>
             </div>
-          </article>
+          </Link>
 
           <div className="deteksi-tb-info">
             <section className="deteksi-tb-info-group">
@@ -45,7 +46,7 @@ function DeteksiDiniTbPage() {
                 <li>Tes Tuberculin (mantoux) atau IGRAs</li>
                 <li>Radiografi toraks dengan penggunaan pelindung abdomen</li>
                 <li>Pemeriksaan kultur sputum</li>
-                <li>Tes cepat molikuler (TCM)</li>
+                <li>Tes cepat molekuler (TCM)</li>
               </ol>
             </section>
 

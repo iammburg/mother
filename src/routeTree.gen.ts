@@ -16,7 +16,6 @@ import { Route as LogoutRouteImport } from './routes/logout'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IbuHamilTanpaTbRouteImport } from './routes/ibu-hamil-tanpa-tb'
 import { Route as EducationRouteImport } from './routes/education'
-import { Route as DeteksiDiniTbRouteImport } from './routes/deteksi-dini-tb'
 import { Route as CekRisikoRouteImport } from './routes/cek-risiko'
 import { Route as AuthedRouteImport } from './routes/_authed'
 import { Route as IndexRouteImport } from './routes/index'
@@ -24,10 +23,13 @@ import { Route as PemeriksaanResikoIndexRouteImport } from './routes/pemeriksaan
 import { Route as PemeriksaanMandiriIndexRouteImport } from './routes/pemeriksaan-mandiri/index'
 import { Route as InformasiKehamilanIndexRouteImport } from './routes/informasi-kehamilan/index'
 import { Route as EducationIndexRouteImport } from './routes/education/index'
+import { Route as DeteksiDiniTbIndexRouteImport } from './routes/deteksi-dini-tb/index'
 import { Route as PemeriksaanResikoHasilRouteImport } from './routes/pemeriksaan-resiko/hasil'
 import { Route as PemeriksaanMandiriHasilRouteImport } from './routes/pemeriksaan-mandiri/hasil'
 import { Route as EducationVideoRouteImport } from './routes/education/video'
 import { Route as EducationFlipbookRouteImport } from './routes/education/flipbook'
+import { Route as DeteksiDiniTbSkriningRouteImport } from './routes/deteksi-dini-tb/skrining'
+import { Route as DeteksiDiniTbHasilRouteImport } from './routes/deteksi-dini-tb/hasil'
 import { Route as AuthedPostsRouteRouteImport } from './routes/_authed/posts.route'
 import { Route as InformasiKehamilanTandaBahayaIndexRouteImport } from './routes/informasi-kehamilan/tanda-bahaya/index'
 import { Route as InformasiKehamilanPengelolaanIndexRouteImport } from './routes/informasi-kehamilan/pengelolaan/index'
@@ -77,11 +79,6 @@ const EducationRoute = EducationRouteImport.update({
   path: '/education',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DeteksiDiniTbRoute = DeteksiDiniTbRouteImport.update({
-  id: '/deteksi-dini-tb',
-  path: '/deteksi-dini-tb',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const CekRisikoRoute = CekRisikoRouteImport.update({
   id: '/cek-risiko',
   path: '/cek-risiko',
@@ -116,6 +113,11 @@ const EducationIndexRoute = EducationIndexRouteImport.update({
   path: '/',
   getParentRoute: () => EducationRoute,
 } as any)
+const DeteksiDiniTbIndexRoute = DeteksiDiniTbIndexRouteImport.update({
+  id: '/deteksi-dini-tb/',
+  path: '/deteksi-dini-tb/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PemeriksaanResikoHasilRoute = PemeriksaanResikoHasilRouteImport.update({
   id: '/pemeriksaan-resiko/hasil',
   path: '/pemeriksaan-resiko/hasil',
@@ -135,6 +137,16 @@ const EducationFlipbookRoute = EducationFlipbookRouteImport.update({
   id: '/flipbook',
   path: '/flipbook',
   getParentRoute: () => EducationRoute,
+} as any)
+const DeteksiDiniTbSkriningRoute = DeteksiDiniTbSkriningRouteImport.update({
+  id: '/deteksi-dini-tb/skrining',
+  path: '/deteksi-dini-tb/skrining',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeteksiDiniTbHasilRoute = DeteksiDiniTbHasilRouteImport.update({
+  id: '/deteksi-dini-tb/hasil',
+  path: '/deteksi-dini-tb/hasil',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthedPostsRouteRoute = AuthedPostsRouteRouteImport.update({
   id: '/posts',
@@ -211,7 +223,6 @@ const AuthedPostsPostIdRoute = AuthedPostsPostIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cek-risiko': typeof CekRisikoRoute
-  '/deteksi-dini-tb': typeof DeteksiDiniTbRoute
   '/education': typeof EducationRouteWithChildren
   '/ibu-hamil-tanpa-tb': typeof IbuHamilTanpaTbRoute
   '/login': typeof LoginRoute
@@ -220,10 +231,13 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupRoute
   '/toss': typeof TossRoute
   '/posts': typeof AuthedPostsRouteRouteWithChildren
+  '/deteksi-dini-tb/hasil': typeof DeteksiDiniTbHasilRoute
+  '/deteksi-dini-tb/skrining': typeof DeteksiDiniTbSkriningRoute
   '/education/flipbook': typeof EducationFlipbookRouteWithChildren
   '/education/video': typeof EducationVideoRouteWithChildren
   '/pemeriksaan-mandiri/hasil': typeof PemeriksaanMandiriHasilRoute
   '/pemeriksaan-resiko/hasil': typeof PemeriksaanResikoHasilRoute
+  '/deteksi-dini-tb/': typeof DeteksiDiniTbIndexRoute
   '/education/': typeof EducationIndexRoute
   '/informasi-kehamilan/': typeof InformasiKehamilanIndexRoute
   '/pemeriksaan-mandiri/': typeof PemeriksaanMandiriIndexRoute
@@ -244,15 +258,17 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cek-risiko': typeof CekRisikoRoute
-  '/deteksi-dini-tb': typeof DeteksiDiniTbRoute
   '/ibu-hamil-tanpa-tb': typeof IbuHamilTanpaTbRoute
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
   '/quiz': typeof QuizRoute
   '/signup': typeof SignupRoute
   '/toss': typeof TossRoute
+  '/deteksi-dini-tb/hasil': typeof DeteksiDiniTbHasilRoute
+  '/deteksi-dini-tb/skrining': typeof DeteksiDiniTbSkriningRoute
   '/pemeriksaan-mandiri/hasil': typeof PemeriksaanMandiriHasilRoute
   '/pemeriksaan-resiko/hasil': typeof PemeriksaanResikoHasilRoute
+  '/deteksi-dini-tb': typeof DeteksiDiniTbIndexRoute
   '/education': typeof EducationIndexRoute
   '/informasi-kehamilan': typeof InformasiKehamilanIndexRoute
   '/pemeriksaan-mandiri': typeof PemeriksaanMandiriIndexRoute
@@ -275,7 +291,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authed': typeof AuthedRouteWithChildren
   '/cek-risiko': typeof CekRisikoRoute
-  '/deteksi-dini-tb': typeof DeteksiDiniTbRoute
   '/education': typeof EducationRouteWithChildren
   '/ibu-hamil-tanpa-tb': typeof IbuHamilTanpaTbRoute
   '/login': typeof LoginRoute
@@ -284,10 +299,13 @@ export interface FileRoutesById {
   '/signup': typeof SignupRoute
   '/toss': typeof TossRoute
   '/_authed/posts': typeof AuthedPostsRouteRouteWithChildren
+  '/deteksi-dini-tb/hasil': typeof DeteksiDiniTbHasilRoute
+  '/deteksi-dini-tb/skrining': typeof DeteksiDiniTbSkriningRoute
   '/education/flipbook': typeof EducationFlipbookRouteWithChildren
   '/education/video': typeof EducationVideoRouteWithChildren
   '/pemeriksaan-mandiri/hasil': typeof PemeriksaanMandiriHasilRoute
   '/pemeriksaan-resiko/hasil': typeof PemeriksaanResikoHasilRoute
+  '/deteksi-dini-tb/': typeof DeteksiDiniTbIndexRoute
   '/education/': typeof EducationIndexRoute
   '/informasi-kehamilan/': typeof InformasiKehamilanIndexRoute
   '/pemeriksaan-mandiri/': typeof PemeriksaanMandiriIndexRoute
@@ -310,7 +328,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/cek-risiko'
-    | '/deteksi-dini-tb'
     | '/education'
     | '/ibu-hamil-tanpa-tb'
     | '/login'
@@ -319,10 +336,13 @@ export interface FileRouteTypes {
     | '/signup'
     | '/toss'
     | '/posts'
+    | '/deteksi-dini-tb/hasil'
+    | '/deteksi-dini-tb/skrining'
     | '/education/flipbook'
     | '/education/video'
     | '/pemeriksaan-mandiri/hasil'
     | '/pemeriksaan-resiko/hasil'
+    | '/deteksi-dini-tb/'
     | '/education/'
     | '/informasi-kehamilan/'
     | '/pemeriksaan-mandiri/'
@@ -343,15 +363,17 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/cek-risiko'
-    | '/deteksi-dini-tb'
     | '/ibu-hamil-tanpa-tb'
     | '/login'
     | '/logout'
     | '/quiz'
     | '/signup'
     | '/toss'
+    | '/deteksi-dini-tb/hasil'
+    | '/deteksi-dini-tb/skrining'
     | '/pemeriksaan-mandiri/hasil'
     | '/pemeriksaan-resiko/hasil'
+    | '/deteksi-dini-tb'
     | '/education'
     | '/informasi-kehamilan'
     | '/pemeriksaan-mandiri'
@@ -373,7 +395,6 @@ export interface FileRouteTypes {
     | '/'
     | '/_authed'
     | '/cek-risiko'
-    | '/deteksi-dini-tb'
     | '/education'
     | '/ibu-hamil-tanpa-tb'
     | '/login'
@@ -382,10 +403,13 @@ export interface FileRouteTypes {
     | '/signup'
     | '/toss'
     | '/_authed/posts'
+    | '/deteksi-dini-tb/hasil'
+    | '/deteksi-dini-tb/skrining'
     | '/education/flipbook'
     | '/education/video'
     | '/pemeriksaan-mandiri/hasil'
     | '/pemeriksaan-resiko/hasil'
+    | '/deteksi-dini-tb/'
     | '/education/'
     | '/informasi-kehamilan/'
     | '/pemeriksaan-mandiri/'
@@ -408,7 +432,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthedRoute: typeof AuthedRouteWithChildren
   CekRisikoRoute: typeof CekRisikoRoute
-  DeteksiDiniTbRoute: typeof DeteksiDiniTbRoute
   EducationRoute: typeof EducationRouteWithChildren
   IbuHamilTanpaTbRoute: typeof IbuHamilTanpaTbRoute
   LoginRoute: typeof LoginRoute
@@ -416,8 +439,11 @@ export interface RootRouteChildren {
   QuizRoute: typeof QuizRoute
   SignupRoute: typeof SignupRoute
   TossRoute: typeof TossRoute
+  DeteksiDiniTbHasilRoute: typeof DeteksiDiniTbHasilRoute
+  DeteksiDiniTbSkriningRoute: typeof DeteksiDiniTbSkriningRoute
   PemeriksaanMandiriHasilRoute: typeof PemeriksaanMandiriHasilRoute
   PemeriksaanResikoHasilRoute: typeof PemeriksaanResikoHasilRoute
+  DeteksiDiniTbIndexRoute: typeof DeteksiDiniTbIndexRoute
   InformasiKehamilanIndexRoute: typeof InformasiKehamilanIndexRoute
   PemeriksaanMandiriIndexRoute: typeof PemeriksaanMandiriIndexRoute
   PemeriksaanResikoIndexRoute: typeof PemeriksaanResikoIndexRoute
@@ -480,13 +506,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EducationRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/deteksi-dini-tb': {
-      id: '/deteksi-dini-tb'
-      path: '/deteksi-dini-tb'
-      fullPath: '/deteksi-dini-tb'
-      preLoaderRoute: typeof DeteksiDiniTbRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/cek-risiko': {
       id: '/cek-risiko'
       path: '/cek-risiko'
@@ -536,6 +555,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EducationIndexRouteImport
       parentRoute: typeof EducationRoute
     }
+    '/deteksi-dini-tb/': {
+      id: '/deteksi-dini-tb/'
+      path: '/deteksi-dini-tb'
+      fullPath: '/deteksi-dini-tb/'
+      preLoaderRoute: typeof DeteksiDiniTbIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pemeriksaan-resiko/hasil': {
       id: '/pemeriksaan-resiko/hasil'
       path: '/pemeriksaan-resiko/hasil'
@@ -563,6 +589,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/education/flipbook'
       preLoaderRoute: typeof EducationFlipbookRouteImport
       parentRoute: typeof EducationRoute
+    }
+    '/deteksi-dini-tb/skrining': {
+      id: '/deteksi-dini-tb/skrining'
+      path: '/deteksi-dini-tb/skrining'
+      fullPath: '/deteksi-dini-tb/skrining'
+      preLoaderRoute: typeof DeteksiDiniTbSkriningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/deteksi-dini-tb/hasil': {
+      id: '/deteksi-dini-tb/hasil'
+      path: '/deteksi-dini-tb/hasil'
+      fullPath: '/deteksi-dini-tb/hasil'
+      preLoaderRoute: typeof DeteksiDiniTbHasilRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authed/posts': {
       id: '/_authed/posts'
@@ -729,7 +769,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthedRoute: AuthedRouteWithChildren,
   CekRisikoRoute: CekRisikoRoute,
-  DeteksiDiniTbRoute: DeteksiDiniTbRoute,
   EducationRoute: EducationRouteWithChildren,
   IbuHamilTanpaTbRoute: IbuHamilTanpaTbRoute,
   LoginRoute: LoginRoute,
@@ -737,8 +776,11 @@ const rootRouteChildren: RootRouteChildren = {
   QuizRoute: QuizRoute,
   SignupRoute: SignupRoute,
   TossRoute: TossRoute,
+  DeteksiDiniTbHasilRoute: DeteksiDiniTbHasilRoute,
+  DeteksiDiniTbSkriningRoute: DeteksiDiniTbSkriningRoute,
   PemeriksaanMandiriHasilRoute: PemeriksaanMandiriHasilRoute,
   PemeriksaanResikoHasilRoute: PemeriksaanResikoHasilRoute,
+  DeteksiDiniTbIndexRoute: DeteksiDiniTbIndexRoute,
   InformasiKehamilanIndexRoute: InformasiKehamilanIndexRoute,
   PemeriksaanMandiriIndexRoute: PemeriksaanMandiriIndexRoute,
   PemeriksaanResikoIndexRoute: PemeriksaanResikoIndexRoute,

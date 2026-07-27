@@ -45,6 +45,8 @@
   padding: clamp(1.4rem, 2.5vw, 2.2rem) clamp(1.2rem, 2vw, 1.8rem);
   box-sizing: border-box;
   transition: transform 300ms ease, box-shadow 300ms ease;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .deteksi-tb-card:hover {
@@ -151,6 +153,189 @@
   font-weight: 500;
 }
 
+/* Form Skrining TBC Custom Styling */
+.tb-form-card-container {
+  width: 100%;
+  max-width: 52rem;
+  border-radius: 1.8rem;
+  background-color: #ffffff;
+  border: 2.5px solid #f486bb;
+  box-shadow: 0 0.8rem 2.5rem rgba(244, 134, 187, 0.15);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  box-sizing: border-box;
+}
+
+.tb-form-title {
+  color: #f486bb;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.tb-input-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.tb-input-label {
+  width: 5rem;
+  flex-shrink: 0;
+  color: #f486bb;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.tb-input-field {
+  flex: 1;
+  border: 2px solid #f486bb;
+  border-radius: 0.9rem;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  color: #e05a9a;
+  background-color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tb-input-field:focus {
+  border-color: #e05a9a;
+  box-shadow: 0 0 0 3px rgba(244, 134, 187, 0.2);
+}
+
+.tb-question-card {
+  position: relative;
+  border: 2px solid #f486bb;
+  border-radius: 1.2rem;
+  padding: 1rem 1.2rem 0.9rem;
+  margin-top: 1.5rem;
+  background-color: #ffffff;
+}
+
+.tb-question-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.tb-question-num-badge {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: #f486bb;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tb-question-text {
+  color: #f486bb;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.tb-radio-options {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-left: 2.5rem;
+}
+
+.tb-radio-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #f486bb;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tb-radio-input {
+  accent-color: #f486bb;
+  width: 1.15rem;
+  height: 1.15rem;
+  cursor: pointer;
+}
+
+.tb-checkbox-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-left: 2.5rem;
+  margin-top: 0.4rem;
+}
+
+.tb-checkbox-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid #f486bb;
+  border-radius: 0.75rem;
+  padding: 0.45rem 0.9rem;
+  color: #f486bb;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+}
+
+.tb-checkbox-chip.active {
+  background-color: rgba(244, 134, 187, 0.12);
+  border-color: #e05a9a;
+  color: #e05a9a;
+}
+
+.tb-btn-kembali {
+  border: 2px solid #f486bb;
+  color: #f486bb;
+  background-color: #ffffff;
+  border-radius: 0.9rem;
+  padding: 0.6rem 1.4rem;
+  font-weight: 800;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tb-btn-kembali:hover {
+  background-color: rgba(244, 134, 187, 0.08);
+}
+
+.tb-btn-lihat-hasil {
+  background-color: #f486bb;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.9rem;
+  padding: 0.65rem 1.6rem;
+  font-weight: 800;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 0.3rem 0.8rem rgba(244, 134, 187, 0.3);
+}
+
+.tb-btn-lihat-hasil:hover {
+  background-color: #e05a9a;
+  transform: translateY(-1px);
+}
+
 /* Mobile responsive layout matching exact UI design */
 @media (max-width: 900px) {
   .deteksi-tb-section {
@@ -243,5 +428,24 @@
     font-size: clamp(0.82rem, 1.8vh, 0.95rem);
     font-weight: 600;
     line-height: 1.4;
+  }
+
+  .tb-radio-options,
+  .tb-checkbox-options {
+    padding-left: 0;
+  }
+
+  .tb-input-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .tb-input-label {
+    width: 100%;
+  }
+
+  .tb-input-field {
+    width: 100%;
   }
 }

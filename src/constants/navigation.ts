@@ -28,7 +28,15 @@ export const navigationItems: NavigationItem[] = [
     ],
   },
   { label: "Ibu Hamil\nTanpa TB", href: "/ibu-hamil-tanpa-tb" },
-  { label: "Deteksi Dini TB", href: "/deteksi-dini-tb" },
+  {
+    label: "Deteksi Dini TB",
+    href: "/deteksi-dini-tb",
+    activePaths: [
+      "/deteksi-dini-tb",
+      "/deteksi-dini-tb/skrining",
+      "/deteksi-dini-tb/hasil",
+    ],
+  },
   {
     label: "Education",
     href: "/education",
