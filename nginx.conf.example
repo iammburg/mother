@@ -1,0 +1,28 @@
+server {
+    listen 80;
+    server_name example.com www.example.com; # Ganti dengan domain/IP VPS Anda
+
+    # Redirect ke HTTPS jika SSL sudah diinstall Certbot:
+    # return 301 https://$host$request_uri;
+
+    client_max_body_size 20M;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    # Cache static assets di client dist
+    location /assets/ {
+        proxy_pass http://127.0.0.1:3000/assets/;
+        proxy_cache_valid 200 365d;
+        access_log off;
+    }
+}
