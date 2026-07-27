@@ -803,7 +803,10 @@
 @media (max-width: 760px) {
   .home-hero {
     align-items: center;
-    background-position: 35% center;
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.18)),
+      url('/assets/images/home_background_android.avif');
+    background-position: center;
   }
 
   .home-nav {
