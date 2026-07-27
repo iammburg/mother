@@ -6,7 +6,7 @@ Dokumen ini berisi panduan lengkap langkah-demi-langkah untuk melakukan deployme
 
 ## 📋 Prasyarat
 - Akses SSH ke VPS CentOS (CentOS 7, CentOS Stream, AlmaLinux, atau Rocky Linux) dengan hak akses `root` atau `sudo`.
-- Domain yang sudah diarahkan (A Record) ke IP Publik VPS Anda (opsional jika hanya menggunakan IP).
+- Domain atau IP Publik VPS.
 
 ---
 
@@ -96,9 +96,6 @@ pm2 delete mother-app
 
 # Jalankan PM2 menggunakan ecosystem.config.cjs
 pm2 start ecosystem.config.cjs
-
-# Atau jalankan langsung via npm:
-# pm2 start npm --name "mother-app" -- run start
 
 # Simpan state PM2 agar auto-start saat VPS di-reboot
 pm2 save

@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'mother-app',
       script: 'npm',
-      args: 'run start',
+      args: 'start',
       exec_mode: 'fork',
       autorestart: true,
       watch: false,
