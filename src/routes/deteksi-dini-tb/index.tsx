@@ -14,7 +14,7 @@ function DeteksiDiniTbPage() {
         </h1>
 
         <div className="deteksi-tb-container">
-          <Link to="/deteksi-dini-tb/skrining" className="deteksi-tb-card">
+          <article className="deteksi-tb-card">
             <div className="deteksi-tb-card-header">
               <h2 className="deteksi-tb-card-lead">Ayo,</h2>
               <h2 className="deteksi-tb-card-headline">Cek Sekarang Juga !</h2>
@@ -28,8 +28,11 @@ function DeteksiDiniTbPage() {
             </div>
             <div className="deteksi-tb-card-footer">
               <p className="deteksi-tb-card-subtext">Deteksi Dini TB pada Ibu Hamil</p>
+              <Link to="/deteksi-dini-tb/skrining" className="deteksi-tb-card-button">
+                Mulai
+              </Link>
             </div>
-          </Link>
+          </article>
 
           <div className="deteksi-tb-info">
             <section className="deteksi-tb-info-group">
