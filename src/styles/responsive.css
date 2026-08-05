@@ -1,4 +1,5 @@
 @media (min-width: 1501px) {
+
   .self-check-page,
   .self-check-result-page {
     --self-check-desktop-scale: 0.90;
@@ -8,9 +9,7 @@
   .self-check-result-shell {
     width: calc(100% / var(--self-check-desktop-scale, 0.90));
     height: calc(100% / var(--self-check-desktop-scale, 0.90));
-    margin-left: calc(
-      (100% - (100% / var(--self-check-desktop-scale, 0.90))) / 2
-    );
+    margin-left: calc((100% - (100% / var(--self-check-desktop-scale, 0.90))) / 2);
     margin-right: 0;
     transform: scale(var(--self-check-desktop-scale, 0.84));
     transform-origin: top center;
@@ -18,29 +17,27 @@
 }
 
 @media (min-width: 901px) and (max-width: 1500px) {
+
   .self-check-section,
   .self-check-result-shell {
     padding:
-      clamp(1.55rem, 2.6vw, 2.35rem)
-      clamp(1.05rem, 3vw, 2.5rem)
-      clamp(0.45rem, 0.85vw, 0.8rem);
+      clamp(1.55rem, 2.6vw, 2.35rem) clamp(1.05rem, 3vw, 2.5rem) clamp(0.45rem, 0.85vw, 0.8rem);
   }
 
   .self-check-title,
-  .self-check-section > h1,
-  .self-check-result-shell > h1 {
+  .self-check-section>h1,
+  .self-check-result-shell>h1 {
     margin-bottom: clamp(1.05rem, 1.8vw, 1.65rem);
     font-size: clamp(1.55rem, 1.88vw, 2.05rem);
   }
 
   .self-check-scroll-content {
     padding:
-      clamp(1.95rem, 2.8vw, 2.7rem)
-      clamp(1.85rem, 3vw, 3rem)
-      clamp(2.4rem, 3.2vw, 3.4rem);
+      clamp(1.95rem, 2.8vw, 2.7rem) clamp(1.85rem, 3vw, 3rem) clamp(2.4rem, 3.2vw, 3.4rem);
   }
 
   @media (min-width: 1241px) {
+
     .self-check-form-section,
     .self-check-form-section-identity,
     .self-check-form-section-mandiri {
@@ -75,70 +72,46 @@
     --field-gap: 1rem;
   }
 
-  .self-check-form-section-identity
-    .self-check-identity-short-row
-    .self-check-field-birth-date,
-  .self-check-form-section-identity
-    .self-check-identity-short-row
-    .self-check-field-last-child-age {
+  .self-check-form-section-identity .self-check-identity-short-row .self-check-field-birth-date,
+  .self-check-form-section-identity .self-check-identity-short-row .self-check-field-last-child-age {
     grid-template-columns: 12.2rem 11.4rem;
     gap: 1rem;
   }
 
-  .self-check-form-section-identity
-    .self-check-identity-short-row
-    .self-check-field-pregnancy-order {
+  .self-check-form-section-identity .self-check-identity-short-row .self-check-field-pregnancy-order {
     grid-template-columns: 9.4rem 9rem;
     gap: 0.8rem;
   }
 
-  .self-check-form-section-identity
-    .self-check-identity-short-row
-    .self-check-field-blood-type {
+  .self-check-form-section-identity .self-check-identity-short-row .self-check-field-blood-type {
     grid-template-columns: 10.2rem 8.4rem;
     gap: 0.8rem;
   }
 
-  .self-check-form-section-mandiri
-    .self-check-two-column-row
-    .self-check-field-weight-before,
-  .self-check-form-section-mandiri
-    .self-check-two-column-row
-    .self-check-field-blood-pressure,
-  .self-check-form-section-mandiri
-    .self-check-two-column-row
-    .self-check-field-lila,
-  .self-check-form-section-mandiri
-    .self-check-two-column-row
-    .self-check-field-fetal-movement {
+  .self-check-form-section-mandiri .self-check-two-column-row .self-check-field-weight-before,
+  .self-check-form-section-mandiri .self-check-two-column-row .self-check-field-blood-pressure,
+  .self-check-form-section-mandiri .self-check-two-column-row .self-check-field-lila,
+  .self-check-form-section-mandiri .self-check-two-column-row .self-check-field-fetal-movement {
     grid-template-columns: 12.2rem 10.2rem;
     gap: 1rem;
   }
 
-  .self-check-form-section-mandiri
-    .self-check-two-column-row
-    .self-check-field-weight-after {
+  .self-check-form-section-mandiri .self-check-two-column-row .self-check-field-weight-after {
     grid-template-columns: 13.1rem 8.2rem;
     gap: 0.85rem;
   }
 
-  .self-check-form-section-mandiri
-    .self-check-two-column-row
-    .self-check-pressure-field {
+  .self-check-form-section-mandiri .self-check-two-column-row .self-check-pressure-field {
     grid-template-columns: 6.6rem 14.6rem;
     gap: 0.85rem;
   }
 
-  .self-check-form-section-mandiri
-    .self-check-two-column-row
-    .self-check-field-fundal-height {
+  .self-check-form-section-mandiri .self-check-two-column-row .self-check-field-fundal-height {
     grid-template-columns: 12rem 9rem;
     gap: 0.85rem;
   }
 
-  .self-check-form-section-mandiri
-    .self-check-two-column-row
-    .self-check-field-contraction {
+  .self-check-form-section-mandiri .self-check-two-column-row .self-check-field-contraction {
     grid-template-columns: 13rem 8.1rem;
     gap: 0.85rem;
   }
@@ -230,31 +203,27 @@
 }
 
 @media (max-width: 1240px) {
+
   .self-check-form-section,
   .self-check-form-section-mandiri {
     grid-template-columns: 1fr;
   }
 
-  .self-check-form-section:not(.self-check-form-section-additional)
-    .self-check-copy {
+  .self-check-form-section:not(.self-check-form-section-additional) .self-check-copy {
     display: contents;
   }
 
-  .self-check-form-section:not(.self-check-form-section-additional)
-    .self-check-copy
-    h2 {
+  .self-check-form-section:not(.self-check-form-section-additional) .self-check-copy h2 {
     order: 1;
   }
 
-  .self-check-form-section:not(.self-check-form-section-additional)
-    .self-check-section-image {
+  .self-check-form-section:not(.self-check-form-section-additional) .self-check-section-image {
     order: 2;
     margin: 0.5rem auto 1.25rem;
     max-width: min(74vw, 18.5rem);
   }
 
-  .self-check-form-section:not(.self-check-form-section-additional)
-    .self-check-fields {
+  .self-check-form-section:not(.self-check-form-section-additional) .self-check-fields {
     order: 3;
     width: 100%;
   }
@@ -323,26 +292,21 @@
     grid-template-columns: 1fr;
   }
 
-  .self-check-form-section:not(.self-check-form-section-additional)
-    .self-check-copy {
+  .self-check-form-section:not(.self-check-form-section-additional) .self-check-copy {
     display: contents;
   }
 
-  .self-check-form-section:not(.self-check-form-section-additional)
-    .self-check-copy
-    h2 {
+  .self-check-form-section:not(.self-check-form-section-additional) .self-check-copy h2 {
     order: 1;
     text-align: center;
   }
 
-  .self-check-form-section:not(.self-check-form-section-additional)
-    .self-check-section-image {
+  .self-check-form-section:not(.self-check-form-section-additional) .self-check-section-image {
     order: 2;
     margin: 0 auto clamp(0.18rem, 1.15vw, 0.42rem);
   }
 
-  .self-check-form-section:not(.self-check-form-section-additional)
-    .self-check-fields {
+  .self-check-form-section:not(.self-check-form-section-additional) .self-check-fields {
     order: 3;
     width: 100%;
   }
@@ -358,18 +322,10 @@
   .self-check-identity-short-row .self-check-field,
   .self-check-identity-short-row .self-check-field:first-child,
   .self-check-identity-short-row .self-check-field:nth-child(2),
-  .self-check-form-section-identity
-    .self-check-identity-short-row
-    .self-check-field-birth-date,
-  .self-check-form-section-identity
-    .self-check-identity-short-row
-    .self-check-field-last-child-age,
-  .self-check-form-section-identity
-    .self-check-identity-short-row
-    .self-check-field-pregnancy-order,
-  .self-check-form-section-identity
-    .self-check-identity-short-row
-    .self-check-field-blood-type,
+  .self-check-form-section-identity .self-check-identity-short-row .self-check-field-birth-date,
+  .self-check-form-section-identity .self-check-identity-short-row .self-check-field-last-child-age,
+  .self-check-form-section-identity .self-check-identity-short-row .self-check-field-pregnancy-order,
+  .self-check-form-section-identity .self-check-identity-short-row .self-check-field-blood-type,
   .self-check-two-column-row .self-check-field,
   .self-check-two-column-row .self-check-field:first-child,
   .self-check-blood-pressure-row,
@@ -805,7 +761,7 @@
     align-items: center;
     background-image:
       linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.18)),
-      url('/assets/images/home_background_android.avif');
+      url('/assets/images/home/home-mobile.avif');
     background-position: center;
   }
 
@@ -865,6 +821,7 @@
 }
 
 @media (max-width: 480px) {
+
   .home-hero,
   .single-page-section,
   .risk-check-section {
@@ -1028,7 +985,7 @@
     width: 100%;
   }
 
-  .self-check-result-shell > h1 {
+  .self-check-result-shell>h1 {
     color: #ff85bd;
   }
 
