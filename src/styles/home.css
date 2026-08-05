@@ -21,7 +21,7 @@
   isolation: isolate;
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.18)),
-    url('/assets/images/home_background.avif');
+    url('/assets/images/home/home-desktop.avif');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -31,7 +31,7 @@
   .home-hero {
     background-image:
       linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.18)),
-      url('/assets/images/home_background_android.avif');
+      url('/assets/images/home/home-mobile.avif');
     background-position: center;
   }
 }
